@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Utilidades {
 
-    public void escribirArchivo(String texto, String archivo) {
+    public void guardarArchivo(String texto, String archivo) {
         String cd = System.getProperty("user.dir");
         String cd1 = cd + "\\" + archivo;
         File f = new File(cd1);

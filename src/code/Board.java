@@ -52,7 +52,9 @@ public class Board implements KeyListener {
         botones[3][13].setIcon(avatarIcon);
         botones[8][12].setIcon(muroIcon);
         botones[13][9].setIcon(cajaIcon);
+        botones[9][14].setIcon(muroIcon);
         botones[9][15].setIcon(llegadaIcon);
+        botones[9][12].setIcon(llegadaIcon);
 
     }
 
@@ -88,7 +90,11 @@ public class Board implements KeyListener {
             } else if (botones[x][y].getIcon() == llegadaAvatarIcon && botones[x][y-1].getIcon() != cajaIcon && botones[x][y - 1].getIcon() != muroIcon && botones[x][y - 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(llegadaIcon);
                 botones[x][y - 1].setIcon(avatarIcon);
-            } else if (botones[x][y - 1].getIcon() != estrellaIcon) {
+            } else if(botones[x][y - 1].getIcon() == estrellaIcon && y>=2&& botones[x][y-2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != muroIcon  &&botones[x][y-2].getIcon() !=estrellaIcon){
+                botones[x][y - 1].setIcon(llegadaAvatarIcon);
+                botones[x][y].setIcon(caminoIcon);
+                botones[x][y-2].setIcon(cajaIcon);
+            }else if (botones[x][y - 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y - 1].setIcon(avatarIcon);
             }
@@ -116,7 +122,11 @@ public class Board implements KeyListener {
             } else if (botones[x][y].getIcon() == llegadaAvatarIcon && botones[x][y+1].getIcon() != cajaIcon && botones[x][y + 1].getIcon() != muroIcon && botones[x][y + 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(llegadaIcon);
                 botones[x][y + 1].setIcon(avatarIcon);
-            } else if (botones[x][y + 1].getIcon() != estrellaIcon) {
+            }  else if(botones[x][y + 1].getIcon() == estrellaIcon && y<=17&& botones[x][y+2].getIcon() != cajaIcon && botones[x][y + 2].getIcon() != muroIcon  &&botones[x][y+2].getIcon() !=estrellaIcon){
+                botones[x][y + 1].setIcon(llegadaAvatarIcon);
+                botones[x][y].setIcon(caminoIcon);
+                botones[x][y+2].setIcon(cajaIcon);
+            }else if (botones[x][y + 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y + 1].setIcon(avatarIcon);
             }
@@ -144,7 +154,11 @@ public class Board implements KeyListener {
             }  else if (botones[x][y].getIcon() == llegadaAvatarIcon && botones[x - 1][y].getIcon() != cajaIcon && botones[x - 1][y].getIcon() != muroIcon && botones[x - 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(llegadaIcon);
                 botones[x - 1][y].setIcon(avatarIcon);
-            } else if (botones[x - 1][y].getIcon() != estrellaIcon) {
+            }  else if(botones[x-1][y].getIcon() == estrellaIcon && x>=2&& botones[x-2][y].getIcon() != cajaIcon && botones[x-2][y].getIcon() != muroIcon  &&botones[x-2][y].getIcon() !=estrellaIcon){
+                botones[x-1][y].setIcon(llegadaAvatarIcon);
+                botones[x][y].setIcon(caminoIcon);
+                botones[x-2][y].setIcon(cajaIcon);
+            }else if (botones[x - 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x - 1][y].setIcon(avatarIcon);
             }
@@ -172,6 +186,10 @@ public class Board implements KeyListener {
             }  else if (botones[x][y].getIcon() == llegadaAvatarIcon && botones[x + 1][y].getIcon() != cajaIcon && botones[x + 1][y].getIcon() != muroIcon && botones[x + 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(llegadaIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
+            } else if(botones[x+1][y].getIcon() == estrellaIcon && x<=17&& botones[x+2][y].getIcon() != cajaIcon && botones[x+2][y].getIcon() != muroIcon  &&botones[x+2][y].getIcon() !=estrellaIcon){
+                botones[x+1][y].setIcon(llegadaAvatarIcon);
+                botones[x][y].setIcon(caminoIcon);
+                botones[x+2][y].setIcon(cajaIcon);
             } else if (botones[x + 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
