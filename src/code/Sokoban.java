@@ -41,7 +41,7 @@ public class Sokoban {
 //                System.out.println(utilidades.cargar().get(i).getTablero()); 
 //        }
 
-        //System.out.println("Ya existe: " + utilidades.existe("sdfg"));
+        System.out.println("Ya existe: " + utilidades.existe("sdfg"));
     
     }
 
