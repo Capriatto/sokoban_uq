@@ -12,13 +12,15 @@ import interfaz.BoardFrame;
  * @author FabianGM
  */
 public class Sokoban {
-
+    public static Utilidades utilidades= new Utilidades();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         BoardFrame board=new BoardFrame();
         board.setVisible(true);
+        utilidades.guardarArchivo("Probando Escribir y Leer Texto en un archivo desde Java","archivo.txt");
+        System.out.println (utilidades.leerArchivo("archivo.txt"));
     }
     
 }

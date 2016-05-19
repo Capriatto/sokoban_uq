@@ -20,7 +20,7 @@ public class BoardFrame extends javax.swing.JFrame {
         initComponents();
         board=new Board();
         this.board.matrizDeBotonesBloqueado(Panel);
-        
+        board.leerArchivo(0);
     }
 
     /**
