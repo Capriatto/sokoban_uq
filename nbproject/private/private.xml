@@ -5,19 +5,33 @@
             <url>src/code/Board.java</url>
             <bookmark id="1">
                 <name/>
+<<<<<<< HEAD
                 <line>48</line>
+=======
+                <line>64</line>
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/niveles/nivel0.txt</file>
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/code/Utilidades.java</file>
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/interfaz/BoardFrame.java</file>
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/code/Board.java</file>
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/interfaz/CrearNivelFrame.java</file>
             <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/code/Sokoban.java</file>
+=======
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Sokoban.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/MetodosJugador.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/interfaz/BoardFrame.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Jugador.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Board.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Utilidades.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/interfaz/Login.java</file>
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
         </group>
     </open-files>
 </project-private>

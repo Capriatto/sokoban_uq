@@ -55,11 +55,21 @@ public class Board implements KeyListener {
         this.botones = new JButton[20][20];
         this.a = 0;
         this.b = 0;
+<<<<<<< HEAD
+=======
+
+        this.imagenes=new char[20][20];
+
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
         try {
             this.robot = new Robot();
         } catch (AWTException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
         avatarIcon = new ImageIcon(getClass().getResource("/recursos/avatarIcon.png"));
         muroIcon = new ImageIcon(getClass().getResource("/recursos/muroIcon.png"));
         cajaIcon = new ImageIcon(getClass().getResource("/recursos/cajaIcon.png"));

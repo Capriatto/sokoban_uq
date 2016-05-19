@@ -18,16 +18,25 @@ public class BoardFrame extends javax.swing.JFrame {
     /**
      * Creates new form BoardFrame
      */
+<<<<<<< HEAD
     public BoardFrame(String nombreArchivo) {
+=======
+    public BoardFrame(String nombre,Login login) {
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
         initComponents();
         this.nombreArchivo=nombreArchivo;
         board = new Board(nombreArchivo);
         this.board.matrizDeBotonesBloqueado(Panel);
+<<<<<<< HEAD
         
     }
 
     private BoardFrame() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+=======
+        board.leerArchivo(0);
+        setLocationRelativeTo(this);
+>>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
     }
 
     /**
@@ -113,40 +122,6 @@ public class BoardFrame extends javax.swing.JFrame {
         board.rehacerPaso();
     }//GEN-LAST:event_actionMenuItem3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BoardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BoardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BoardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BoardFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BoardFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
