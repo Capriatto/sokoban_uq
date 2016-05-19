@@ -18,26 +18,16 @@ public class BoardFrame extends javax.swing.JFrame {
     /**
      * Creates new form BoardFrame
      */
-<<<<<<< HEAD
-    public BoardFrame(String nombreArchivo) {
-=======
-    public BoardFrame(String nombre,Login login) {
->>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
+    public BoardFrame(String nombre,Login login,String nombreArchivo) {
         initComponents();
         this.nombreArchivo=nombreArchivo;
         board = new Board(nombreArchivo);
         this.board.matrizDeBotonesBloqueado(Panel);
-<<<<<<< HEAD
+        this.setLocationRelativeTo(this);
         
     }
 
-    private BoardFrame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
-        board.leerArchivo(0);
-        setLocationRelativeTo(this);
->>>>>>> df58bae117144a57c8dce6028d0442d8e2a2d77a
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
