@@ -6,8 +6,12 @@
  */
 package code;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.EmptyStackException;
+import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,12 +33,33 @@ public class Board implements KeyListener {
     private char[][] imagenes;
     private ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon, estrellaIcon, llegadaAvatarIcon;
     private int a, b, x, y;
+    private Stack<Integer> pasos = new Stack<>();
+    private Stack<Integer> pasosRehacer = new Stack<>();
+    Robot robot;
+    public boolean agregar = true;
+
+    public boolean isAgregar() {
+        return agregar;
+    }
+
+    public void setAgregar(boolean agregar) {
+        this.agregar = agregar;
+    }
 
     public Board() {
+
         this.botones = new JButton[20][20];
         this.a = 0;
         this.b = 0;
+<<<<<<< HEAD
         this.imagenes=new char[20][20];
+=======
+        try {
+            this.robot = new Robot();
+        } catch (AWTException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+        }
+>>>>>>> bdd77f43a52052d3a274c703644bdb43cf3a209d
         avatarIcon = new ImageIcon(getClass().getResource("/recursos/avatarIcon.png"));
         muroIcon = new ImageIcon(getClass().getResource("/recursos/muroIcon.png"));
         cajaIcon = new ImageIcon(getClass().getResource("/recursos/cajaIcon.png"));
@@ -100,8 +125,16 @@ cambiarIconos();
 
     @Override
     public void keyPressed(KeyEvent e) {
+        
+        if(agregar){
+            System.out.println(e.getKeyCode());
+            pasos.push(e.getKeyCode());
+        }else{
+            agregar = true;
+        }
+      
         posicionAvatar();
-       
+
         if (e.VK_W == e.getKeyCode() && y >= 1 && botones[x][y - 1].getIcon() != muroIcon) {
             if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                 botones[x][y - 1].setIcon(caminoIcon);
@@ -252,8 +285,71 @@ cambiarIconos();
                 }
             }
         }
-
     }
+
+    public void deshacerPaso() {
+        try {
+            int paso = pasos.pop();
+            pasosRehacer.push(paso);
+            while (pasos.size() >= 0) {
+
+                if (paso == 68) {
+                    robot.keyPress(KeyEvent.VK_A);
+                    return;
+                }
+
+                if (paso == 65) {
+                    robot.keyPress(KeyEvent.VK_D);
+                    return;
+                }
+
+                if (paso == 83) {
+                    robot.keyPress(KeyEvent.VK_W);
+                    return;
+                }
+
+                if (paso == 87) {
+                    robot.keyPress(KeyEvent.VK_S);
+                    return;
+                }
+            }
+        } catch (EmptyStackException e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void rehacerPaso() {
+        try {
+            int paso = pasosRehacer.pop();
+            pasos.push(paso);
+            while (!pasos.empty()) {
+                if (paso == 68) {
+                    robot.keyPress(KeyEvent.VK_D);
+                    return;
+                }
+
+                if (paso == 65) {
+                    robot.keyPress(KeyEvent.VK_A);
+                    return;
+                }
+
+                if (paso == 83) {
+                    robot.keyPress(KeyEvent.VK_S);
+                    return;
+                }
+
+                if (paso == 87) {
+                    robot.keyPress(KeyEvent.VK_W);
+                    return;
+                }
+            }
+        } catch (EmptyStackException e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void cambiarIconos(){
         for(int i=0;i<20;i++){
             for(int j=0;j<20;j++){
@@ -284,4 +380,5 @@ cambiarIconos();
         cambiarIconos();
         return;
     }
+
 }
