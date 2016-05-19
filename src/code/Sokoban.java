@@ -32,6 +32,7 @@ public class Sokoban {
         jugadores.add(j2);
         BoardFrame board = new BoardFrame();
         board.setVisible(true);
+
         // utilidades.guardarArchivo(jugadores, "archivo.txt");
         // System.out.println(utilidades.leerArchivo("archivo.txt"));
 
@@ -42,7 +43,6 @@ public class Sokoban {
 //        }
 
         System.out.println("Ya existe: " + utilidades.existe("sdfg"));
-    
-    }
 
+    }
 }
