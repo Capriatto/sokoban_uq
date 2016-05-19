@@ -33,6 +33,10 @@ public class BoardFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        actionMenuItem2 = new org.jfree.ui.action.ActionMenuItem();
+        actionMenuItem3 = new org.jfree.ui.action.ActionMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +50,30 @@ public class BoardFrame extends javax.swing.JFrame {
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 618, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("Opciones");
+
+        actionMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        actionMenuItem2.setText("Deshacer paso");
+        actionMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(actionMenuItem2);
+
+        actionMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        actionMenuItem3.setText("Rehacer paso");
+        actionMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(actionMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,11 +89,22 @@ public class BoardFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void actionMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem2ActionPerformed
+        board.setAgregar(false);
+        board.deshacerPaso();
+
+    }//GEN-LAST:event_actionMenuItem2ActionPerformed
+
+    private void actionMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem3ActionPerformed
+        board.setAgregar(true);
+        board.rehacerPaso();
+    }//GEN-LAST:event_actionMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,5 +143,9 @@ public class BoardFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
+    private org.jfree.ui.action.ActionMenuItem actionMenuItem2;
+    private org.jfree.ui.action.ActionMenuItem actionMenuItem3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
