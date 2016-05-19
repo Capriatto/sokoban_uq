@@ -7,20 +7,27 @@ package interfaz;
 
 import code.Board;
 
+
 /**
  *
  * @author FabianGM
  */
 public class BoardFrame extends javax.swing.JFrame {
     private Board board;
+    String nombreArchivo;
     /**
      * Creates new form BoardFrame
      */
-    public BoardFrame() {
+    public BoardFrame(String nombreArchivo) {
         initComponents();
-        board=new Board();
+        this.nombreArchivo=nombreArchivo;
+        board = new Board(nombreArchivo);
         this.board.matrizDeBotonesBloqueado(Panel);
-        board.leerArchivo(0);
+        
+    }
+
+    private BoardFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

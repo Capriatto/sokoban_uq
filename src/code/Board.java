@@ -37,6 +37,9 @@ public class Board implements KeyListener {
     private Stack<Integer> pasosRehacer = new Stack<>();
     Robot robot;
     public boolean agregar = true;
+    private ArchivoLeer leer;
+    private String nombreArchivo;
+    
 
     public boolean isAgregar() {
         return agregar;
@@ -46,20 +49,17 @@ public class Board implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board() {
-
+    public Board(String nombreArchivo) {
+        this.nombreArchivo=nombreArchivo;
+        leer=new ArchivoLeer();
         this.botones = new JButton[20][20];
         this.a = 0;
         this.b = 0;
-<<<<<<< HEAD
-        this.imagenes=new char[20][20];
-=======
         try {
             this.robot = new Robot();
         } catch (AWTException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> bdd77f43a52052d3a274c703644bdb43cf3a209d
         avatarIcon = new ImageIcon(getClass().getResource("/recursos/avatarIcon.png"));
         muroIcon = new ImageIcon(getClass().getResource("/recursos/muroIcon.png"));
         cajaIcon = new ImageIcon(getClass().getResource("/recursos/cajaIcon.png"));
@@ -85,39 +85,11 @@ public class Board implements KeyListener {
             }
             
         }
-        leerArchivo(0);
-cambiarIconos();
+        imagenes=leer.leerArchivo(nombreArchivo);
+        cambiarIconos();
     }
 
-    public void leerArchivo(int nivel) {
-        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
-        String filename = levelDirectory + "nivel" + nivel + ".txt";
-
-        BufferedReader in;
-        try {
-            in = new BufferedReader(new FileReader(filename));
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot find file \"" + filename + "\".");
-            return;
-        }
-
-        try {
-            for (int i = 0; i <20; i++) {
-                
-                for (int j = 0; j <20; j++) {
-                    char letra=(char) in.read();
-                    imagenes[j][i]=letra;
-                }
-                in.readLine();
-            }
-
-        } catch (IOException e) {
-            System.out.println("File improperly formatted, quitting");
-            return;
-        }
-        return;
-    }
-
+   
     @Override
     public void keyTyped(KeyEvent e) {
 

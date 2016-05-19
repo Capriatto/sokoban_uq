@@ -6,6 +6,7 @@
 package code;
 
 import interfaz.BoardFrame;
+import interfaz.ElegirNivelFrame;
 
 /**
  *
@@ -17,9 +18,8 @@ public class Sokoban {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BoardFrame board=new BoardFrame();
-        board.setVisible(true);
-        System.out.println (utilidades.leerArchivo("archivo.txt"));
+        ElegirNivelFrame elegir=new ElegirNivelFrame();
+        elegir.setVisible(true);
     }
     
 }
