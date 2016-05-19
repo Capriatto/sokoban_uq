@@ -18,9 +18,10 @@ public class Jugador implements Serializable {
     private int jugadas;
     private char[][] tablero;
 
-    public Jugador(String nombreJugador) {
+    public Jugador(String nombreJugador, int jugadas, char[][] tablero) {
         this.nombreJugador = nombreJugador;
-        puntaje = jugadas = 0;
+        this.jugadas= jugadas;
+        this.tablero=tablero;
     }
 
     /**
@@ -41,26 +42,6 @@ public class Jugador implements Serializable {
      */
     public void setNombreJugador(String nombreJugador) {
         this.nombreJugador = nombreJugador;
-    }
-
-    /**
-     * *
-     * Metodo para obtener el puntaje del jugador
-     *
-     * @return
-     */
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    /**
-     * *
-     * Metodo para modificar el puntaje del jugador
-     *
-     * @param puntaje
-     */
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
     }
 
     /**

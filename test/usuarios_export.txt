@@ -1,0 +1,3 @@
+JUGADOR,JUGADAS,TABLERO
+Brayhan,10,[[C@52d455b8
+Katherine,15,[[C@52d455b8
