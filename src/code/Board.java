@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -100,6 +101,7 @@ cambiarIconos();
     @Override
     public void keyPressed(KeyEvent e) {
         posicionAvatar();
+       
         if (e.VK_W == e.getKeyCode() && y >= 1 && botones[x][y - 1].getIcon() != muroIcon) {
             if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                 botones[x][y - 1].setIcon(caminoIcon);
@@ -111,6 +113,7 @@ cambiarIconos();
                 botones[x][y - 2].setIcon(estrellaIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y - 1].setIcon(avatarIcon);
+                validarSiGano();
             } else if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() == llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                 botones[x][y - 1].setIcon(caminoIcon);
                 botones[x][y - 2].setIcon(cajaIcon);
@@ -143,6 +146,7 @@ cambiarIconos();
                 botones[x][y + 2].setIcon(estrellaIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y + 1].setIcon(avatarIcon);
+                validarSiGano();
             } else if (botones[x][y + 1].getIcon() == cajaIcon && y <= 17 && botones[x][y + 2].getIcon() != muroIcon && botones[x][y + 2].getIcon() != llegadaIcon && botones[x][y].getIcon() == llegadaAvatarIcon && botones[x][y + 2].getIcon() != cajaIcon && botones[x][y + 2].getIcon() != estrellaIcon) {
                 botones[x][y + 1].setIcon(caminoIcon);
                 botones[x][y + 2].setIcon(cajaIcon);
@@ -175,6 +179,7 @@ cambiarIconos();
                 botones[x - 2][y].setIcon(estrellaIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x - 1][y].setIcon(avatarIcon);
+                validarSiGano();
             } else if (botones[x - 1][y].getIcon() == cajaIcon && x >= 2 && botones[x - 2][y].getIcon() != muroIcon && botones[x - 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() == llegadaAvatarIcon&& botones[x-2][y].getIcon() != cajaIcon && botones[x-2][y].getIcon() != estrellaIcon) {
                 botones[x - 1][y].setIcon(caminoIcon);
                 botones[x - 2][y].setIcon(cajaIcon);
@@ -207,6 +212,7 @@ cambiarIconos();
                 botones[x + 2][y].setIcon(estrellaIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
+                validarSiGano();
             } else if (botones[x + 1][y].getIcon() == cajaIcon && x <= 17 && botones[x + 2][y].getIcon() != muroIcon && botones[x + 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() == llegadaAvatarIcon&& botones[x+2][y].getIcon() != cajaIcon && botones[x+2][y].getIcon() != estrellaIcon) {
                 botones[x + 1][y].setIcon(caminoIcon);
                 botones[x + 2][y].setIcon(cajaIcon);
@@ -224,6 +230,7 @@ cambiarIconos();
                 botones[x+1][y].setIcon(llegadaAvatarIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x+2][y].setIcon(cajaIcon);
+                
             } else if (botones[x + 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
@@ -263,5 +270,18 @@ cambiarIconos();
                 }
             }
         }
+    }
+
+    public void validarSiGano() {
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                if (botones[i][j].getIcon() == llegadaIcon || botones[i][j].getIcon() == llegadaAvatarIcon) {
+                    return;
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Ganaste putooo!");
+        cambiarIconos();
+        return;
     }
 }

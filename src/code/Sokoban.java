@@ -19,7 +19,6 @@ public class Sokoban {
     public static void main(String[] args) {
         BoardFrame board=new BoardFrame();
         board.setVisible(true);
-        utilidades.guardarArchivo("Probando Escribir y Leer Texto en un archivo desde Java","archivo.txt");
         System.out.println (utilidades.leerArchivo("archivo.txt"));
     }
     
