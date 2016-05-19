@@ -5,7 +5,6 @@
  */
 package code;
 
-import static code.Sokoban.jugadores;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.File;
@@ -21,22 +20,12 @@ import com.csvreader.CsvWriter;
  */
 public class Utilidades {
 
-    public void guardarArchivo(ArrayList<Jugador> j, String archivo) {
-        String cd = System.getProperty("user.dir");
-        String cd1 = cd + "\\" + archivo;
-        File f = new File(cd1);
-        try {
-            FileWriter escribe = new FileWriter(f);
-            for (int x = 0; x < j.size(); x++) {
-                escribe.write(j.get(x).getNombreJugador().concat(",").concat(String.valueOf(j.get(x).getJugadas())).concat(",").concat(String.valueOf(j.get(x).getTablero())));
-                escribe.write("\n");
-            }
-            escribe.close();
-        } catch (Exception w) {
-            System.out.print(w);
-        }
-    }
-
+    
+    /***
+     * Metodo que trae todo lo que halla en el archivo txt
+     * @param archivo
+     * @return 
+     */
     public String leerArchivo(String archivo) {
         char[] data = new char[0];
         String cd = System.getProperty("user.dir");
@@ -57,20 +46,29 @@ public class Utilidades {
         return new String(data);
     }
 
-    public boolean guardarNuevo(String archivo, ArrayList<Jugador> jugadores) {
+    /***
+     * Metodo para guardar un jugador en el archivo txt
+     * @param archivo
+     * @param jugadores
+     * @return True or False
+     */
+    public boolean guardarJugador(String archivo, ArrayList<Jugador> jugadores) {
         Jugador j;
-
+        String cd = System.getProperty("user.dir");
+        String directorio = cd + "\\" + archivo;
+        System.out.println("directorio" + directorio);
         String outputFile = "test/usuarios_export.txt";
-        boolean alreadyExists = new File(outputFile).exists();
+        System.out.println("El otro " + outputFile);
+        boolean alreadyExists = new File(directorio).exists();
 
         if (alreadyExists) {
-            File ficheroUsuarios = new File(outputFile);
+            File ficheroUsuarios = new File(directorio);
             ficheroUsuarios.delete();
         }
 
         try {
 
-            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
+            CsvWriter csvOutput = new CsvWriter(new FileWriter(directorio, true), ',');
 
             csvOutput.write("JUGADOR");
             csvOutput.write("JUGADAS");
@@ -93,35 +91,44 @@ public class Utilidades {
         return false;
     }
 
-    public ArrayList<Jugador> cargar() {
+    
+    /***
+     * Metodo para traer un arrayList de todos los jugadores que hay en el archivo txt
+     * @return ArrayList de Jugadores
+     */
+    public ArrayList<Jugador> cargar(String archivo) {
+        ArrayList<Jugador> jugadorCargado = new ArrayList<Jugador>();
+        String cd = System.getProperty("user.dir");
+        String directorio = cd + "\\" + archivo;
         try {
 
-            ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-
-            CsvReader usuarios_import = new CsvReader("test/usuarios_export.txt");
+            CsvReader usuarios_import = new CsvReader(directorio);
             usuarios_import.readHeaders();
 
             while (usuarios_import.readRecord()) {
                 String nombres = usuarios_import.get("JUGADOR");
                 int jugadas = Integer.parseInt(usuarios_import.get("JUGADAS"));
                 String tablero = usuarios_import.get("TABLERO");
-                jugadores.add(new Jugador(nombres, jugadas, null));
+                jugadorCargado.add(new Jugador(nombres, jugadas, null));
             }
 
             usuarios_import.close();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
-        return jugadores;
+        return jugadorCargado;
     }
 
-    public boolean existe(String nombre) {
-        for (int i = 0; i < cargar().size(); i++) {
-            if (cargar().get(i).getNombreJugador().equals(nombre)) {
+    /***
+     * Metodo para validar si existe un jugador con el mismo nombre
+     * @param nombre
+     * @return True or False
+     */
+    public boolean existe(String nombre, String archivo) {
+        for (int i = 0; i < cargar(archivo).size(); i++) {
+            if (cargar(archivo).get(i).getNombreJugador().equals(nombre)) {
                 return true;
             }
         }

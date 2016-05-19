@@ -5,37 +5,20 @@
             <url>src/code/Board.java</url>
             <bookmark id="1">
                 <name/>
-<<<<<<< HEAD
-                <line>48</line>
-=======
-<<<<<<< HEAD
-                <line>66</line>
-=======
-                <line>117</line>
->>>>>>> 9582781c5d5776ae5ae051de98491803722fbad3
->>>>>>> bdd77f43a52052d3a274c703644bdb43cf3a209d
+                <line>64</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/niveles/nivel0.txt</file>
-            <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/code/Board.java</file>
-            <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/interfaz/CrearNivelFrame.java</file>
-            <file>file:/C:/Users/FabianGM/Documents/sokoban/sokoban_uq/src/code/Sokoban.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/O:/sokoban_uq/src/code/Board.java</file>
-            <file>file:/O:/sokoban_uq/src/interfaz/BoardFrame.java</file>
-=======
-            <file>file:/D:/DesarrolloDesktop/sokoban_uq/src/code/Board.java</file>
-            <file>file:/D:/DesarrolloDesktop/sokoban_uq/src/interfaz/BoardFrame.java</file>
-            <file>file:/D:/DesarrolloDesktop/sokoban_uq/src/code/Sokoban.java</file>
-            <file>file:/D:/DesarrolloDesktop/sokoban_uq/src/niveles/nivel0.txt</file>
->>>>>>> 9582781c5d5776ae5ae051de98491803722fbad3
->>>>>>> bdd77f43a52052d3a274c703644bdb43cf3a209d
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Sokoban.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/MetodosJugador.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/interfaz/BoardFrame.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Jugador.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Board.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/code/Utilidades.java</file>
+            <file>file:/E:/Proyecto%20Sokoban/sokoban_uq/src/interfaz/Login.java</file>
         </group>
     </open-files>
 </project-private>

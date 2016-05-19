@@ -24,25 +24,5 @@ public class Sokoban {
     public static Jugador j = new Jugador("Brayhan", 10, tablero);
     public static Jugador j2 = new Jugador("Katherine", 15, tablero);
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        jugadores.add(j);
-        jugadores.add(j2);
-        BoardFrame board = new BoardFrame();
-        board.setVisible(true);
 
-        // utilidades.guardarArchivo(jugadores, "archivo.txt");
-        // System.out.println(utilidades.leerArchivo("archivo.txt"));
-
-        //System.out.println("Las jugadas son: " + utilidades.guardarNuevo("archivo.txt", jugadores));
-        //System.out.println("El leer es: " + utilidades.cargar().get(0).getTablero());
-//        for (int i = 0; i < utilidades.cargar().size(); i++) {
-//                System.out.println(utilidades.cargar().get(i).getTablero()); 
-//        }
-
-        System.out.println("Ya existe: " + utilidades.existe("sdfg"));
-
-    }
 }
