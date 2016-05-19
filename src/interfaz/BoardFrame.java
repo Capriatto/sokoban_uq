@@ -21,6 +21,7 @@ public class BoardFrame extends javax.swing.JFrame {
         board=new Board();
         this.board.matrizDeBotonesBloqueado(Panel);
         board.leerArchivo(0);
+        setLocationRelativeTo(this);
     }
 
     /**

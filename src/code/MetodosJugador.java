@@ -65,8 +65,7 @@ public class MetodosJugador {
 
     /**
      * *
-     * Metodo que va hacer llamado en el boton Guardar para que guarde el
-     * jugador y lo muestre en la tabla
+     * Metodo que guarda el jugador
      */
     public void guardarElJugador(Jugador jugadorDatos, JTextField nombre) {
 
@@ -162,14 +161,13 @@ public class MetodosJugador {
 
     /**
      * *
-     * Permite verificar si el jugador esta registrado, si lo esta le permite
-     * seguir a la interfaz de juego y si no lo esta no lo deja seguir.
+     * Permite verificar el acceso al juego
      *
      * @param txtId
      * @param principal
      * @param login
      */
-    public void verificarLoggin(JTextField nombre, Login login) {
+    public void verificarLogin(JTextField nombre, Login login) {
         String id;
         String nombreJugador;
         int verificar;
