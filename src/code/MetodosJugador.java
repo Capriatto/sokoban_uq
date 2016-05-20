@@ -161,7 +161,7 @@ public class MetodosJugador {
 
     /**
      * *
-     * Permite verificar el acceso al juego
+     * Permite verificar el acceso al ju
      *
      * @param txtId
      * @param principal
