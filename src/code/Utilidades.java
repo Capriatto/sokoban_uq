@@ -33,33 +33,6 @@ public class Utilidades {
 
     /**
      * *
-     * Metodo que trae todo lo que halla en el archivo txt
-     *
-     * @param archivo
-     * @return
-     */
-    public String leerArchivo(String archivo) {
-        char[] data;
-        String cd = System.getProperty("user.dir");
-        String cd1 = cd + "\\" + archivo;
-        File f = new File(cd1);
-        try {
-            FileReader fin = new FileReader(f);
-            int filesize = (int) f.length();
-            data = new char[filesize];
-            fin.read(data, 0, filesize);
-        } catch (FileNotFoundException exc) {
-            String errorString = "No se Encontro Archivo: ";
-            data = errorString.toCharArray();
-        } catch (IOException exc) {
-            String errorString = "Tipo de Error: ";
-            data = errorString.toCharArray();
-        }
-        return new String(data);
-    }
-
-    /**
-     * *
      * Metodo para validar si existe un jugador con el mismo nombre
      *
      * @param nombre
@@ -75,6 +48,13 @@ public class Utilidades {
         return false;
     }
 
+    /**
+     * *
+     * Metodo para guardar un jugador
+     *
+     * @param jugadores
+     * @return
+     */
     public boolean guardarJugador(ArrayList<Jugador> jugadores) {
         try {
             String nombreJugador = null;
@@ -103,6 +83,12 @@ public class Utilidades {
         return true;
     }
 
+    /**
+     * *
+     * Metodo que retorna un ArrayList de los jugadores del archivo txt
+     *
+     * @return
+     */
     public ArrayList<Jugador> cargarJugadoresBueno() {
         ArrayList<Jugador> jugadores = new ArrayList<>();
         String temp;
@@ -131,15 +117,24 @@ public class Utilidades {
         return jugadores;
     }
 
+    /**
+     * *
+     * Metodo para verificar el acceso del jugador, si esta o no creado en el
+     * archivo
+     *
+     * @param nombre
+     * @param login
+     * @param jugadores
+     */
     public void verificarAcceso(JTextField nombre, Login login, ArrayList<Jugador> jugadores) {
         String nombreJugador = nombre.getText();
         Jugador jugador;
-        if (existe(nombreJugador)) {
+        if (existe(nombreJugador) && nombreJugador.length() > 0) {
             JOptionPane.showMessageDialog(login, "BIENVENID@  " + nombreJugador + "!", "Jugar", JOptionPane.INFORMATION_MESSAGE);
             ElegirNivelFrame ij = new ElegirNivelFrame(nombreJugador, login);
             ij.setVisible(true);
             login.setVisible(false);
-        } else {
+        } else if (!existe(nombreJugador) && nombreJugador.length() > 0) {
             jugadores.add(new Jugador(nombreJugador, 0, null));
             guardarJugador(jugadores);
             JOptionPane.showMessageDialog(null, "Se ha guardado el jugador con éxito " + "\n" + "BIENVENID@  " + nombreJugador + "!", "Guardar Jugador", JOptionPane.INFORMATION_MESSAGE);
@@ -147,23 +142,44 @@ public class Utilidades {
             ij.setVisible(true);
             login.setVisible(false);
         }
+        if (nombreJugador.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Se debe de llenar el campo USERNAME", "Guardar Jugador", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-
-    public void cargarNiveles(String niveles[], JComboBox cbNivel) {
-        for (int i = 0; i < niveles.length; i++) {
-            if (niveles[i].equals("1BASICO")) {
-                cbNivel.addItem(niveles[i].replace("1", ""));
-            } else if (niveles[i].equals("2INTERMEDIO")) {
-                cbNivel.addItem(niveles[i].replace("2", ""));
-            } else if (niveles[i].equals("3AVANZADO")) {
-                cbNivel.addItem(niveles[i].replace("3", ""));
-            } else if (!niveles[i].equals("1BASICO") && !niveles[i].equals("2INTERMEDIO") && !niveles[i].equals("3AVANZADO")) {
-                cbNivel.addItem(niveles[i]);
+    /**
+     * *
+     * Metodo para cargar los niveles en orden BASICO INTERMEDIO AVANZADO y
+     * despues de estos se cargan los demas que esten creados por los jugadores
+     *
+     * @param cbNivel
+     */
+    public void cargarNiveles(JComboBox cbNivel) {
+        String ruta = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
+        File[] archivos = new File(ruta).listFiles();
+        for (File file : archivos) {
+            if (file.isFile()) {
+                String nombreArchivo = file.getName().replace(".txt", "");
+                if (nombreArchivo.equals("1basico")) {
+                    cbNivel.addItem(nombreArchivo.replace("1", "").toUpperCase());
+                } else if (nombreArchivo.equals("2intermedio")) {
+                    cbNivel.addItem(nombreArchivo.replace("2", "").toUpperCase());
+                } else if (nombreArchivo.equals("3avanzado")) {
+                    cbNivel.addItem(nombreArchivo.replace("3", "").toUpperCase());
+                } else if (!nombreArchivo.equals("1BASICO") && !nombreArchivo.equals("2INTERMEDIO") && !nombreArchivo.equals("3AVANZADO")) {
+                    cbNivel.addItem(nombreArchivo.toUpperCase());
+                }
             }
         }
     }
 
+    /**
+     * *
+     * Metodo para retornar el nombre del nivel que se escogio en el combobox
+     *
+     * @param cbNivel
+     * @return
+     */
     public String retornarNombreNivel(JComboBox cbNivel) {
         String nombreNivel = null;
         if (cbNivel.getSelectedItem().equals("BASICO")) {
@@ -175,10 +191,43 @@ public class Utilidades {
         } else {
             nombreNivel = cbNivel.getSelectedItem().toString();
         }
-        return nombreNivel + ".txt";
+        return nombreNivel;
 
     }
 
+    /**
+     * *
+     * Metodo para modificar el puntaje
+     *
+     * @param jugadores
+     * @param nombre
+     * @return
+     */
+    public int retornarPuntaje(ArrayList<Jugador> jugadores, String nombre) {
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getNombreJugador().equals(nombre)) {
+                return jugadores.get(i).getJugadas();
+            }
+        }
+        return -1;
+    }
+
+    public boolean modificarPuntaje(ArrayList<Jugador> jugadores, String nombre, int puntaje) {
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getNombreJugador().equals(nombre)) {
+                jugadores.get(i).setJugadas(puntaje);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * *
+     * Metodo para imprimir los jugadores contenidos en el archivo
+     *
+     * @param jugadores
+     */
     public void imprimirJugadores(ArrayList<Jugador> jugadores) {
         for (int i = 0; i < jugadores.size(); i++) {
             System.out.println("Nombre: " + jugadores.get(i).getNombreJugador() + ", Puntaje: " + jugadores.get(i).getJugadas() + ", Tablero: " + jugadores.get(i).getTablero());

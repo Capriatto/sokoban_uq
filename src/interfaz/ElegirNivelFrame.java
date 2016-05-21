@@ -10,12 +10,12 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import code.Utilidades;
 
-
 /**
  *
  * @author FabianGM
  */
 public class ElegirNivelFrame extends javax.swing.JFrame {
+
     ArchivoLeer leer;
     String[] niveles;
     BoardFrame boardFrame;
@@ -30,15 +30,14 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     public ElegirNivelFrame(String nombre, Login login) {
         initComponents();
         utilidades = new Utilidades();
-        setLocationRelativeTo(null);
-        setResizable(false);
+
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
         niveles = leer.leerFicheros();
-        utilidades.cargarNiveles(niveles, cbNivel);
-        cargarNombresNiveles();
-        System.out.println("El nombre del jugador " + login.getJugador().get(0).getNombreJugador());
+        utilidades.cargarNiveles(cbNivel);
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -197,12 +196,9 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase());
-        boardFrame.setVisible(true);
-        this.dispose();
-
+        String nivel= cbNivel.getSelectedItem().toString();
         try {
-            boardFrame = new BoardFrame(nombre, login, cbNivel.getSelectedItem().toString());
+            boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(),nivel);
             boardFrame.setVisible(true);
             this.dispose();
         } catch (Exception e) {
@@ -228,15 +224,4 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
-
-    private void cargarNombresNiveles() {
-        String ruta = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
-        File[] archivos = new File(ruta).listFiles();
-        for (File file : archivos) {
-            if (file.isFile()) {
-                String nombreArchivo=file.getName();
-                cbNivel.addItem(nombreArchivo.replace(".txt", ""));
-            }
-        }
-    }
 }

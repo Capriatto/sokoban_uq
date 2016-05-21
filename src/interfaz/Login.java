@@ -21,23 +21,25 @@ public class Login extends javax.swing.JFrame {
 
     ArrayList<Jugador> jugador;
 
-    /***
+    /**
+     * *
      * Metodo para obtener todos los jugadores del archivo
-     * @return 
+     *
+     * @return
      */
     public ArrayList<Jugador> getJugador() {
         return jugador;
     }
 
-    /***
+    /**
+     * *
      * Metodo para modificar los jugadores del archivo
-     * @param jugador 
+     *
+     * @param jugador
      */
     public void setJugador(ArrayList<Jugador> jugador) {
         this.jugador = jugador;
     }
-
-
 
     /**
      * Creates new form Login
@@ -47,8 +49,8 @@ public class Login extends javax.swing.JFrame {
         jugadores = new MetodosJugador();
         setLocationRelativeTo(this);
         setResizable(false);
-        if((jugador= utilidades.cargarJugadoresBueno()) != null){
-           jugador= utilidades.cargarJugadoresBueno(); 
+        if ((jugador = utilidades.cargarJugadoresBueno()) != null) {
+            jugador = utilidades.cargarJugadoresBueno();
         }
     }
 
