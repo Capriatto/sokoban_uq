@@ -7,22 +7,27 @@ package interfaz;
 
 import code.Board;
 
+
 /**
  *
  * @author FabianGM
  */
 public class BoardFrame extends javax.swing.JFrame {
     private Board board;
+    String nombreArchivo;
     /**
      * Creates new form BoardFrame
      */
-    public BoardFrame(String nombre,Login login) {
+    public BoardFrame(String nombre,Login login,String nombreArchivo) {
         initComponents();
-        board=new Board();
+        this.nombreArchivo=nombreArchivo;
+        board = new Board(nombreArchivo);
         this.board.matrizDeBotonesBloqueado(Panel);
-        board.leerArchivo(0);
-        setLocationRelativeTo(this);
+        this.setLocationRelativeTo(this);
+        
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -7,6 +7,7 @@ package code;
 
 import static code.Sokoban.utilidades;
 import interfaz.BoardFrame;
+import interfaz.ElegirNivelFrame;
 import interfaz.Login;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -182,7 +183,7 @@ public class MetodosJugador {
                 guardarElJugador(jugadorDatos, nombre);
                 utilidades.guardarJugador("jugadores.txt", jugadores);
                 JOptionPane.showMessageDialog(login, "BIENVENID@  " + nombreJugador + "!", "Jugar", JOptionPane.INFORMATION_MESSAGE);
-                BoardFrame ij = new BoardFrame(nombre.getText(), login);
+                ElegirNivelFrame ij = new ElegirNivelFrame(nombre.getText(), login);
                 ij.setVisible(true);
                 login.setVisible(false);
 
