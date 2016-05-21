@@ -56,7 +56,7 @@ public class ArchivoLeer {
             File[] ficheros = fichero.listFiles();
             f=new String[ficheros.length];
             for (int x = 0; x < ficheros.length; x++) {
-                f[x]=ficheros[x].getName();
+                f[x]=ficheros[x].getName().replace(".txt", "").toUpperCase();
                 
             }
         }

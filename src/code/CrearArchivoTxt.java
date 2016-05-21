@@ -31,7 +31,7 @@ public class CrearArchivoTxt {
         this.matriz=matriz;
         this.array=new char[20]; 
         levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
-        filename = levelDirectory + "nivel" + nombreArchivo + ".txt";
+        filename = levelDirectory + nombreArchivo + ".txt";
         try {
             llenarArchivo(archivo);
         } catch (IOException ex) {

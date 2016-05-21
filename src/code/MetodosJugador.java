@@ -5,7 +5,6 @@
  */
 package code;
 
-import static code.Sokoban.utilidades;
 import interfaz.BoardFrame;
 import interfaz.ElegirNivelFrame;
 import interfaz.Login;
@@ -160,38 +159,6 @@ public class MetodosJugador {
         return -1;
     }
 
-    /**
-     * *
-     * Permite verificar el acceso al ju
-     *
-     * @param txtId
-     * @param principal
-     * @param login
-     */
-    public void verificarLogin(JTextField nombre, Login login) {
-        String id;
-        String nombreJugador;
-        int verificar;
-        Jugador jugadorDatos = null;
-
-        if (nombre.getText().length() == 0) {
-            JOptionPane.showMessageDialog(login, "Debe llenar el campo USERNAME", "Jugar", JOptionPane.ERROR_MESSAGE);
-        } else if (nombre.getText().length() > 0) {
-
-            if (utilidades.existe(nombre.getText(), "jugadores.txt") == false) {
-                nombreJugador = nombre.getText().toUpperCase();
-                guardarElJugador(jugadorDatos, nombre);
-                utilidades.guardarJugador("jugadores.txt", jugadores);
-                JOptionPane.showMessageDialog(login, "BIENVENID@  " + nombreJugador + "!", "Jugar", JOptionPane.INFORMATION_MESSAGE);
-                ElegirNivelFrame ij = new ElegirNivelFrame(nombre.getText(), login);
-                ij.setVisible(true);
-                login.setVisible(false);
-
-            } else {
-                JOptionPane.showMessageDialog(login, "Ya se ha registrado otro usuario con este nombre", "Error al guardar", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
 
     /**
      * *
@@ -254,9 +221,5 @@ public class MetodosJugador {
             }
         }
     }
-//    public void mostrarInformacion() {
-//        for (int i = 0; i < jugadores.size(); i++) {
-//            System.out.println("El jugador " + jugadores.get(i).getId() + " " + jugadores.get(i).getNombre());
-//        }
-//    }
+
 }

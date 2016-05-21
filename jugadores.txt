@@ -1,2 +1,2 @@
-JUGADOR,JUGADAS,TABLERO
-asdfghjkl,0,null
+Brayhan,0,null
+Katherine,0,null

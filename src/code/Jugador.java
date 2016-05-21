@@ -16,9 +16,9 @@ public class Jugador implements Serializable {
     private String nombreJugador;
     private int puntaje;
     private int jugadas;
-    private char[][] tablero;
+    private String tablero;
 
-    public Jugador(String nombreJugador, int jugadas, char[][] tablero) {
+    public Jugador(String nombreJugador, int jugadas, String tablero) {
         this.nombreJugador = nombreJugador;
         this.jugadas= jugadas;
         this.tablero=tablero;
@@ -70,7 +70,7 @@ public class Jugador implements Serializable {
      *
      * @return
      */
-    public char[][] getTablero() {
+    public String getTablero() {
         return tablero;
     }
 
@@ -80,7 +80,7 @@ public class Jugador implements Serializable {
      *
      * @param tablero
      */
-    public void setTablero(char[][] tablero) {
+    public void setTablero(String tablero) {
         this.tablero = tablero;
     }
 }
