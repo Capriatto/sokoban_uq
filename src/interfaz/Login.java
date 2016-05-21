@@ -8,6 +8,7 @@ package interfaz;
 import code.Jugador;
 import code.MetodosJugador;
 import code.Utilidades;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
@@ -70,7 +71,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnJugar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,14 +133,19 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("USERNAME");
 
         txtUsername.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyPressed(evt);
+            }
+        });
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("JUGAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnJugar.setBackground(new java.awt.Color(102, 153, 255));
+        btnJugar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnJugar.setForeground(new java.awt.Color(255, 255, 255));
+        btnJugar.setText("JUGAR");
+        btnJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnJugarActionPerformed(evt);
             }
         });
 
@@ -161,7 +167,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(btnJugar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(27, 27, 27)
@@ -183,7 +189,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnJugar)
                     .addComponent(jButton2))
                 .addGap(0, 36, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,12 +210,21 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         // TODO add your handling code here:
         System.out.println(utilidades.existe(txtUsername.getText()));
         utilidades.verificarAcceso(txtUsername, this, jugador);
         utilidades.imprimirJugadores(jugador);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.out.println(utilidades.existe(txtUsername.getText()));
+            utilidades.verificarAcceso(txtUsername, this, jugador);
+            utilidades.imprimirJugadores(jugador);
+        }
+    }//GEN-LAST:event_txtUsernameKeyPressed
 
     /**
      * @param args the command line arguments
@@ -247,7 +262,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnJugar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

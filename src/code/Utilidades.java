@@ -6,7 +6,6 @@
 package code;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class Utilidades {
      * Metodo para validar si existe un jugador con el mismo nombre
      *
      * @param nombre
-     * @return True or False
+     * @return true or false
      */
     public boolean existe(String nombre) {
         System.out.println("Nombre: " + nombre);
@@ -53,7 +52,7 @@ public class Utilidades {
      * Metodo para guardar un jugador
      *
      * @param jugadores
-     * @return
+     * @return true or false
      */
     public boolean guardarJugador(ArrayList<Jugador> jugadores) {
         try {
@@ -87,7 +86,7 @@ public class Utilidades {
      * *
      * Metodo que retorna un ArrayList de los jugadores del archivo txt
      *
-     * @return
+     * @return ArrayList<Jugador>
      */
     public ArrayList<Jugador> cargarJugadoresBueno() {
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -178,7 +177,7 @@ public class Utilidades {
      * Metodo para retornar el nombre del nivel que se escogio en el combobox
      *
      * @param cbNivel
-     * @return
+     * @return nombre del nivel
      */
     public String retornarNombreNivel(JComboBox cbNivel) {
         String nombreNivel = null;
@@ -201,7 +200,7 @@ public class Utilidades {
      *
      * @param jugadores
      * @param nombre
-     * @return
+     * @return puntaje del jugador
      */
     public int retornarPuntaje(ArrayList<Jugador> jugadores, String nombre) {
         for (int i = 0; i < jugadores.size(); i++) {
@@ -212,6 +211,13 @@ public class Utilidades {
         return -1;
     }
 
+    /***
+     * Metodo para modificar el puntaje del jugador
+     * @param jugadores
+     * @param nombre
+     * @param puntaje
+     * @return true or false
+     */
     public boolean modificarPuntaje(ArrayList<Jugador> jugadores, String nombre, int puntaje) {
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).getNombreJugador().equals(nombre)) {
