@@ -41,7 +41,7 @@ public class ArchivoLeer {
             }
 
         } catch (IOException e) {
-            System.out.println("File improperly formatted, quitting");
+            System.out.println("Archivo mal formateado, saliendo....");
             return null;
         }
         return matriz;

@@ -7,7 +7,6 @@ package code;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,9 +17,9 @@ import javax.swing.JPanel;
  */
 public class GestionarTablero implements ActionListener {
 
-    private JButton[][] botones;
-    private char[][] imagenes;
-    private ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon;
+    private final JButton[][] botones;
+    private final char[][] imagenes;
+    private final ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon;
     private int a, b, x, y;
     private boolean avatar = false;
 

@@ -7,9 +7,6 @@ package code;
 
 import interfaz.Login;
 
-import java.util.ArrayList;
-
-
 /**
  *
  * @author FabianGM
@@ -22,11 +19,4 @@ public class Sokoban {
         Login login=new Login();
         login.setVisible(true);
     }
-    
-
-
-
-
-
-
 }
