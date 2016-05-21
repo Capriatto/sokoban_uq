@@ -6,6 +6,9 @@
 package interfaz;
 
 import code.ArchivoLeer;
+import code.Jugador;
+import code.Utilidades;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,27 +21,20 @@ BoardFrame boardFrame;
 CrearNivelFrame crearNivel;
 Login login;
 String nombre;
+Utilidades utilidades;
     /**
      * Creates new form ElegirNivelFrame
      */
     public ElegirNivelFrame(String nombre,Login login) {
         initComponents();
+        utilidades= new Utilidades();
         this.nombre=nombre;
         this.login=login;
         leer=new ArchivoLeer();
         niveles=leer.leerFicheros();
-        for(int i=0;i<niveles.length;i++){
-            if(niveles[i].equals("1BASICO")){
-                cbNivel.addItem(niveles[i].replace("1", ""));
-            }else if(niveles[i].equals("2INTERMEDIO")){
-                cbNivel.addItem(niveles[i].replace("2", ""));
-            }else if(niveles[i].equals("3AVANZADO")){
-                cbNivel.addItem(niveles[i].replace("3", ""));
-            }
-            else if (!niveles[i].equals("1BASICO") && !niveles[i].equals("2INTERMEDIO") && !niveles[i].equals("3AVANZADO")){
-            cbNivel.addItem(niveles[i]);
-            }
-        }
+        utilidades.cargarNiveles(niveles, cbNivel);
+        
+        System.out.println("El nombre del jugador " + login.getJugador().get(0).getNombreJugador());
     }
 
     /**
@@ -197,8 +193,8 @@ String nombre;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-        boardFrame=new BoardFrame(nombre,login,cbNivel.getSelectedItem().toString());
+
+        boardFrame=new BoardFrame(nombre,login,utilidades.retornarNombreNivel(cbNivel).toLowerCase());
         boardFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

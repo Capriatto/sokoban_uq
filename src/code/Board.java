@@ -351,7 +351,7 @@ public class Board implements KeyListener {
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "Ganaste putooo!");
+        JOptionPane.showMessageDialog(null, "Ganaste!");
         cambiarIconos();
         return;
     }

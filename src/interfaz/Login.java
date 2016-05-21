@@ -21,15 +21,23 @@ public class Login extends javax.swing.JFrame {
 
     ArrayList<Jugador> jugador;
 
-    /**
-     * *
-     * Metodo para obtener los jugadores
-     *
-     * @return
+    /***
+     * Metodo para obtener todos los jugadores del archivo
+     * @return 
      */
-    public MetodosJugador getJugadores() {
-        return jugadores;
+    public ArrayList<Jugador> getJugador() {
+        return jugador;
     }
+
+    /***
+     * Metodo para modificar los jugadores del archivo
+     * @param jugador 
+     */
+    public void setJugador(ArrayList<Jugador> jugador) {
+        this.jugador = jugador;
+    }
+
+
 
     /**
      * Creates new form Login
@@ -37,9 +45,11 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         jugadores = new MetodosJugador();
-        jugador = new ArrayList<>();
         setLocationRelativeTo(this);
         setResizable(false);
+        if((jugador= utilidades.cargarJugadoresBueno()) != null){
+           jugador= utilidades.cargarJugadoresBueno(); 
+        }
     }
 
     /**
@@ -195,10 +205,8 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println(utilidades.existe(txtUsername.getText()));
-
         utilidades.verificarAcceso(txtUsername, this, jugador);
-        ArrayList<Jugador> ju = utilidades.cargarJugadoresBueno();
-        utilidades.imprimirJugadores(ju);
+        utilidades.imprimirJugadores(jugador);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
