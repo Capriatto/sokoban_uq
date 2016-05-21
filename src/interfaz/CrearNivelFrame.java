@@ -22,9 +22,13 @@ Login login;
 ArrayList<Jugador> jugadores;
     /**
      * Creates new form CrearNivel
+     * @param nombre
+     * @param login
      */
     public CrearNivelFrame(String nombre,Login login) {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         this.nombre=nombre;
         this.login=login;
         tablero=new GestionarTablero();

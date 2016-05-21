@@ -351,9 +351,8 @@ public class Board implements KeyListener {
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "Ganaste!");
+        JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
         cambiarIconos();
-        return;
     }
 
 }

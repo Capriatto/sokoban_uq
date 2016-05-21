@@ -20,13 +20,13 @@ public class ArchivoLeer {
      public char[][] leerArchivo(String nivel) {
         matriz=new char[20][20];
         String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
-        String filename = levelDirectory  + nivel;
+        String filename = levelDirectory  + nivel+".txt";
 
         BufferedReader in;
         try {
             in = new BufferedReader(new FileReader(filename));
         } catch (FileNotFoundException e) {
-            System.out.println("Cannot find file \"" + filename + "\".");
+            System.out.println("No pudimos encontrar el archivo especificado como  \"" + filename + "\".");
             return null;
         }
 
