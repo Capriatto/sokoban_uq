@@ -167,20 +167,20 @@ public class Utilidades {
             }
         }
     }
-    
-    public String retornarNombreNivel(JComboBox cbNivel){
-        String nombreNivel=null;
-        if (cbNivel.getSelectedItem().equals("BASICO")){
-            nombreNivel="1basico";
-        }else  if (cbNivel.getSelectedItem().equals("INTERMEDIO")){
-            nombreNivel="2intermedio";
-        }else  if (cbNivel.getSelectedItem().equals("AVANZADO")){
-            nombreNivel="3avanzado";
-        }else{
-            nombreNivel= cbNivel.getSelectedItem().toString();
+
+    public String retornarNombreNivel(JComboBox cbNivel) {
+        String nombreNivel = null;
+        if (cbNivel.getSelectedItem().equals("BASICO")) {
+            nombreNivel = "1basico";
+        } else if (cbNivel.getSelectedItem().equals("INTERMEDIO")) {
+            nombreNivel = "2intermedio";
+        } else if (cbNivel.getSelectedItem().equals("AVANZADO")) {
+            nombreNivel = "3avanzado";
+        } else {
+            nombreNivel = cbNivel.getSelectedItem().toString();
         }
         return nombreNivel + ".txt";
-        
+
     }
 
     public void imprimirJugadores(ArrayList<Jugador> jugadores) {

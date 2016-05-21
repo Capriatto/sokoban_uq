@@ -6,34 +6,34 @@
 package interfaz;
 
 import code.ArchivoLeer;
-import code.Jugador;
 import code.Utilidades;
-import java.util.ArrayList;
 
 /**
  *
  * @author FabianGM
  */
 public class ElegirNivelFrame extends javax.swing.JFrame {
-ArchivoLeer leer;
-String[] niveles;
-BoardFrame boardFrame;
-CrearNivelFrame crearNivel;
-Login login;
-String nombre;
-Utilidades utilidades;
+
+    ArchivoLeer leer;
+    String[] niveles;
+    BoardFrame boardFrame;
+    CrearNivelFrame crearNivel;
+    Login login;
+    String nombre;
+    Utilidades utilidades;
+
     /**
      * Creates new form ElegirNivelFrame
      */
-    public ElegirNivelFrame(String nombre,Login login) {
+    public ElegirNivelFrame(String nombre, Login login) {
         initComponents();
-        utilidades= new Utilidades();
-        this.nombre=nombre;
-        this.login=login;
-        leer=new ArchivoLeer();
-        niveles=leer.leerFicheros();
+        utilidades = new Utilidades();
+        this.nombre = nombre;
+        this.login = login;
+        leer = new ArchivoLeer();
+        niveles = leer.leerFicheros();
         utilidades.cargarNiveles(niveles, cbNivel);
-        
+
         System.out.println("El nombre del jugador " + login.getJugador().get(0).getNombreJugador());
     }
 
@@ -153,9 +153,9 @@ Utilidades utilidades;
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,15 +165,15 @@ Utilidades utilidades;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77))
+                .addContainerGap(43, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -194,13 +194,13 @@ Utilidades utilidades;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        boardFrame=new BoardFrame(nombre,login,utilidades.retornarNombreNivel(cbNivel).toLowerCase());
+        boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase());
         boardFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        crearNivel=new CrearNivelFrame(nombre,login);
+        crearNivel = new CrearNivelFrame(nombre, login);
         crearNivel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
