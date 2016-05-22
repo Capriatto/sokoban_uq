@@ -5,6 +5,12 @@
  */
 package interfaz;
 
+import code.ArchivoLeer;
+import code.Jugador;
+import code.Utilidades;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author BRAYHAN JARAMILLO
@@ -13,6 +19,11 @@ public class Frame extends javax.swing.JFrame {
 
     String nombre;
     Login login;
+    Utilidades utilidades;
+    BoardFrame boardFrame;
+    String[] niveles;
+    ArchivoLeer leer;
+    ArrayList<Jugador> jugadores;
 
     /**
      * Creates new form Frame
@@ -20,10 +31,16 @@ public class Frame extends javax.swing.JFrame {
     public Frame(String nombre, Login login) {
         setUndecorated(true);
         initComponents();
-        setLocationRelativeTo(this);
-        setResizable(false);
+        utilidades = new Utilidades();
         this.nombre = nombre;
         this.login = login;
+        jugadores = login.getJugador();
+        System.out.println("Tamano: " + login.getJugador().size());
+        leer = new ArchivoLeer();
+        niveles = leer.leerFicheros("partidasGuardadas");
+        setLocationRelativeTo(this);
+        setResizable(false);
+
     }
 
     /**
@@ -123,6 +140,11 @@ public class Frame extends javax.swing.JFrame {
         btnContinuarJuego.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnContinuarJuego.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuarJuego.setText("CONTINUAR JUEGO");
+        btnContinuarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarJuegoActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(51, 153, 255));
         btnSalir.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -205,6 +227,20 @@ public class Frame extends javax.swing.JFrame {
         crearNivel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCrearNivelActionPerformed
+
+    private void btnContinuarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarJuegoActionPerformed
+        // TODO add your handling code here:
+        String nivel = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getTablero().replace(".txt", "");
+        int puntaje = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getJugadas();
+
+        try {
+            boardFrame = new BoardFrame(nombre, login, nivel.toLowerCase(), nivel, "partidasGuardadas", puntaje);
+            boardFrame.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnContinuarJuegoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuarJuego;

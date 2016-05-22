@@ -7,12 +7,12 @@ package code;
 
 import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import interfaz.ElegirNivelFrame;
 import interfaz.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -55,28 +55,23 @@ public class Utilidades {
      * @return true or false
      */
     public boolean guardarJugador(ArrayList<Jugador> jugadores) {
-        try {
-            String nombreJugador = null;
-            int puntaje = 0;
-            String tablero = null;
-            String cd = System.getProperty("user.dir");
-            String directorio = cd + "\\" + "jugadores.txt";
-            //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-            File archivo = new File("jugadores.txt");
 
-            //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
-            try (FileWriter escribir = new FileWriter(archivo, true)) {
+        String nombreJugador = null;
+        int puntaje = 0;
+        String tablero = null;
+        Charset utf = StandardCharsets.UTF_8;
+        Path lector = Paths.get("jugadores.txt");
+        try (BufferedWriter escribir = Files.newBufferedWriter(lector, utf)) {
 
-                for (Jugador ju : jugadores) {
-                    nombreJugador = ju.getNombreJugador();
-                    puntaje = ju.getJugadas();
-                    tablero = String.valueOf(ju.getTablero());
-                }
-                //Escribimos en el archivo con el metodo write
+            for (Jugador ju : jugadores) {
+                System.out.println("Entro por aca");
+                nombreJugador = ju.getNombreJugador();
+                puntaje = ju.getJugadas();
+                tablero = String.valueOf(ju.getTablero());
                 escribir.write(nombreJugador + "," + puntaje + "," + tablero + "\n");
             }
-        } //Si existe un problema al escribir cae aqui //Si existe un problema al escribir cae aqui
-        catch (Exception e) {
+            escribir.close();
+        } catch (Exception e) {
             System.out.println("Error al escribir");
             return false;
         }
@@ -94,8 +89,6 @@ public class Utilidades {
         String temp;
         Charset utf = StandardCharsets.UTF_8;
         Jugador jugador;
-        String cd = System.getProperty("user.dir");
-        String directorio = cd + "\\" + "jugadores.txt";
         Path lector = Paths.get("jugadores.txt");
         BufferedReader r;
 
@@ -105,10 +98,11 @@ public class Utilidades {
             while ((temp = r.readLine()) != null) {
                 String tempSplit[] = temp.split(",");
                 //System.out.println(tempSplit[0] + " " + tempSplit[1]);
-                jugador = new Jugador(tempSplit[0], Integer.parseInt(tempSplit[1]), null);
+                jugador = new Jugador(tempSplit[0], Integer.parseInt(tempSplit[1]), tempSplit[2]);
                 jugadores.add(jugador);
 
             }
+            r.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -139,7 +133,7 @@ public class Utilidades {
             jugadores.add(new Jugador(nombreJugador, 0, null));
             guardarJugador(jugadores);
             JOptionPane.showMessageDialog(null, "Se ha guardado el jugador con éxito " + "\n" + "BIENVENID@  " + nombreJugador + "!", "Guardar Jugador", JOptionPane.INFORMATION_MESSAGE);
-            ElegirNivelFrame ij = new ElegirNivelFrame(nombreJugador, login);
+            Frame ij = new Frame(nombreJugador, login);
             ij.setVisible(true);
             login.setVisible(false);
         }

@@ -72,7 +72,7 @@ public class Board implements KeyListener {
     }
 
     // se parametrizan las imágenes
-    public void matrizDeBotonesBloqueado(JPanel panel) {
+    public void matrizDeBotonesBloqueado(JPanel panel, String ruta) {
         for (int i = 0; i < 20; i++) {
             a = i * 30;
             for (int j = 0; j < 20; j++) {
@@ -85,7 +85,7 @@ public class Board implements KeyListener {
             }
 
         }
-        imagenes = leer.leerArchivo(nombreArchivo);
+        imagenes = leer.leerArchivo(nombreArchivo,ruta);
         cambiarIconos();
     }
 

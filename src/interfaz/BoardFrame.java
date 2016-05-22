@@ -29,7 +29,7 @@ public class BoardFrame extends javax.swing.JFrame {
     /**
      * Creates new form BoardFrame
      */
-    public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel) {
+    public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta) {
         initComponents();
         this.nombreArchivo = nombreArchivo;
         board = new Board(nombreArchivo, lblPuntaje);
@@ -41,12 +41,37 @@ public class BoardFrame extends javax.swing.JFrame {
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
         tablero = new GestionarTablero();
-        this.board.matrizDeBotonesBloqueado(Panel);
+        this.board.matrizDeBotonesBloqueado(Panel, ruta);
         utilidades = new Utilidades();
         this.setLocationRelativeTo(this);
         setResizable(false);
 
     }
+    
+        /**
+     * Creates new form BoardFrame
+     */
+    public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta, int puntaje) {
+        initComponents();
+        this.nombreArchivo = nombreArchivo;
+        board = new Board(nombreArchivo, lblPuntaje);
+        this.login = login;
+        nombreJugador = nombre;
+        lblJugador.setText(nombreJugador);
+        jugadores = login.getJugador();
+        lblPuntaje.setText(String.valueOf(puntaje));
+        nombreNivel = nivel;
+        lblNivel.setText(nombreNivel);
+        tablero = new GestionarTablero();
+        this.board.matrizDeBotonesBloqueado(Panel, ruta);
+        utilidades = new Utilidades();
+        this.setLocationRelativeTo(this);
+        setResizable(false);
+
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -285,8 +310,7 @@ public class BoardFrame extends javax.swing.JFrame {
         puntaje = Integer.parseInt(lblPuntaje.getText());
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(puntaje);
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero((nombreJugador.concat(nombreNivel)).concat(".txt").toLowerCase());
-        utilidades.imprimirJugadores(jugadores);
-        System.out.println("El tamaño es: " + jugadores.size());        
+        utilidades.imprimirJugadores(jugadores);       
         utilidades.guardarJugador(jugadores);
         Frame frame = new Frame(nombreJugador, login);
         frame.setVisible(true);

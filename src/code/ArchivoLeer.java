@@ -16,11 +16,13 @@ import java.io.IOException;
  * @author FabianGM
  */
 public class ArchivoLeer {
-    private char [][]matriz;
-     public char[][] leerArchivo(String nivel) {
-        matriz=new char[20][20];
-        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
-        String filename = levelDirectory  + nivel+".txt";
+
+    private char[][] matriz;
+
+    public char[][] leerArchivo(String nivel, String ruta) {
+        matriz = new char[20][20];
+        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
+        String filename = levelDirectory + nivel + ".txt";
 
         BufferedReader in;
         try {
@@ -31,11 +33,11 @@ public class ArchivoLeer {
         }
 
         try {
-            for (int i = 0; i <20; i++) {
-                
-                for (int j = 0; j <20; j++) {
-                    char letra=(char) in.read();
-                    matriz[j][i]=letra;
+            for (int i = 0; i < 20; i++) {
+
+                for (int j = 0; j < 20; j++) {
+                    char letra = (char) in.read();
+                    matriz[j][i] = letra;
                 }
                 in.readLine();
             }
@@ -47,17 +49,17 @@ public class ArchivoLeer {
         return matriz;
     }
 
-    public String[] leerFicheros() {
-        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
+    public String[] leerFicheros(String ruta) {
+        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
         File fichero = new File(levelDirectory);
         String[] f = null;
         if (fichero.exists()) {
-            
+
             File[] ficheros = fichero.listFiles();
-            f=new String[ficheros.length];
+            f = new String[ficheros.length];
             for (int x = 0; x < ficheros.length; x++) {
-                f[x]=ficheros[x].getName().replace(".txt", "").toUpperCase();
-                
+                f[x] = ficheros[x].getName().replace(".txt", "").toUpperCase();
+
             }
         }
         return f;

@@ -34,7 +34,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
-        niveles = leer.leerFicheros();
+        niveles = leer.leerFicheros("niveles");
         utilidades.cargarNiveles(cbNivel);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -199,7 +199,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
         try {
-            boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel);
+            boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
             boardFrame.setVisible(true);
             this.dispose();
         } catch (Exception e) {

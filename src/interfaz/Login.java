@@ -10,16 +10,17 @@ import code.MetodosJugador;
 import code.Utilidades;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author BRAYHAN JARAMILLO
  */
 public class Login extends javax.swing.JFrame {
-    
+
     Utilidades utilidades = new Utilidades();
     private MetodosJugador jugadores;
-    
+
     ArrayList<Jugador> jugador;
 
     /**
@@ -54,8 +55,8 @@ public class Login extends javax.swing.JFrame {
 
         if ((utilidades.cargarJugadores().size()) > 0) {
             jugador = utilidades.cargarJugadores();
-        }else{
-            jugador= new ArrayList<>();
+        } else {
+            jugador = new ArrayList<>();
         }
     }
 
@@ -221,7 +222,6 @@ public class Login extends javax.swing.JFrame {
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         // TODO add your handling code here:
-        System.out.println(utilidades.existe(txtUsername.getText()));
         utilidades.verificarAcceso(txtUsername, this, jugador);
         utilidades.imprimirJugadores(jugador);
     }//GEN-LAST:event_btnJugarActionPerformed
@@ -229,7 +229,6 @@ public class Login extends javax.swing.JFrame {
     private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println(utilidades.existe(txtUsername.getText()));
             utilidades.verificarAcceso(txtUsername, this, jugador);
             utilidades.imprimirJugadores(jugador);
         }
