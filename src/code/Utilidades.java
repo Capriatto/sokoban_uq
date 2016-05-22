@@ -161,14 +161,10 @@ public class Utilidades {
         for (File file : archivos) {
             if (file.isFile()) {
                 String nombreArchivo = file.getName().replace(".txt", "");
-                if (nombreArchivo.equals("1basico")) {
-                    cbNivel.addItem(nombreArchivo.replace("1", "").toUpperCase());
-                } else if (nombreArchivo.equals("2intermedio")) {
-                    cbNivel.addItem(nombreArchivo.replace("2", "").toUpperCase());
-                } else if (nombreArchivo.equals("3avanzado")) {
-                    cbNivel.addItem(nombreArchivo.replace("3", "").toUpperCase());
-                } else if (!nombreArchivo.equals("1BASICO") && !nombreArchivo.equals("2INTERMEDIO") && !nombreArchivo.equals("3AVANZADO")) {
-                    cbNivel.addItem(nombreArchivo.toUpperCase());
+                if ("1Basico".equals(nombreArchivo) || "2Intermedio".equals(nombreArchivo) || "3Avanzado".equals(nombreArchivo)) {
+                    cbNivel.addItem(nombreArchivo.replaceAll("[0-9]", ""));
+                } else {
+                    cbNivel.addItem(nombreArchivo);
                 }
             }
         }
