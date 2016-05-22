@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -149,6 +150,35 @@ public class Utilidades {
             ij.setVisible(true);
             login.setVisible(false);
         }
+    }
+
+    public void cargarNiveles(String niveles[], JComboBox cbNivel) {
+        for (int i = 0; i < niveles.length; i++) {
+            if (niveles[i].equals("1BASICO")) {
+                cbNivel.addItem(niveles[i].replace("1", ""));
+            } else if (niveles[i].equals("2INTERMEDIO")) {
+                cbNivel.addItem(niveles[i].replace("2", ""));
+            } else if (niveles[i].equals("3AVANZADO")) {
+                cbNivel.addItem(niveles[i].replace("3", ""));
+            } else if (!niveles[i].equals("1BASICO") && !niveles[i].equals("2INTERMEDIO") && !niveles[i].equals("3AVANZADO")) {
+                cbNivel.addItem(niveles[i]);
+            }
+        }
+    }
+    
+    public String retornarNombreNivel(JComboBox cbNivel){
+        String nombreNivel=null;
+        if (cbNivel.getSelectedItem().equals("BASICO")){
+            nombreNivel="1basico";
+        }else  if (cbNivel.getSelectedItem().equals("INTERMEDIO")){
+            nombreNivel="2intermedio";
+        }else  if (cbNivel.getSelectedItem().equals("AVANZADO")){
+            nombreNivel="3avanzado";
+        }else{
+            nombreNivel= cbNivel.getSelectedItem().toString();
+        }
+        return nombreNivel + ".txt";
+        
     }
 
     public void imprimirJugadores(ArrayList<Jugador> jugadores) {

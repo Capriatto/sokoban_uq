@@ -8,6 +8,8 @@ package interfaz;
 import code.ArchivoLeer;
 import java.io.File;
 import javax.swing.JOptionPane;
+import code.Utilidades;
+
 
 /**
  *
@@ -15,18 +17,19 @@ import javax.swing.JOptionPane;
  */
 public class ElegirNivelFrame extends javax.swing.JFrame {
 
-    ArchivoLeer leer;
-    String[] niveles;
-    BoardFrame boardFrame;
-    CrearNivelFrame crearNivel;
-    Login login;
-    String nombre;
-
+ArchivoLeer leer;
+String[] niveles;
+BoardFrame boardFrame;
+CrearNivelFrame crearNivel;
+Login login;
+String nombre;
+Utilidades utilidades;
     /**
      * Creates new form ElegirNivelFrame
      */
     public ElegirNivelFrame(String nombre, Login login) {
         initComponents();
+
         setLocationRelativeTo(null);
         setResizable(false);
         this.nombre = nombre;
@@ -34,6 +37,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         leer = new ArchivoLeer();
         niveles = leer.leerFicheros();
         cargarNombresNiveles();
+        System.out.println("El nombre del jugador " + login.getJugador().get(0).getNombreJugador());
     }
 
     /**
@@ -200,8 +204,6 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Este mapa no está disponible\n Seleccione otro o cree un mapa nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

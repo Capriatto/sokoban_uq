@@ -5,9 +5,10 @@
  */
 package interfaz;
 
-import code.Board;
+import code.*;
 import code.CrearArchivoTxt;
 import code.GestionarTablero;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,7 @@ private GestionarTablero tablero;
 private CrearArchivoTxt archivo;
 String nombre;
 Login login;
+ArrayList<Jugador> jugadores;
     /**
      * Creates new form CrearNivel
      * @param nombre

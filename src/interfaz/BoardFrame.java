@@ -6,6 +6,8 @@
 package interfaz;
 
 import code.Board;
+import java.util.ArrayList;
+import code.*;
 
 
 /**
@@ -15,6 +17,7 @@ import code.Board;
 public class BoardFrame extends javax.swing.JFrame {
     private Board board;
     String nombreArchivo;
+    ArrayList<Jugador> jugadores=new ArrayList<>();
     /**
      * Creates new form BoardFrame
      */
