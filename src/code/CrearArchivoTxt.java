@@ -70,5 +70,6 @@ public class CrearArchivoTxt {
                 pw.println(array);
             }
              escribir.close();
+             pw.close();
     }  
 }
