@@ -1,5 +1,0 @@
-Brayhan,0,null
-Brayhan,8,brayhanbasico.txt
-Katherine,0,null
-Katherine,12,katherineintermedio.txt
-juan,0,null
