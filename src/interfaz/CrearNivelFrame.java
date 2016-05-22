@@ -15,23 +15,26 @@ import java.util.ArrayList;
  * @author FabianGM
  */
 public class CrearNivelFrame extends javax.swing.JFrame {
-private GestionarTablero tablero;
-private CrearArchivoTxt archivo;
-String nombre;
-Login login;
-ArrayList<Jugador> jugadores;
+
+    private GestionarTablero tablero;
+    private CrearArchivoTxt archivo;
+    String nombre;
+    Login login;
+    ArrayList<Jugador> jugadores;
+
     /**
      * Creates new form CrearNivel
+     *
      * @param nombre
      * @param login
      */
-    public CrearNivelFrame(String nombre,Login login) {
+    public CrearNivelFrame(String nombre, Login login) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        this.nombre=nombre;
-        this.login=login;
-        tablero=new GestionarTablero();
+        this.nombre = nombre;
+        this.login = login;
+        tablero = new GestionarTablero();
         this.tablero.matrizDeBotonesBloqueado(Panel);
     }
 
@@ -76,7 +79,7 @@ ArrayList<Jugador> jugadores;
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre del Nivel:");
 
-        jButton2.setBackground(new java.awt.Color(102, 153, 255));
+        jButton2.setBackground(new java.awt.Color(51, 153, 255));
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver");
@@ -86,7 +89,7 @@ ArrayList<Jugador> jugadores;
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
+        jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Guardar");
@@ -96,7 +99,7 @@ ArrayList<Jugador> jugadores;
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,7 +112,7 @@ ArrayList<Jugador> jugadores;
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -207,11 +210,14 @@ ArrayList<Jugador> jugadores;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        archivo=new CrearArchivoTxt(txtNombre.getText(),tablero.llenarMatrizConImagenes());
+        archivo = new CrearArchivoTxt(txtNombre.getText(), "niveles", tablero.llenarMatrizConImagenes());
+        CrearNivelFrame nuevoTablero = new CrearNivelFrame(nombre, login);
+        nuevoTablero.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Frame frame=new Frame(nombre, login);
+        Frame frame = new Frame(nombre, login);
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -219,7 +225,6 @@ ArrayList<Jugador> jugadores;
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;

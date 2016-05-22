@@ -21,6 +21,7 @@ public class Frame extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(this);
+        setResizable(false);
         this.nombre = nombre;
         this.login = login;
     }

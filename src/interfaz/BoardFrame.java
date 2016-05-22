@@ -22,6 +22,8 @@ public class BoardFrame extends javax.swing.JFrame {
     Login login;
     int puntaje = 0;
     String nombreNivel;
+    private GestionarTablero tablero;
+    private CrearArchivoTxt archivo;
 
     /**
      * Creates new form BoardFrame
@@ -37,9 +39,11 @@ public class BoardFrame extends javax.swing.JFrame {
         lblPuntaje.setText(String.valueOf(puntaje));
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
+        tablero = new GestionarTablero();
         this.board.matrizDeBotonesBloqueado(Panel);
         lblPuntaje.setText(String.valueOf(this.board.getPuntaje()));
         this.setLocationRelativeTo(this);
+        setResizable(false);
 
     }
 
@@ -276,6 +280,7 @@ public class BoardFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        archivo = new CrearArchivoTxt(nombreJugador.concat(nombreNivel), "partidasGuardadas", board.retonarMatrizJuegoActual());
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

@@ -109,6 +109,29 @@ public class Board implements KeyListener {
         cambiarIconos();
     }
 
+    public char[][] retonarMatrizJuegoActual() {
+        for (int i = 0; i < imagenes.length; i++) {
+            for (int j = 0; j < imagenes.length; j++) {
+
+                if (botones[i][j].getIcon() == caminoIcon) {
+                    imagenes[i][j] = 'C';
+                } else if (botones[i][j].getIcon() == muroIcon) {
+                    imagenes[i][j] = 'M';
+                } else if (botones[i][j].getIcon() == cajaIcon) {
+                    imagenes[i][j] = 'B';
+                } else if (botones[i][j].getIcon() == llegadaIcon) {
+                    imagenes[i][j] = 'L';
+
+                } else if (botones[i][j].getIcon() == avatarIcon) {
+                    imagenes[i][j] = 'A';
+
+                }
+
+            }
+        }
+        return imagenes;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -199,7 +222,6 @@ public class Board implements KeyListener {
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje abajo es: " + puntaje);
-
 
         } else if (KeyEvent.VK_A == e.getKeyCode() && x >= 1 && botones[x - 1][y].getIcon() != muroIcon) {
             if (botones[x - 1][y].getIcon() == cajaIcon && x >= 2 && botones[x - 2][y].getIcon() != muroIcon && botones[x - 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x - 2][y].getIcon() != cajaIcon && botones[x - 2][y].getIcon() != estrellaIcon) {
