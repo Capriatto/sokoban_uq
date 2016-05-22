@@ -200,11 +200,13 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
-
+        try {
             boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel);
             boardFrame.setVisible(true);
             this.dispose();
-       
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
