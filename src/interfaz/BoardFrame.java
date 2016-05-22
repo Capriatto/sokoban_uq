@@ -286,7 +286,7 @@ public class BoardFrame extends javax.swing.JFrame {
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(puntaje);
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero((nombreJugador.concat(nombreNivel)).concat(".txt").toLowerCase());
         utilidades.imprimirJugadores(jugadores);
-        System.out.println("El tamaño es: " + jugadores.size());
+        System.out.println("El tamaño es: " + jugadores.size());        
         utilidades.guardarJugador(jugadores);
         Frame frame = new Frame(nombreJugador, login);
         frame.setVisible(true);
