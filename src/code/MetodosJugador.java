@@ -6,8 +6,6 @@
 package code;
 
 import interfaz.BoardFrame;
-import interfaz.ElegirNivelFrame;
-import interfaz.Login;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -34,11 +32,11 @@ public class MetodosJugador {
      * *
      * Este metodo permite buscar un jugador
      *
-     * @param id
+     * @param nombre
      * @return un numero mayor a -1 si lo encuntra y un -1 si no lo encuentra
      */
     public int buscarJugador(String nombre) {
-        if (jugadores.size() == 0) {
+        if (jugadores.isEmpty()) {
             return -1;
         }
         for (int i = 0; i < jugadores.size(); i++) {
@@ -66,6 +64,8 @@ public class MetodosJugador {
     /**
      * *
      * Metodo que guarda el jugador
+     * @param jugadorDatos
+     * @param nombre
      */
     public void guardarElJugador(Jugador jugadorDatos, JTextField nombre) {
 
@@ -147,7 +147,7 @@ public class MetodosJugador {
      * Verifica si el el ID del jugador ingresado por el usuario esta guardado
      * en el array de jugadores
      *
-     * @param id
+     * @param nombre
      * @return int
      */
     public int verificarJugador(String nombre) {
@@ -164,7 +164,7 @@ public class MetodosJugador {
      * *
      * Este metodo retorna el puntaje del jugador
      *
-     * @param id
+     * @param nombre
      * @return String
      */
     public int retornarPuntajeJugador(String nombre) {
@@ -184,18 +184,15 @@ public class MetodosJugador {
      * *
      * Este metodo permite modificar el puntaje del jugador
      *
-     * @param id
+     * @param nombre
      * @param puntajeJugador
      * @return verdadero si es posible realizar la modificación del puntaje del
      * jugador si no es posible devuelve falso
      */
     public boolean modificarPuntajeJugador(String nombre, int puntajeJugador) {
-
-        boolean modificar;
         if (verificarJugador(nombre) == -1) {
-            modificar = false;
+            return false;
         }
-
         if (verificarJugador(nombre) != -1) {
             jugadores.get(verificarJugador(nombre)).setJugadas(puntajeJugador);
             return true;
@@ -207,8 +204,6 @@ public class MetodosJugador {
      * *
      * Metodo que modifica el putaje del jugador
      *
-     * @param id
-     * @param tiempo
      * @param jugadas
      * @param jugar
      */

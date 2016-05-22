@@ -21,7 +21,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -147,21 +146,6 @@ public class Utilidades {
             ij.setVisible(true);
             login.setVisible(false);
         }
-    }
-
-    public String retornarNombreNivel(JComboBox cbNivel){
-        String nombreNivel=null;
-        if (cbNivel.getSelectedItem().equals("BASICO")){
-            nombreNivel="1basico";
-        }else  if (cbNivel.getSelectedItem().equals("INTERMEDIO")){
-            nombreNivel="2intermedio";
-        }else  if (cbNivel.getSelectedItem().equals("AVANZADO")){
-            nombreNivel="3avanzado";
-        }else{
-            nombreNivel= cbNivel.getSelectedItem().toString();
-        }
-        return nombreNivel + ".txt";
-        
     }
 
     public void imprimirJugadores(ArrayList<Jugador> jugadores) {

@@ -19,11 +19,4 @@ public class Sokoban {
         Login login=new Login();
         login.setVisible(true);
     }
-    
-
-
-
-
-
-
 }
