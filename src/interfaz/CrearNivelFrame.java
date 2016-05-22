@@ -211,8 +211,8 @@ ArrayList<Jugador> jugadores;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ElegirNivelFrame elegir=new ElegirNivelFrame(nombre, login);
-        elegir.setVisible(true);
+        Frame frame=new Frame(nombre, login);
+        frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

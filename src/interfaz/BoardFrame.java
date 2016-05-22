@@ -29,7 +29,7 @@ public class BoardFrame extends javax.swing.JFrame {
     public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel) {
         initComponents();
         this.nombreArchivo = nombreArchivo;
-        board = new Board(nombreArchivo);
+        board = new Board(nombreArchivo, lblPuntaje);
         login = login;
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
@@ -38,6 +38,7 @@ public class BoardFrame extends javax.swing.JFrame {
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
         this.board.matrizDeBotonesBloqueado(Panel);
+        lblPuntaje.setText(String.valueOf(this.board.getPuntaje()));
         this.setLocationRelativeTo(this);
 
     }
@@ -174,15 +175,15 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -268,8 +269,8 @@ public class BoardFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ElegirNivelFrame elegir = new ElegirNivelFrame(nombreJugador, login);
-        elegir.setVisible(true);
+        Frame frame = new Frame(nombreJugador, login);
+        frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import interfaz.ElegirNivelFrame;
-import interfaz.Login;
+import interfaz.*;
 import java.io.BufferedReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -130,8 +130,8 @@ public class Utilidades {
         Jugador jugador;
         if (existe(nombreJugador) && nombreJugador.length() > 0) {
             JOptionPane.showMessageDialog(login, "BIENVENID@  " + nombreJugador + "!", "Jugar", JOptionPane.INFORMATION_MESSAGE);
-            ElegirNivelFrame ij = new ElegirNivelFrame(nombreJugador, login);
-            ij.setVisible(true);
+            Frame frame = new Frame(nombreJugador, login);
+            frame.setVisible(true);
             login.setVisible(false);
         } else if (!existe(nombreJugador) && nombreJugador.length() > 0) {
             jugadores.add(new Jugador(nombreJugador, 0, null));
