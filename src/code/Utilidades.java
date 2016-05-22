@@ -85,20 +85,17 @@ public class Utilidades {
             //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
             File archivo = new File("jugadores.txt");
 
-            //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
-            FileWriter escribir = new FileWriter(archivo, true);
-
-            for (Jugador ju : jugadores) {
-                nombreJugador = ju.getNombreJugador();
-                puntaje = String.valueOf(ju.getJugadas());
-                tablero = String.valueOf(ju.getTablero());
+            try ( //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
+                    FileWriter escribir = new FileWriter(archivo, true)) {
+                for (Jugador ju : jugadores) {
+                    nombreJugador = ju.getNombreJugador();
+                    puntaje = String.valueOf(ju.getJugadas());
+                    tablero = String.valueOf(ju.getTablero());
+                }
+                //Escribimos en el archivo con el metodo write
+                escribir.write(nombreJugador + "," + puntaje + "," + tablero + "\n");
             }
-            //Escribimos en el archivo con el metodo write 
-            escribir.write(nombreJugador + "," + puntaje + "," + tablero + "\n");
-
-            //Cerramos la conexion
-            escribir.close();
-        } //Si existe un problema al escribir cae aqui
+        } //Si existe un problema al escribir cae aqui //Si existe un problema al escribir cae aqui
         catch (Exception e) {
             System.out.println("Error al escribir");
             return false;
@@ -152,20 +149,6 @@ public class Utilidades {
         }
     }
 
-    public void cargarNiveles(String niveles[], JComboBox cbNivel) {
-        for (int i = 0; i < niveles.length; i++) {
-            if (niveles[i].equals("1BASICO")) {
-                cbNivel.addItem(niveles[i].replace("1", ""));
-            } else if (niveles[i].equals("2INTERMEDIO")) {
-                cbNivel.addItem(niveles[i].replace("2", ""));
-            } else if (niveles[i].equals("3AVANZADO")) {
-                cbNivel.addItem(niveles[i].replace("3", ""));
-            } else if (!niveles[i].equals("1BASICO") && !niveles[i].equals("2INTERMEDIO") && !niveles[i].equals("3AVANZADO")) {
-                cbNivel.addItem(niveles[i]);
-            }
-        }
-    }
-    
     public String retornarNombreNivel(JComboBox cbNivel){
         String nombreNivel=null;
         if (cbNivel.getSelectedItem().equals("BASICO")){

@@ -7,9 +7,6 @@ package code;
 
 import interfaz.Login;
 
-import java.util.ArrayList;
-
-
 /**
  *
  * @author FabianGM
