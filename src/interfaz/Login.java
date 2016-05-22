@@ -51,8 +51,11 @@ public class Login extends javax.swing.JFrame {
         jugadores = new MetodosJugador();
         setLocationRelativeTo(this);
         setResizable(false);
-        if ((jugador = utilidades.cargarJugadoresBueno()) != null) {
-            jugador = utilidades.cargarJugadoresBueno();
+
+        if ((utilidades.cargarJugadores().size()) > 0) {
+            jugador = utilidades.cargarJugadores();
+        }else{
+            jugador= new ArrayList<>();
         }
     }
 
@@ -92,8 +95,8 @@ public class Login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(106, 106, 106)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

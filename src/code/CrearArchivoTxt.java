@@ -45,7 +45,7 @@ public class CrearArchivoTxt {
             if (ruta.equals("niveles")){
                 JOptionPane.showMessageDialog(null, "Se ha creado el nivel con éxito\n Eliga la opción JUGAR en el menú principal \n para poder escoger este nivel.", "CREAR NIVEL", JOptionPane.INFORMATION_MESSAGE);
             }else if (ruta.equals("partidasGuardadas")){
-                JOptionPane.showMessageDialog(null, "Se ha guardado la partid con éxito\n Eliga la opción JUGAR en el menú principal \n para poder escoger este nivel.", "PARTIDA GUARDADA", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Se ha guardado la partida con éxito.", "PARTIDA GUARDADA", JOptionPane.INFORMATION_MESSAGE);
             }
             } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear el nivel\n Regrese al menú principal", "Error", JOptionPane.ERROR_MESSAGE);

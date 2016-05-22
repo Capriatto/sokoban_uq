@@ -40,26 +40,6 @@ public class Board implements KeyListener {
     private JLabel puntajeMovimientos;
     private int modificarPuntaje;
 
-    /**
-     * *
-     * Obtener puntaje jugador
-     *
-     * @return
-     */
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    /**
-     * *
-     * Modificar puntaje jugador
-     *
-     * @param puntaje
-     */
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
-    }
-
     public boolean isAgregar() {
         return agregar;
     }

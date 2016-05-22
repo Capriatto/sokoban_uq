@@ -24,6 +24,7 @@ public class BoardFrame extends javax.swing.JFrame {
     String nombreNivel;
     private GestionarTablero tablero;
     private CrearArchivoTxt archivo;
+    Utilidades utilidades;
 
     /**
      * Creates new form BoardFrame
@@ -41,7 +42,7 @@ public class BoardFrame extends javax.swing.JFrame {
         lblNivel.setText(nombreNivel);
         tablero = new GestionarTablero();
         this.board.matrizDeBotonesBloqueado(Panel);
-        lblPuntaje.setText(String.valueOf(this.board.getPuntaje()));
+        utilidades = new Utilidades();
         this.setLocationRelativeTo(this);
         setResizable(false);
 
@@ -280,7 +281,16 @@ public class BoardFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        archivo = new CrearArchivoTxt(nombreJugador.concat(nombreNivel), "partidasGuardadas", board.retonarMatrizJuegoActual());
+        archivo = new CrearArchivoTxt((nombreJugador.concat(nombreNivel)).toLowerCase(), "partidasGuardadas", board.retonarMatrizJuegoActual());
+        puntaje = Integer.parseInt(lblPuntaje.getText());
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(puntaje);
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero((nombreJugador.concat(nombreNivel)).concat(".txt").toLowerCase());
+        utilidades.imprimirJugadores(jugadores);
+        System.out.println("El tamaño es: " + jugadores.size());
+        utilidades.guardarJugador(jugadores);
+        Frame frame = new Frame(nombreJugador, login);
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

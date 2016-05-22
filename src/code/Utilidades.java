@@ -39,8 +39,8 @@ public class Utilidades {
      */
     public boolean existe(String nombre) {
         System.out.println("Nombre: " + nombre);
-        for (int i = 0; i < cargarJugadoresBueno().size(); i++) {
-            if (cargarJugadoresBueno().get(i).getNombreJugador().equals(nombre)) {
+        for (int i = 0; i < cargarJugadores().size(); i++) {
+            if (cargarJugadores().get(i).getNombreJugador().equals(nombre)) {
                 return true;
             }
         }
@@ -57,18 +57,19 @@ public class Utilidades {
     public boolean guardarJugador(ArrayList<Jugador> jugadores) {
         try {
             String nombreJugador = null;
-            String puntaje = null;
+            int puntaje = 0;
             String tablero = null;
             String cd = System.getProperty("user.dir");
             String directorio = cd + "\\" + "jugadores.txt";
             //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
             File archivo = new File("jugadores.txt");
 
-            try ( //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
-                    FileWriter escribir = new FileWriter(archivo, true)) {
+            //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
+            try (FileWriter escribir = new FileWriter(archivo, true)) {
+
                 for (Jugador ju : jugadores) {
                     nombreJugador = ju.getNombreJugador();
-                    puntaje = String.valueOf(ju.getJugadas());
+                    puntaje = ju.getJugadas();
                     tablero = String.valueOf(ju.getTablero());
                 }
                 //Escribimos en el archivo con el metodo write
@@ -88,7 +89,7 @@ public class Utilidades {
      *
      * @return ArrayList<Jugador>
      */
-    public ArrayList<Jugador> cargarJugadoresBueno() {
+    public ArrayList<Jugador> cargarJugadores() {
         ArrayList<Jugador> jugadores = new ArrayList<>();
         String temp;
         Charset utf = StandardCharsets.UTF_8;
@@ -111,7 +112,8 @@ public class Utilidades {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Archivo vacio");
+            //Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jugadores;
     }
@@ -196,23 +198,25 @@ public class Utilidades {
 
     /**
      * *
-     * Metodo para modificar el puntaje
+     * Metodo para obtener la posicion donde se encuentra el jugador
      *
      * @param jugadores
      * @param nombre
      * @return puntaje del jugador
      */
-    public int retornarPuntaje(ArrayList<Jugador> jugadores, String nombre) {
+    public int retornarPosicion(ArrayList<Jugador> jugadores, String nombre) {
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).getNombreJugador().equals(nombre)) {
-                return jugadores.get(i).getJugadas();
+                return i;
             }
         }
         return -1;
     }
 
-    /***
+    /**
+     * *
      * Metodo para modificar el puntaje del jugador
+     *
      * @param jugadores
      * @param nombre
      * @param puntaje

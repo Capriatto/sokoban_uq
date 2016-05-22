@@ -1,6 +1,4 @@
 Brayhan,0,null
+Brayhan,8,brayhanbasico.txt
 Katherine,0,null
-asd,0,null
-juan,0,null
-,0,null
-Juan,0,null
+Katherine,12,katherineintermedio.txt
