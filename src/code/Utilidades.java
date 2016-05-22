@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import com.csvreader.CsvReader;
-import com.csvreader.CsvWriter;
 import interfaz.ElegirNivelFrame;
 import interfaz.Login;
 import java.io.BufferedReader;
@@ -40,7 +38,7 @@ public class Utilidades {
      * @return
      */
     public String leerArchivo(String archivo) {
-        char[] data = new char[0];
+        char[] data;
         String cd = System.getProperty("user.dir");
         String cd1 = cd + "\\" + archivo;
         File f = new File(cd1);

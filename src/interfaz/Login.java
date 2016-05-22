@@ -195,7 +195,6 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println(utilidades.existe(txtUsername.getText()));
-
         utilidades.verificarAcceso(txtUsername, this, jugador);
         ArrayList<Jugador> ju = utilidades.cargarJugadoresBueno();
         utilidades.imprimirJugadores(ju);

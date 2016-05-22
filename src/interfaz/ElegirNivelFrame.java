@@ -6,39 +6,34 @@
 package interfaz;
 
 import code.ArchivoLeer;
+import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author FabianGM
  */
 public class ElegirNivelFrame extends javax.swing.JFrame {
-ArchivoLeer leer;
-String[] niveles;
-BoardFrame boardFrame;
-CrearNivelFrame crearNivel;
-Login login;
-String nombre;
+
+    ArchivoLeer leer;
+    String[] niveles;
+    BoardFrame boardFrame;
+    CrearNivelFrame crearNivel;
+    Login login;
+    String nombre;
+
     /**
      * Creates new form ElegirNivelFrame
      */
-    public ElegirNivelFrame(String nombre,Login login) {
+    public ElegirNivelFrame(String nombre, Login login) {
         initComponents();
-        this.nombre=nombre;
-        this.login=login;
-        leer=new ArchivoLeer();
-        niveles=leer.leerFicheros();
-        for(int i=0;i<niveles.length;i++){
-            if(niveles[i].equals("1BASICO")){
-                cbNivel.addItem(niveles[i].replace("1", ""));
-            }else if(niveles[i].equals("2INTERMEDIO")){
-                cbNivel.addItem(niveles[i].replace("2", ""));
-            }else if(niveles[i].equals("3AVANZADO")){
-                cbNivel.addItem(niveles[i].replace("3", ""));
-            }
-            else if (!niveles[i].equals("1BASICO") && !niveles[i].equals("2INTERMEDIO") && !niveles[i].equals("3AVANZADO")){
-            cbNivel.addItem(niveles[i]);
-            }
-        }
+        setLocationRelativeTo(null);
+        setResizable(false);
+        this.nombre = nombre;
+        this.login = login;
+        leer = new ArchivoLeer();
+        niveles = leer.leerFicheros();
+        cargarNombresNiveles();
     }
 
     /**
@@ -197,14 +192,20 @@ String nombre;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-        boardFrame=new BoardFrame(nombre,login,cbNivel.getSelectedItem().toString());
-        boardFrame.setVisible(true);
-        this.dispose();
+
+        try {
+            boardFrame = new BoardFrame(nombre, login, cbNivel.getSelectedItem().toString());
+            boardFrame.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Este mapa no está disponible\n Seleccione otro o cree un mapa nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        crearNivel=new CrearNivelFrame(nombre,login);
+        crearNivel = new CrearNivelFrame(nombre, login);
         crearNivel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -221,4 +222,15 @@ String nombre;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarNombresNiveles() {
+        String ruta = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
+        File[] archivos = new File(ruta).listFiles();
+        for (File file : archivos) {
+            if (file.isFile()) {
+                String nombreArchivo=file.getName();
+                cbNivel.addItem(nombreArchivo.replace(".txt", ""));
+            }
+        }
+    }
 }
