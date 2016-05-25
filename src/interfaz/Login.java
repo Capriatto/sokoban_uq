@@ -6,11 +6,9 @@
 package interfaz;
 
 import code.Jugador;
-import code.MetodosJugador;
 import code.Utilidades;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +17,6 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     Utilidades utilidades = new Utilidades();
-    private MetodosJugador jugadores;
 
     ArrayList<Jugador> jugador;
 
@@ -49,7 +46,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         this.setUndecorated(true);
         initComponents();
-        jugadores = new MetodosJugador();
         setLocationRelativeTo(this);
         setResizable(false);
 

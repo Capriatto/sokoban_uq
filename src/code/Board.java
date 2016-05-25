@@ -36,7 +36,8 @@ public class Board implements KeyListener {
     public boolean agregar = true;
     private ArchivoLeer leer;
     private String nombreArchivo;
-    private int puntaje = 0;
+    int puntaje;
+    
     private JLabel puntajeMovimientos;
     private int modificarPuntaje;
 
@@ -51,6 +52,8 @@ public class Board implements KeyListener {
     public Board(String nombreArchivo, JLabel puntajeJugador) {
         this.nombreArchivo = nombreArchivo;
         puntajeMovimientos = puntajeJugador;
+        
+
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
         this.a = 0;
@@ -162,6 +165,7 @@ public class Board implements KeyListener {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y - 1].setIcon(avatarIcon);
             }
+            puntaje=Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje arriba es: " + puntaje);
@@ -199,6 +203,7 @@ public class Board implements KeyListener {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y + 1].setIcon(avatarIcon);
             }
+            puntaje=Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje abajo es: " + puntaje);
@@ -236,6 +241,7 @@ public class Board implements KeyListener {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x - 1][y].setIcon(avatarIcon);
             }
+            puntaje=Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje izquierda es: " + puntaje);
@@ -273,6 +279,7 @@ public class Board implements KeyListener {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
             }
+            puntaje=Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje derecha es: " + puntaje);
