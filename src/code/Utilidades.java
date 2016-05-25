@@ -222,6 +222,15 @@ public class Utilidades {
         return false;
     }
 
+    public boolean validarContinuarJuego(ArrayList<Jugador> jugadores, String nombre) {
+        String tablero = jugadores.get(retornarPosicion(jugadores, nombre)).getTablero();
+        System.out.println("El tablero es: " + tablero);
+        if (!tablero.equals("null")) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * *
      * Metodo para imprimir los jugadores contenidos en el archivo
