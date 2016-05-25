@@ -1,2 +1,6 @@
 Brayhan,15,brayhannivelbrayhan.txt
 Katherine,2,null
+jucazuse,29,jucazusejucazuseprueba.txt
+jucazuse94,0,null
+a,0,null
+A,0,null

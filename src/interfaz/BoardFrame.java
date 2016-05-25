@@ -47,8 +47,8 @@ public class BoardFrame extends javax.swing.JFrame {
         setResizable(false);
 
     }
-    
-        /**
+
+    /**
      * Creates new form BoardFrame
      */
     public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta, int puntaje) {
@@ -69,9 +69,6 @@ public class BoardFrame extends javax.swing.JFrame {
         setResizable(false);
 
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -287,14 +284,17 @@ public class BoardFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actionMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem2ActionPerformed
-        board.setAgregar(false);
-        board.deshacerPaso();
-
+        if (board.getPasos().size() > 0) {
+            board.setAgregar(false);
+            board.deshacerPaso();
+        }
     }//GEN-LAST:event_actionMenuItem2ActionPerformed
 
     private void actionMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem3ActionPerformed
+
         board.setAgregar(true);
         board.rehacerPaso();
+
     }//GEN-LAST:event_actionMenuItem3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -310,7 +310,7 @@ public class BoardFrame extends javax.swing.JFrame {
         puntaje = Integer.parseInt(lblPuntaje.getText());
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(puntaje);
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero((nombreJugador.concat(nombreNivel)).concat(".txt").toLowerCase());
-        utilidades.imprimirJugadores(jugadores);       
+        utilidades.imprimirJugadores(jugadores);
         utilidades.guardarJugador(jugadores);
         Frame frame = new Frame(nombreJugador, login);
         frame.setVisible(true);
