@@ -547,4 +547,5 @@ public class Board implements KeyListener {
         cambiarIconos();
     }
     
+    s
 }
