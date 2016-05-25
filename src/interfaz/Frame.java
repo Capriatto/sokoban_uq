@@ -232,13 +232,18 @@ public class Frame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nivel = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getTablero().replace(".txt", "");
         int puntaje = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getJugadas();
-
-        try {
-            boardFrame = new BoardFrame(nombre, login, nivel.toLowerCase(), nivel, "partidasGuardadas", puntaje);
-            boardFrame.setVisible(true);
-            this.dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        boolean validar = utilidades.validarContinuarJuego(jugadores, nombre);
+        if (validar) {
+            try {
+                boardFrame = new BoardFrame(nombre, login, nivel.toLowerCase(), nivel, "partidasGuardadas", puntaje);
+                boardFrame.setVisible(true);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } 
+        if (validar != true){
+            JOptionPane.showMessageDialog(this, "No ha guardado ninguna partida\n Dirigase a la opción JUGAR.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnContinuarJuegoActionPerformed
 
