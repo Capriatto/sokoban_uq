@@ -82,7 +82,6 @@ public class Board extends Thread implements KeyListener {
     private Login login;
 
     private JLabel lblpuntajeMovimientos;
-    private int modificarPuntaje;
 
     public Stack<Integer> getPasos() {
         return pasos;
