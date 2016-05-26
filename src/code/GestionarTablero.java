@@ -173,6 +173,8 @@ public void llenarBotonesDeImagenes(){
             JOptionPane.showMessageDialog(null, "Debe haber por lo menos una moneda en el mapa");
             return false;
         }
+        
 return true;
+    
     }
 }

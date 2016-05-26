@@ -87,7 +87,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="lblJugador" min="-2" pref="177" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                      <Component id="lblTablero" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="lblPuntaje" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="266" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -115,7 +115,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblJugador" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTablero" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblNivel" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -226,7 +226,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblTablero">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="28" style="0"/>
