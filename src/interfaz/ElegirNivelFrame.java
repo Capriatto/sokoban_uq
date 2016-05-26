@@ -202,9 +202,15 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
             System.out.println("El nombre: " + nombre);
             System.out.println("El nivel es: " + nivel);
             System.out.println("El retornar nivel es: " + utilidades.retornarNombreNivel(cbNivel).toLowerCase());
-            boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
-            boardFrame.setVisible(true);
-            this.dispose();
+            if (nivel.equals("BASICO") || nivel.equals("INTERMEDIO") || nivel.equals("AVANZADO")) {
+                boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
+                boardFrame.setVisible(true);
+                this.dispose();
+            } else {
+                boardFrame = new BoardFrame(nombre, login, nombre.toLowerCase() + utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
+                boardFrame.setVisible(true);
+                this.dispose();
+            }
         } catch (Exception e) {
             System.out.println(e);
             //JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
