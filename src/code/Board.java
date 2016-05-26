@@ -56,16 +56,6 @@ public class Board implements KeyListener {
     private Stack<Integer> pasosX = new Stack<>();
 
     /**
-     * pila en la que guardamos la posicion que se desapilo en la pila pasosY de
-     * la caja en caso de que esta se mueva de lo contrario ponemos -1
-     */
-    private Stack<Integer> rehacerPasosY = new Stack<>();
-    /**
-     * pila en la que guardamos la posicion que se desapilo en la pila pasosX de
-     * la caja en caso de que esta se mueva de lo contrario ponemos -1
-     */
-    private Stack<Integer> rehacerPasosX = new Stack<>();
-    /**
      * Instancia de la clase robot que nos sirve para simular que se presiona
      * una tecla.
      */
@@ -83,9 +73,8 @@ public class Board implements KeyListener {
     private ArchivoLeer leer;
     private String nombreArchivo;
     int puntaje;
-    
+
     private JLabel puntajeMovimientos;
-    private int modificarPuntaje;
 
     public Stack<Integer> getPasos() {
         return pasos;
@@ -106,7 +95,6 @@ public class Board implements KeyListener {
     public Board(String nombreArchivo, JLabel puntajeJugador) {
         this.nombreArchivo = nombreArchivo;
         puntajeMovimientos = puntajeJugador;
-        
 
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
@@ -239,7 +227,7 @@ public class Board implements KeyListener {
                 botones[x][y - 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje = Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje arriba es: " + puntaje);
@@ -284,7 +272,7 @@ public class Board implements KeyListener {
                 botones[x][y + 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje = Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje abajo es: " + puntaje);
@@ -329,7 +317,7 @@ public class Board implements KeyListener {
                 botones[x - 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje = Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje izquierda es: " + puntaje);
@@ -374,7 +362,7 @@ public class Board implements KeyListener {
                 botones[x + 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje = Integer.parseInt(puntajeMovimientos.getText());
             puntaje++;
             puntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje derecha es: " + puntaje);
@@ -414,12 +402,13 @@ public class Board implements KeyListener {
             int pasoX = pasosX.size() >= 0 ? pasosX.pop() : -1;
             int pasoY = pasosY.size() >= 0 ? pasosY.pop() : -1;
             pasosRehacer.push(paso);
-            rehacerPasosX.push(pasoX);
-            rehacerPasosY.push(pasoY);
             if (paso == 68) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
-                    botones[x + 1][y].setIcon(caminoIcon);
+                    if (!ponerLlegada()) {
+                        botones[x + 1][y].setIcon(caminoIcon);
+                    }
+
                     botones[x][y].setIcon(cajaIcon);
                     botones[x - 1][y].setIcon(avatarIcon);
                 } else {
@@ -431,7 +420,9 @@ public class Board implements KeyListener {
             if (paso == 65) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
-                    botones[x - 1][y].setIcon(caminoIcon);
+                    if (!ponerLlegada()) {
+                        botones[x - 1][y].setIcon(caminoIcon);
+                    }
                     botones[x][y].setIcon(cajaIcon);
                     botones[x + 1][y].setIcon(avatarIcon);
                 } else {
@@ -444,7 +435,9 @@ public class Board implements KeyListener {
             if (paso == 83) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
-                    botones[x][y + 1].setIcon(caminoIcon);
+                    if (!ponerLlegada()) {
+                        botones[x][y + 1].setIcon(caminoIcon);
+                    }
                     botones[x][y].setIcon(cajaIcon);
                     botones[x][y - 1].setIcon(avatarIcon);
 
@@ -457,7 +450,9 @@ public class Board implements KeyListener {
             if (paso == 87) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
-                    botones[x][y - 1].setIcon(caminoIcon);
+                    if (!ponerLlegada()) {
+                        botones[x][y - 1].setIcon(caminoIcon);
+                    }
                     botones[x][y].setIcon(cajaIcon);
                     botones[x][y + 1].setIcon(avatarIcon);
                 } else {
@@ -470,45 +465,29 @@ public class Board implements KeyListener {
         }
     }
 
+    /**
+     * metodo que nos permite rehacer el paso del avatar. de acuerdo a los pasos
+     * que se deshacen los guardamos en una pila y validamos la tecla que fue
+     * rehecha para decirle a la clase robot que nos invoque el metodo para que
+     * el avatar se mueva en la direccion correcta
+     */
     public void rehacerPaso() {
         try {
             int paso = pasosRehacer.empty() != true ? pasosRehacer.pop() : 0;
-            int pasoX = rehacerPasosX.size() >= 0 ? rehacerPasosX.pop() : -1;
-            int pasoY = rehacerPasosY.size() >= 0 ? rehacerPasosY.pop() : -1;
             if (paso == 68) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    robot.keyPress(KeyEvent.VK_D);
-                } else {
-                    robot.keyPress(KeyEvent.VK_D);
-                }
-                return;
+                robot.keyPress(KeyEvent.VK_D);
             }
 
             if (paso == 65) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    robot.keyPress(KeyEvent.VK_A);
-                } else {
-                    robot.keyPress(KeyEvent.VK_A);
-                }
-                return;
+                robot.keyPress(KeyEvent.VK_A);
             }
 
             if (paso == 83) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    robot.keyPress(KeyEvent.VK_S);
-
-                } else {
-                    robot.keyPress(KeyEvent.VK_S);
-                }
-                return;
+                robot.keyPress(KeyEvent.VK_S);
             }
 
             if (paso == 87) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    robot.keyPress(KeyEvent.VK_W);
-                } else {
-                    robot.keyPress(KeyEvent.VK_W);
-                }
+                robot.keyPress(KeyEvent.VK_W);
             }
 
         } catch (EmptyStackException e) {
@@ -535,6 +514,86 @@ public class Board implements KeyListener {
         }
     }
 
+    /**
+     * metodo que nos devuelve verdadero si el avatar puso en la caja en la
+     * meta, llegando por debajo
+     *
+     * @return verdadero si el avatar puso en la caja en la meta, llegando por
+     * debajo
+     */
+    public boolean menosEnY() {
+        if (botones[x][y - 1].getIcon() == estrellaIcon) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * metodo que nos devuelve verdadero si el avatar puso en la caja en la
+     * meta, llegando por arriba
+     *
+     * @return verdadero si el avatar puso en la caja en la meta, llegando por
+     * arriba
+     */
+    public boolean masEnY() {
+        if (botones[x][y + 1].getIcon() == estrellaIcon) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * metodo que nos devuelve verdadero si el avatar puso en la caja en la
+     * meta, llegando por la izquierda
+     *
+     * @return verdadero si el avatar puso en la caja en la meta, llegando la
+     * izquierda
+     */
+    public boolean masEnX() {
+        if (botones[x + 1][y].getIcon() == estrellaIcon) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * metodo que nos devuelve verdadero si el avatar puso en la caja en la
+     * meta, llegando por la derecha
+     *
+     * @return verdadero si el avatar puso en la caja en la meta, llegando la
+     * derecha
+     */
+    public boolean menosEnX() {
+        if (botones[x - 1][y].getIcon() == estrellaIcon) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * metodo que invoca los metodos anteriores(menosEnX, menosEnY, masEnX,
+     * masEnY) y de acuerdo al retorno de unos de estos nos deja el punto de
+     * llegada vacio "sin la caja", siempre y cuando sea un paso que se deshaga
+     *
+     * @return verdadero si pone el icono de llegada
+     */
+    public boolean ponerLlegada() {
+        if (menosEnY()) {
+            botones[x][y - 1].setIcon(llegadaIcon);
+            return true;
+        } else if (masEnY()) {
+            botones[x][y + 1].setIcon(llegadaIcon);
+            return true;
+        } else if (menosEnX()) {
+            botones[x - 1][y].setIcon(llegadaIcon);
+            return true;
+        } else if (masEnX()) {
+            botones[x + 1][y].setIcon(llegadaIcon);
+            return true;
+        }
+        return false;
+    }
+
     public void validarSiGano() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
@@ -546,6 +605,5 @@ public class Board implements KeyListener {
         JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
         cambiarIconos();
     }
-    
-    s
+
 }

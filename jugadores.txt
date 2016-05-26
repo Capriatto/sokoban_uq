@@ -1,15 +1,1 @@
-<<<<<<< HEAD
-Brayhan,10,brayhannivelprueba2.txt
-Katherine,2,null
-<<<<<<< HEAD
-jucazuse,29,jucazusejucazuseprueba.txt
-jucazuse94,0,null
 a,0,null
-A,0,null
-=======
-brayhan,0,null
-Brayhan},0,null
->>>>>>> 404b9d080b2e2d3224ff5aedae7f11d03bd654bd
-=======
-juan,0,null
->>>>>>> c8790a84187503bb3833c2a2e1ca2404b46e792d
