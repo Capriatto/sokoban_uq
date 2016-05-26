@@ -34,7 +34,7 @@ public class BoardFrame extends javax.swing.JFrame {
         this.nombreArchivo = nombreArchivo;
         
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre, login, this);
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador.toUpperCase());
         jugadores = login.getJugador();
@@ -55,7 +55,7 @@ public class BoardFrame extends javax.swing.JFrame {
         initComponents();
         this.nombreArchivo = nombreArchivo;
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);     
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre, login, this);     
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();

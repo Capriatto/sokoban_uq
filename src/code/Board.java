@@ -6,6 +6,9 @@
  */
 package code;
 
+import interfaz.BoardFrame;
+import interfaz.ElegirNivelFrame;
+import interfaz.Login;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -37,6 +40,7 @@ public class Board extends Thread implements KeyListener {
     private ArrayList<Jugador> jugadores;
     private String nombreJugador;
     Utilidades utilidades;
+    private BoardFrame boardNivel;
     /**
      * pila en la que guardamos las teclas que fueron presionadas para el
      * movimento del munieco
@@ -73,6 +77,7 @@ public class Board extends Thread implements KeyListener {
     private ArchivoLeer leer;
     private String nombreArchivo;
     int puntaje;
+    private Login login;
 
     private JLabel lblpuntajeMovimientos;
     private int modificarPuntaje;
@@ -93,8 +98,10 @@ public class Board extends Thread implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre) {
-        jugadores = jugadores;
+    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre, Login login, BoardFrame elegirNivel) {
+        this.jugadores = jugadores;
+        this.boardNivel=elegirNivel;
+        this.login= login;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
         nombreJugador = nombre;
@@ -677,12 +684,16 @@ public class Board extends Thread implements KeyListener {
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblpuntajeMovimientos.getText()));
         utilidades.guardarJugador(jugadores);
         lblpuntajeMovimientos.setText("-1");
-        cambiarIconos();
+        //cambiarIconos();
+        ElegirNivelFrame elegir = new ElegirNivelFrame(nombreJugador, login);
+        elegir.setVisible(true);
+        boardNivel.setVisible(false);
+
     }
 
     public boolean buscarMuroY() {
         System.out.println(botones[x][y + 2 == -1 ? 20 : y + 2].getIcon());
-        
+
         if ((botones[x][y - 2 == -1 ? 0 : y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
             if (!buscarLlegadaIcon(y - 1)) {
                 return true;
@@ -714,6 +725,5 @@ public class Board extends Thread implements KeyListener {
             JOptionPane.showMessageDialog(null, "En este momento la partida no tiene solucion use la opcion de deshacer");
         }
     }
-    
 
 }
