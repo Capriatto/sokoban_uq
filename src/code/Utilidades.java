@@ -277,7 +277,7 @@ public class Utilidades {
      *
      * @param jtJugadores
      */
-    public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores, String nombre) {
+    public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores) {
         DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
         Object[] fila = new Object[2];
 
