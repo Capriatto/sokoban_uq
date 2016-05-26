@@ -49,17 +49,28 @@ public class ArchivoLeer {
         return matriz;
     }
 
-    public String[] leerFicheros(String ruta) {
+    public String[] leerFicheros(String ruta, String nombre) {
         String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
+        System.out.println("La ruta es: " + levelDirectory);
         File fichero = new File(levelDirectory);
         String[] f = null;
         if (fichero.exists()) {
 
             File[] ficheros = fichero.listFiles();
+            String coso = "dfsdf";
+
             f = new String[ficheros.length];
             for (int x = 0; x < ficheros.length; x++) {
-                f[x] = ficheros[x].getName().replace(".txt", "").toUpperCase();
-
+                //System.out.println("El archivo empieza: " + ficheros[x].getName());
+                //System.out.println("El archivo empieza: " + ficheros[x].getName().replace(".txt", "").startsWith(nombre));
+                
+                if (ficheros[x].getName().replace(".txt", "").startsWith(nombre)) {
+                    System.out.println("El archivo empieza: " + ficheros[x].getName());
+                    System.out.println("El archivo empieza: " + ficheros[x].getName().replace(".txt", "").startsWith(nombre));
+                
+                    f[x] = ficheros[x].getName().replace(".txt", "").replace(nombre, "").toUpperCase();
+                    System.out.println("sfdfdshfdshfdkds: " + ficheros[x].getName().replace(".txt", "").replace(nombre, "").toUpperCase());
+                }
             }
         }
         return f;
