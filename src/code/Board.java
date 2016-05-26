@@ -190,7 +190,6 @@ public class Board extends Thread implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        
         posicionAvatar();
         run();
         if (!buscarMuroY()) {
@@ -682,11 +681,16 @@ public class Board extends Thread implements KeyListener {
     }
 
     public boolean buscarMuroY() {
-
+        System.out.println(botones[x][y + 2 == -1 ? 20 : y + 2].getIcon());
+        
         if ((botones[x][y - 2 == -1 ? 0 : y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
-            if (buscar(y - 1)) {
+            if (!buscarLlegadaIcon(y - 1)) {
                 return true;
-            } else if (buscar(y + 2)) {
+            }
+        }
+
+        if ((botones[x][y + 2 == -1 ? 20 : y + 2].getIcon() == muroIcon && botones[x][y + 1].getIcon() == cajaIcon)) {
+            if (!buscarLlegadaIcon(y + 1)) {
                 return true;
             }
         }
@@ -694,7 +698,7 @@ public class Board extends Thread implements KeyListener {
         return false;
     }
 
-    public boolean buscar(int y) {
+    public boolean buscarLlegadaIcon(int y) {
         for (int i = 0; i < botones.length; i++) {
             if (botones[y][i].getIcon() == llegadaIcon) {
                 return true;
@@ -705,9 +709,11 @@ public class Board extends Thread implements KeyListener {
 
     @Override
     public void run() {
+        System.out.println(buscarMuroY());
         if (buscarMuroY()) {
             JOptionPane.showMessageDialog(null, "En este momento la partida no tiene solucion use la opcion de deshacer");
         }
     }
+    
 
 }
