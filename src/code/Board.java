@@ -714,5 +714,6 @@ public class Board extends Thread implements KeyListener {
             JOptionPane.showMessageDialog(null, "En este momento la partida no tiene solucion use la opcion de deshacer");
         }
     }
+    
 
 }

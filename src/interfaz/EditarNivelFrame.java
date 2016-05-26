@@ -207,8 +207,8 @@ public class EditarNivelFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        leer.eliminarFichero(nivel, ruta);        
-        archivo = new CrearArchivoTxt(nivel, "niveles", tablero.llenarMatrizConImagenes());
+        leer.eliminarFichero(nombre.toLowerCase()+nivel, ruta);        
+        archivo = new CrearArchivoTxt(nombre.toLowerCase()+nivel, "niveles", tablero.llenarMatrizConImagenes());
         EditarNivelFrame nuevoTablero = new EditarNivelFrame(nombre, login,nivel,ruta);
         nuevoTablero.setVisible(true);
         this.dispose();
