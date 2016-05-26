@@ -18,7 +18,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -225,6 +228,12 @@ public class Utilidades {
         return false;
     }
 
+    /***
+     * Metodo para validar al cargar la partida del jugador
+     * @param jugadores
+     * @param nombre
+     * @return 
+     */
     public boolean validarContinuarJuego(ArrayList<Jugador> jugadores, String nombre) {
         String tablero = jugadores.get(retornarPosicion(jugadores, nombre)).getTablero();
         System.out.println("El tablero es: " + tablero);
@@ -265,15 +274,18 @@ public class Utilidades {
     public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores) {
         DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
         Object[] fila = new Object[2];
-        ArrayList<Jugador> aux= new ArrayList<>();
+
         int puntaje = 1000;
+        List<Jugador> coso = jugadores;
+        Collections.sort(jugadores);
         for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).getJugadas() < puntaje) {
-                puntaje = jugadores.get(i).getJugadas();
+            if (jugadores.get(i).getJugadas() == 0) {
+
+            } else {
+                fila[0] = jugadores.get(i).getNombreJugador();
+                fila[1] = jugadores.get(i).getJugadas();
+                modelo.addRow(fila);
             }
-            fila[0] = jugadores.get(i).getNombreJugador();
-            fila[1] = jugadores.get(i).getJugadas();
-            modelo.addRow(fila);
         }
 
         jtJugadores.setModel(modelo);
