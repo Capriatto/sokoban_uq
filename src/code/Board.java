@@ -73,6 +73,7 @@ public class Board extends Thread implements KeyListener {
      * ayuda a controlar cuando se deshace un paso para no tenerlo que agregar a
      * ninguna pila.
      */
+    
     public boolean agregar = true;
 
     private ArchivoLeer leer;
