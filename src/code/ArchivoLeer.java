@@ -14,12 +14,19 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class ArchivoLeer {
 
     private char[][] matriz;
-
+/**
+ * El metodo nos permite retornar una matriz de acuerdo a un archivo el cual
+ * contendrá una serie de caracteres que son los que van a permitir cargar una imagen
+ * de acuerdo a cada uno
+ * @param nivel
+ * @param ruta
+ * @return 
+ */
     public char[][] leerArchivo(String nivel, String ruta) {
         matriz = new char[20][20];
         String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
@@ -49,7 +56,12 @@ public class ArchivoLeer {
         }
         return matriz;
     }
-
+/**
+ * Metodo que retorna los archivos que estén en una determinada ruta ya sean niveles 
+ * o partidasGuardads
+ * @param ruta
+ * @return la lista de archivos
+ */
     public String[] leerFicheros(String ruta) {
         String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
         File fichero = new File(levelDirectory);
@@ -65,7 +77,11 @@ public class ArchivoLeer {
         }
         return f;
     }
-
+/**
+ * Metodo que permite eliminar un archivo de acuerdo a un nombre y una ruta 
+ * @param nivel
+ * @param ruta 
+ */
     public void eliminarFichero(String nivel, String ruta) {
         System.out.println("Este el archivo: " + nivel);
         System.out.println("Este la ruta: " + ruta);

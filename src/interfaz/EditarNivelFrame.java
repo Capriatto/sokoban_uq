@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class EditarNivelFrame extends javax.swing.JFrame {
 
@@ -47,7 +47,7 @@ public class EditarNivelFrame extends javax.swing.JFrame {
         leer=new ArchivoLeer();
         matriz=leer.leerArchivo(nombre.toLowerCase()+nivel.toLowerCase(),ruta);
         tablero = new GestionarTablero(matriz);
-        this.tablero.matrizDeBotonesBloqueado(Panel);
+        this.tablero.matrizDeBotones(Panel);
     }
     /**
      * This method is called from within the constructor to initialize the form.

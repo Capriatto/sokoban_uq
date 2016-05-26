@@ -11,7 +11,7 @@ import code.*;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class BoardFrame extends javax.swing.JFrame {
 

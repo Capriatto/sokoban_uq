@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class CrearNivelFrame extends javax.swing.JFrame {
 
@@ -37,7 +37,7 @@ public class CrearNivelFrame extends javax.swing.JFrame {
         this.login = login;
         matriz=new char[20][20];
         tablero = new GestionarTablero(matriz);
-        this.tablero.matrizDeBotonesBloqueado(Panel);
+        this.tablero.matrizDeBotones(Panel);
     }
 
     /**

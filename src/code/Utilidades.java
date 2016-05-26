@@ -7,7 +7,6 @@ package code;
 
 import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import interfaz.*;
@@ -18,10 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -32,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author BRAYHAN JARAMILLO
+ * @author sokobanUQ
  */
 public class Utilidades {
 
@@ -309,8 +305,9 @@ public class Utilidades {
         String nivel = nombre.concat(".txt").toLowerCase();
         System.out.println("Esto es el nivel normal: " + nivel);
         Collections.sort(jugadores);
+        
         for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).getTablero().equals(nivel)) {
+            if (jugadores.get(i).getTablero().endsWith(nivel)) {
                 if (jugadores.get(i).getJugadas() == 0) {
 
                 } else {

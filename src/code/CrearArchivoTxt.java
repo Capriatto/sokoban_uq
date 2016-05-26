@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class CrearArchivoTxt {
     private File archivo;

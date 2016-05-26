@@ -10,7 +10,7 @@ import code.Utilidades;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class ElegirNivelFrame extends javax.swing.JFrame {
 

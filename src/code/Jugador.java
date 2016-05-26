@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author BRAYHAN JARAMILLO
+ * @author sokobanUQ
  */
 public class Jugador implements Serializable, Comparable<Jugador>{
 
@@ -17,6 +17,12 @@ public class Jugador implements Serializable, Comparable<Jugador>{
     private int jugadas;
     private String tablero;
 
+    /**
+     * Metodo constructor de la clase jugador
+     * @param nombreJugador
+     * @param jugadas
+     * @param tablero 
+     */
     public Jugador(String nombreJugador, int jugadas, String tablero) {
         this.nombreJugador = nombreJugador;
         this.jugadas = jugadas;

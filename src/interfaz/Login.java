@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author BRAYHAN JARAMILLO
+ * @author sokobanUQ
  */
 public class Login extends javax.swing.JFrame {
 

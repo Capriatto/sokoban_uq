@@ -13,7 +13,7 @@ import code.Utilidades;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class ElegirNivelParaEditarFrame extends javax.swing.JFrame {
 

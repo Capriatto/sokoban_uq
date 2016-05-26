@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class GestionarTablero implements ActionListener {
 
@@ -24,6 +24,10 @@ public class GestionarTablero implements ActionListener {
     private int a, b, x, y;
     private boolean avatar = false;
 
+    /**
+     * Metodo contructor de la clase GestionarTablero
+     * @param imagenes 
+     */
     public GestionarTablero(char[][] imagenes) {
         this.botones = new JButton[20][20];
         this.imagenes = imagenes;
@@ -36,7 +40,11 @@ public class GestionarTablero implements ActionListener {
         
     }
 
-    public void matrizDeBotonesBloqueado(JPanel panel) {
+    /**
+     * Metodo que genera el tablero donde vamos a crear los niveles del sokoban
+     * @param panel 
+     */
+    public void matrizDeBotones(JPanel panel) {
         for (int i = 0; i < 20; i++) {
             a = i * 30;
             for (int j = 0; j < 20; j++) {
@@ -49,10 +57,15 @@ public class GestionarTablero implements ActionListener {
             }
 
         }
-        llenarBotonesDeImagenes();
+        llenarBotonesDeImagenes(); 
 
     }
 
+    /**
+     * Metodo que nos va a permitir poner un elemento en el tablero de acuerdo el numero
+     * de clicks sobre el boton
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < 20; i++) {
@@ -78,7 +91,11 @@ public class GestionarTablero implements ActionListener {
             }
         }
     }
-
+    
+/**
+ * Este metodo nos va a retornar un array de caracteres de acuerdo a las imagenes encontradas
+ * @return 
+ */
     public char[][] llenarMatrizConImagenes() {
         
         for (int i = 0; i < 20; i++) {
@@ -102,6 +119,10 @@ public class GestionarTablero implements ActionListener {
         return imagenes;
     }
 
+    /**
+     * Metodo que nos va a retornar la matriz del tablero para ser guardada en el archivo 
+     * @return 
+     */
     public char[][] retonarMatrizJuegoActual() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
@@ -124,7 +145,11 @@ public class GestionarTablero implements ActionListener {
         }
         return imagenes;
     }
-public void llenarBotonesDeImagenes(){
+/**
+ * Metodo que recorre la matriz de imagenes y de acuerdo a cada caracter se le asigna
+ * una imagen diferente 
+ */
+    public void llenarBotonesDeImagenes(){
  
         for(int i=0;i<20;i++){
           for(int j=0;j<20;j++){
@@ -141,6 +166,10 @@ public void llenarBotonesDeImagenes(){
         
     }
 }
+    /**
+     * Metodo que nos verifica si es posible crear o no el tablero de acuerdo a ciertas validaciones
+     * @return 
+     */
     public boolean verificarTablero() {
         llenarMatrizConImagenes();
         int numCajas = 0, numLLegadas = 0, numAvatar = 0;

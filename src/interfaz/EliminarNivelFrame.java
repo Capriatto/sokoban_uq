@@ -11,7 +11,7 @@ import code.Utilidades;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class EliminarNivelFrame extends javax.swing.JFrame {
 
