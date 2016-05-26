@@ -6,7 +6,7 @@
 package interfaz;
 
 import code.ArchivoLeer;
-import code.Utilidades;
+import code.movimientos;
 
 /**
  *
@@ -20,7 +20,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     CrearNivelFrame crearNivel;
     Login login;
     String nombre;
-    Utilidades utilidades;
+    movimientos utilidades;
 
     /**
      * Creates new form ElegirNivelFrame
@@ -28,7 +28,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     public ElegirNivelFrame(String nombre, Login login) {
         this.setUndecorated(true);
         initComponents();
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
 
         this.nombre = nombre;
         this.login = login;

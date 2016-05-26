@@ -88,7 +88,7 @@
                       <Component id="jLabel2" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="lblJugador" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                      <Component id="lblPuntaje" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                      <Component id="lblMovimientos" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="266" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton1" max="32767" attributes="0"/>
@@ -121,7 +121,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblPuntaje" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="lblMovimientos" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="59" max="-2" attributes="0"/>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
@@ -258,7 +258,7 @@
             <Property name="text" type="java.lang.String" value="MOVIMIENTOS"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblPuntaje">
+        <Component class="javax.swing.JLabel" name="lblMovimientos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="28" style="0"/>

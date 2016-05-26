@@ -20,11 +20,11 @@ public class BoardFrame extends javax.swing.JFrame {
     ArrayList<Jugador> jugadores;
     String nombreJugador;
     Login login;
-    int puntaje = 0;
+    int movimientos = 0;
     String nombreNivel;
     private GestionarTablero tablero;
     private CrearArchivoTxt archivo;
-    Utilidades utilidades;
+    movimientos utilidades;
 
     /**
      * Creates new form BoardFrame
@@ -34,15 +34,15 @@ public class BoardFrame extends javax.swing.JFrame {
         this.nombreArchivo = nombreArchivo;
         
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);
+        board = new Board(nombreArchivo, lblMovimientos, login.getJugador(), nombre);
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();
-        lblPuntaje.setText(String.valueOf(puntaje));
+        lblMovimientos.setText(String.valueOf(movimientos));
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
         this.board.matrizDeBotonesBloqueado(Panel, ruta);
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
         this.setLocationRelativeTo(this);
         setResizable(false);
 
@@ -51,19 +51,19 @@ public class BoardFrame extends javax.swing.JFrame {
     /**
      * Creates new form BoardFrame
      */
-    public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta, int puntaje) {
+    public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta, int movimientos) {
         initComponents();
         this.nombreArchivo = nombreArchivo;
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);     
+        board = new Board(nombreArchivo, lblMovimientos, login.getJugador(), nombre);     
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();
-        lblPuntaje.setText(String.valueOf(puntaje));
+        lblMovimientos.setText(String.valueOf(movimientos));
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
         this.board.matrizDeBotonesBloqueado(Panel, ruta);
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
         this.setLocationRelativeTo(this);
         setResizable(false);
 
@@ -88,7 +88,7 @@ public class BoardFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblPuntaje = new javax.swing.JLabel();
+        lblMovimientos = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -160,8 +160,8 @@ public class BoardFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 153, 255));
         jLabel4.setText("MOVIMIENTOS");
 
-        lblPuntaje.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
-        lblPuntaje.setForeground(new java.awt.Color(255, 255, 255));
+        lblMovimientos.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        lblMovimientos.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -201,7 +201,7 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,7 +230,7 @@ public class BoardFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
@@ -310,8 +310,8 @@ public class BoardFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         archivo = new CrearArchivoTxt((nombreJugador.concat(nombreNivel)).toLowerCase(), "partidasGuardadas", board.retonarMatrizJuegoActual());
-        puntaje = Integer.parseInt(lblPuntaje.getText());
-        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(puntaje);
+        movimientos = Integer.parseInt(lblMovimientos.getText());
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(movimientos);
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero((nombreJugador.concat(nombreNivel)).concat(".txt").toLowerCase());
         utilidades.imprimirJugadores(jugadores);
         utilidades.guardarJugador(jugadores);
@@ -338,7 +338,7 @@ public class BoardFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblJugador;
+    private javax.swing.JLabel lblMovimientos;
     private javax.swing.JLabel lblNivel;
-    private javax.swing.JLabel lblPuntaje;
     // End of variables declaration//GEN-END:variables
 }

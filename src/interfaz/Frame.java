@@ -7,7 +7,7 @@ package interfaz;
 
 import code.ArchivoLeer;
 import code.Jugador;
-import code.Utilidades;
+import code.movimientos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,7 @@ public class Frame extends javax.swing.JFrame {
 
     String nombre;
     Login login;
-    Utilidades utilidades;
+    movimientos utilidades;
     BoardFrame boardFrame;
     String[] niveles;
     ArchivoLeer leer;
@@ -31,7 +31,7 @@ public class Frame extends javax.swing.JFrame {
     public Frame(String nombre, Login login) {
         setUndecorated(true);
         initComponents();
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
         this.nombre = nombre;
         this.login = login;
         jugadores = login.getJugador();
@@ -266,11 +266,11 @@ public class Frame extends javax.swing.JFrame {
     private void btnContinuarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarJuegoActionPerformed
         // TODO add your handling code here:
         String nivel = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getTablero().replace(".txt", "");
-        int puntaje = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getJugadas();
+        int movimientos = login.getJugador().get(utilidades.retornarPosicion(jugadores, nombre)).getJugadas();
         boolean validar = utilidades.validarContinuarJuego(jugadores, nombre);
         if (validar) {
             try {
-                boardFrame = new BoardFrame(nombre, login, nivel.toLowerCase(), nivel, "partidasGuardadas", puntaje);
+                boardFrame = new BoardFrame(nombre, login, nivel.toLowerCase(), nivel, "partidasGuardadas", movimientos);
                 boardFrame.setVisible(true);
                 this.dispose();
             } catch (Exception e) {

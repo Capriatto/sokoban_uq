@@ -36,7 +36,7 @@ public class Board extends Thread implements KeyListener {
     private int a, b, x, y;
     private ArrayList<Jugador> jugadores;
     private String nombreJugador;
-    Utilidades utilidades;
+    movimientos utilidades;
     /**
      * pila en la que guardamos las teclas que fueron presionadas para el
      * movimento del munieco
@@ -72,10 +72,9 @@ public class Board extends Thread implements KeyListener {
 
     private ArchivoLeer leer;
     private String nombreArchivo;
-    int puntaje;
+    int movimientos;
 
-    private JLabel lblpuntajeMovimientos;
-    private int modificarPuntaje;
+    private JLabel lblMovimientos;
 
     public Stack<Integer> getPasos() {
         return pasos;
@@ -93,14 +92,14 @@ public class Board extends Thread implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre) {
+    public Board(String nombreArchivo, JLabel movimientosJugador, ArrayList<Jugador> jugadores, String nombre) {
         jugadores = jugadores;
         this.nombreArchivo = nombreArchivo;
-        lblpuntajeMovimientos = puntajeJugador;
+        lblMovimientos = movimientosJugador;
         nombreJugador = nombre;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
         this.a = 0;
         this.b = 0;
 
@@ -233,10 +232,10 @@ public class Board extends Thread implements KeyListener {
                     botones[x][y - 1].setIcon(avatarIcon);
                     agregarPila(e.getKeyCode(), -1, -1);
                 }
-                puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
-                puntaje++;
-                lblpuntajeMovimientos.setText(String.valueOf(puntaje));
-                System.out.println("El puntaje arriba es: " + puntaje);
+                movimientos = Integer.parseInt(lblMovimientos.getText());
+                movimientos++;
+                lblMovimientos.setText(String.valueOf(movimientos));
+                System.out.println("Movimientos arriba -->" + movimientos);
 
             } else if (e.VK_S == e.getKeyCode() && y < 19 && botones[x][y + 1].getIcon() != muroIcon) {
                 if (botones[x][y + 1].getIcon() == cajaIcon && y <= 17 && botones[x][y + 2].getIcon() != muroIcon && botones[x][y + 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y + 2].getIcon() != cajaIcon && botones[x][y + 2].getIcon() != estrellaIcon) {
@@ -278,10 +277,10 @@ public class Board extends Thread implements KeyListener {
                     botones[x][y + 1].setIcon(avatarIcon);
                     agregarPila(e.getKeyCode(), -1, -1);
                 }
-                puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
-                puntaje++;
-                lblpuntajeMovimientos.setText(String.valueOf(puntaje));
-                System.out.println("El puntaje abajo es: " + puntaje);
+                movimientos = Integer.parseInt(lblMovimientos.getText());
+                movimientos++;
+                lblMovimientos.setText(String.valueOf(movimientos));
+                System.out.println("Movimientos abajo --> " + movimientos);
 
             } else if (KeyEvent.VK_A == e.getKeyCode() && x >= 1 && botones[x - 1][y].getIcon() != muroIcon) {
                 if (botones[x - 1][y].getIcon() == cajaIcon && x >= 2 && botones[x - 2][y].getIcon() != muroIcon && botones[x - 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x - 2][y].getIcon() != cajaIcon && botones[x - 2][y].getIcon() != estrellaIcon) {
@@ -323,10 +322,10 @@ public class Board extends Thread implements KeyListener {
                     botones[x - 1][y].setIcon(avatarIcon);
                     agregarPila(e.getKeyCode(), -1, -1);
                 }
-                puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
-                puntaje++;
-                lblpuntajeMovimientos.setText(String.valueOf(puntaje));
-                System.out.println("El puntaje izquierda es: " + puntaje);
+                movimientos = Integer.parseInt(lblMovimientos.getText());
+                movimientos++;
+                lblMovimientos.setText(String.valueOf(movimientos));
+                System.out.println("Movimientos izquierda --> " + movimientos);
             } else if (e.VK_D == e.getKeyCode() && x < 19 && botones[x + 1][y].getIcon() != muroIcon) {
                 if (botones[x + 1][y].getIcon() == cajaIcon && x <= 17 && botones[x + 2][y].getIcon() != muroIcon && botones[x + 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x + 2][y].getIcon() != cajaIcon && botones[x + 2][y].getIcon() != estrellaIcon) {
                     botones[x + 1][y].setIcon(caminoIcon);
@@ -368,10 +367,10 @@ public class Board extends Thread implements KeyListener {
                     botones[x + 1][y].setIcon(avatarIcon);
                     agregarPila(e.getKeyCode(), -1, -1);
                 }
-                puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
-                puntaje++;
-                lblpuntajeMovimientos.setText(String.valueOf(puntaje));
-                System.out.println("El puntaje derecha es: " + puntaje);
+                movimientos = Integer.parseInt(lblMovimientos.getText());
+                movimientos++;
+                lblMovimientos.setText(String.valueOf(movimientos));
+                System.out.println("Movimientos derecha --> " + movimientos);
             }
         }
     }
@@ -674,9 +673,9 @@ public class Board extends Thread implements KeyListener {
         }
         JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("sddsfhfdshfdshfh" + jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).getNombreJugador());
-        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblpuntajeMovimientos.getText()));
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblMovimientos.getText()));
         utilidades.guardarJugador(jugadores);
-        lblpuntajeMovimientos.setText("-1");
+        lblMovimientos.setText("-1");
         cambiarIconos();
     }
 

@@ -7,7 +7,7 @@ package interfaz;
 
 import code.ArchivoLeer;
 import code.Jugador;
-import code.Utilidades;
+import code.movimientos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,7 @@ public class MejoresJugadores extends javax.swing.JFrame {
 
     String nombre;
     Login login;
-    Utilidades utilidades;
+    movimientos utilidades;
     BoardFrame boardFrame;
     String[] niveles;
     ArchivoLeer leer;
@@ -31,7 +31,7 @@ public class MejoresJugadores extends javax.swing.JFrame {
     public MejoresJugadores(String nombre, Login login) {
         setUndecorated(true);
         initComponents();
-        utilidades = new Utilidades();
+        utilidades = new movimientos();
         this.nombre = nombre;
         this.login = login;
         jugadores = login.getJugador();

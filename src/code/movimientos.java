@@ -7,7 +7,6 @@ package code;
 
 import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import interfaz.*;
@@ -18,9 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author BRAYHAN JARAMILLO
  */
-public class Utilidades {
+public class movimientos {
 
     /**
      * *
@@ -63,7 +60,7 @@ public class Utilidades {
     public boolean guardarJugador(ArrayList<Jugador> jugadores) {
 
         String nombreJugador = null;
-        int puntaje = 0;
+        int movimientos = 0;
         String tablero = null;
         Charset utf = StandardCharsets.UTF_8;
         Path lector = Paths.get("jugadores.txt");
@@ -72,9 +69,9 @@ public class Utilidades {
             for (Jugador ju : jugadores) {
                 System.out.println("Entro por aca");
                 nombreJugador = ju.getNombreJugador();
-                puntaje = ju.getJugadas();
+                movimientos = ju.getJugadas();
                 tablero = String.valueOf(ju.getTablero());
-                escribir.write(nombreJugador + "," + puntaje + "," + tablero + "\n");
+                escribir.write(nombreJugador + "," + movimientos + "," + tablero + "\n");
             }
             escribir.close();
         } catch (Exception e) {
@@ -110,10 +107,10 @@ public class Utilidades {
             }
             r.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(movimientos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             System.out.println("Archivo vacio");
-            //Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(movimientos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jugadores;
     }
@@ -202,7 +199,7 @@ public class Utilidades {
      *
      * @param jugadores
      * @param nombre
-     * @return puntaje del jugador
+     * @return movimientos del jugador
      */
     public int retornarPosicion(ArrayList<Jugador> jugadores, String nombre) {
         for (int i = 0; i < jugadores.size(); i++) {
@@ -214,18 +211,18 @@ public class Utilidades {
     }
 
     /**
-     * *
-     * Metodo para modificar el puntaje del jugador
+     * **
+ Metodo para modificar el movimientos del jugador
      *
      * @param jugadores
      * @param nombre
-     * @param puntaje
+     * @param movimientos
      * @return true or false
      */
-    public boolean modificarPuntaje(ArrayList<Jugador> jugadores, String nombre, int puntaje) {
+    public boolean modificarMovimientos(ArrayList<Jugador> jugadores, String nombre, int movimientos) {
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).getNombreJugador().equals(nombre)) {
-                jugadores.get(i).setJugadas(puntaje);
+                jugadores.get(i).setJugadas(movimientos);
                 return true;
             }
         }
@@ -281,8 +278,6 @@ public class Utilidades {
         DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
         Object[] fila = new Object[2];
 
-        int puntaje = 1000;
-        List<Jugador> coso = jugadores;
         Collections.sort(jugadores);
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).getJugadas() == 0) {
@@ -304,7 +299,7 @@ public class Utilidades {
     public void llenarColumnas(JTable jtJugadores) {
         DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
         modelo.addColumn("NOMBRE JUGADOR");
-        modelo.addColumn("PUNTAJE");
+        modelo.addColumn("MOVIMIENTOS");
     }
 
     /**
@@ -315,7 +310,7 @@ public class Utilidades {
      */
     public void imprimirJugadores(ArrayList<Jugador> jugadores) {
         for (int i = 0; i < jugadores.size(); i++) {
-            System.out.println("Nombre: " + jugadores.get(i).getNombreJugador() + ", Puntaje: " + jugadores.get(i).getJugadas() + ", Tablero: " + jugadores.get(i).getTablero());
+            System.out.println("Nombre: " + jugadores.get(i).getNombreJugador() + ", Movimientos: " + jugadores.get(i).getJugadas() + ", Tablero: " + jugadores.get(i).getTablero());
         }
     }
 

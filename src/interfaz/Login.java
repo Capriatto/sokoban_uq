@@ -6,7 +6,7 @@
 package interfaz;
 
 import code.Jugador;
-import code.Utilidades;
+import code.movimientos;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Login extends javax.swing.JFrame {
 
-    Utilidades utilidades = new Utilidades();
+    movimientos utilidades = new movimientos();
 
     ArrayList<Jugador> jugador;
 
@@ -48,10 +48,6 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
-        
-        String nombre="Brayhannivelbueno";
-        System.out.println("El coso es: " + nombre.startsWith(nombre));
-        
         
         if ((utilidades.cargarJugadores().size()) > 0) {
             jugador = utilidades.cargarJugadores();
