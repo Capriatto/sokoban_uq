@@ -212,10 +212,12 @@ public class CrearNivelFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(tablero.verificarTablero()!=false){
         archivo = new CrearArchivoTxt(nombre.toLowerCase().concat(txtNombre.getText()), "niveles", tablero.llenarMatrizConImagenes());
         CrearNivelFrame nuevoTablero = new CrearNivelFrame(nombre, login);
         nuevoTablero.setVisible(true);
         this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

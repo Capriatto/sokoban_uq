@@ -35,6 +35,7 @@ public class CrearArchivoTxt {
      * @param matriz 
      */
     public CrearArchivoTxt(String nombreArchivo,String ruta, char matriz[][]) {
+   
         this.nombreArchivo = nombreArchivo;
         this.matriz=matriz;
         this.array=new char[20]; 
