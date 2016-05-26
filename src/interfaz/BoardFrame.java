@@ -36,7 +36,7 @@ public class BoardFrame extends javax.swing.JFrame {
         this.login = login;
         board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);
         nombreJugador = nombre;
-        lblJugador.setText(nombreJugador);
+        lblJugador.setText(nombreJugador.toUpperCase());
         jugadores = login.getJugador();
         lblPuntaje.setText(String.valueOf(puntaje));
         nombreNivel = nivel;

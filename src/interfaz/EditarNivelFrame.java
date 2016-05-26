@@ -45,7 +45,7 @@ public class EditarNivelFrame extends javax.swing.JFrame {
         this.ruta=ruta;
         this.login = login;
         leer=new ArchivoLeer();
-        matriz=leer.leerArchivo(nivel,ruta);
+        matriz=leer.leerArchivo(nombre.toLowerCase()+nivel.toLowerCase(),ruta);
         tablero = new GestionarTablero(matriz);
         this.tablero.matrizDeBotonesBloqueado(Panel);
     }
@@ -206,10 +206,9 @@ public class EditarNivelFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        leer.eliminarFichero(nivel, ruta);        
-        archivo = new CrearArchivoTxt(nivel, "niveles", tablero.llenarMatrizConImagenes());
-        EditarNivelFrame nuevoTablero = new EditarNivelFrame(nombre, login,nivel,ruta);
+        leer.eliminarFichero(nombre.toLowerCase()+nivel, ruta);        
+        archivo = new CrearArchivoTxt(nombre.toLowerCase()+nivel, "niveles", tablero.llenarMatrizConImagenes());
+        GestionarNivelesFrame nuevoTablero = new GestionarNivelesFrame(nombre, login);
         nuevoTablero.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
