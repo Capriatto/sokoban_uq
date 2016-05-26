@@ -191,9 +191,7 @@ public class Board implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         posicionAvatar();
-        if (buscarMuroY()) {
-            JOptionPane.showMessageDialog(null, "La partida en este momento se encuetra sin solucion \n le recomendamos usar la opcion deshacer");
-        }
+
         if (e.VK_W == e.getKeyCode() && y >= 1 && botones[x][y - 1].getIcon() != muroIcon) {
             if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                 botones[x][y - 1].setIcon(caminoIcon);
@@ -410,7 +408,6 @@ public class Board implements KeyListener {
             int pasoY = pasosY.size() >= 0 ? pasosY.pop() : -1;
             pasosRehacer.push(paso);
             posicionAvatar();
-            System.out.println(botones[x][y].getIcon());
             if (paso != 0) {
                 if (paso == 68) {
                     if ((pasoX != -1) && (pasoY != -1)) {
@@ -576,8 +573,12 @@ public class Board implements KeyListener {
      * debajo
      */
     public boolean menosEnY() {
-        if (botones[x][y - 1].getIcon() == estrellaIcon) {
-            return true;
+        try {
+            if (botones[x][y - 1].getIcon() == estrellaIcon) {
+                return true;
+            }
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println(a.fillInStackTrace());
         }
         return false;
     }
@@ -590,8 +591,12 @@ public class Board implements KeyListener {
      * arriba
      */
     public boolean masEnY() {
-        if (botones[x][y + 1].getIcon() == estrellaIcon) {
-            return true;
+        try {
+            if (botones[x][y + 1].getIcon() == estrellaIcon) {
+                return true;
+            }
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println(a.fillInStackTrace());
         }
         return false;
     }
@@ -604,8 +609,12 @@ public class Board implements KeyListener {
      * izquierda
      */
     public boolean masEnX() {
-        if (botones[x + 1][y].getIcon() == estrellaIcon) {
-            return true;
+        try {
+            if (botones[x + 1][y].getIcon() == estrellaIcon) {
+                return true;
+            }
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println(a.fillInStackTrace());
         }
         return false;
     }
@@ -618,8 +627,12 @@ public class Board implements KeyListener {
      * derecha
      */
     public boolean menosEnX() {
-        if (botones[x - 1][y].getIcon() == estrellaIcon) {
-            return true;
+        try {
+            if (botones[x - 1][y].getIcon() == estrellaIcon) {
+                return true;
+            }
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.out.println(a.fillInStackTrace());
         }
         return false;
     }
@@ -683,6 +696,7 @@ public class Board implements KeyListener {
         }
         return false;
     }
-
     
+    
+
 }
