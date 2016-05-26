@@ -34,9 +34,9 @@ public class BoardFrame extends javax.swing.JFrame {
         this.nombreArchivo = nombreArchivo;
         
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre, login, this, lblNivel);
         nombreJugador = nombre;
-        lblJugador.setText(nombreJugador);
+        lblJugador.setText(nombreJugador.toUpperCase());
         jugadores = login.getJugador();
         lblPuntaje.setText(String.valueOf(puntaje));
         nombreNivel = nivel;
@@ -55,7 +55,7 @@ public class BoardFrame extends javax.swing.JFrame {
         initComponents();
         this.nombreArchivo = nombreArchivo;
         this.login = login;
-        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);     
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre, login, this, lblTablero);     
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();
@@ -85,7 +85,7 @@ public class BoardFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblJugador = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblTablero = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblPuntaje = new javax.swing.JLabel();
@@ -149,9 +149,9 @@ public class BoardFrame extends javax.swing.JFrame {
         lblJugador.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         lblJugador.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel3.setText("NIVEL");
+        lblTablero.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        lblTablero.setForeground(new java.awt.Color(51, 153, 255));
+        lblTablero.setText("NIVEL");
 
         lblNivel.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,7 +200,7 @@ public class BoardFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTablero, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -224,7 +224,7 @@ public class BoardFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblTablero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -330,7 +330,6 @@ public class BoardFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -340,5 +339,6 @@ public class BoardFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblTablero;
     // End of variables declaration//GEN-END:variables
 }
