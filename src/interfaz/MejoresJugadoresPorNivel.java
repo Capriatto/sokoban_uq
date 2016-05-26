@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author BRAYHAN JARAMILLO
  */
-public class MejoresJugadores extends javax.swing.JFrame {
+public class MejoresJugadoresPorNivel extends javax.swing.JFrame {
 
     String nombre;
     Login login;
@@ -27,16 +27,16 @@ public class MejoresJugadores extends javax.swing.JFrame {
     /**
      * Creates new form Frame
      */
-    public MejoresJugadores(String nombre, Login login) {
+    public MejoresJugadoresPorNivel(String nombre, Login login) {
         setUndecorated(true);
         initComponents();
         utilidades = new Utilidades();
         this.nombre = nombre;
         this.login = login;
         jugadores = login.getJugador();
+        cbNivel.addItem("SELECCIONE");
         utilidades.cargarNiveles(cbNivel, nombre);
         utilidades.llenarColumnas(jtJugadores);
-        utilidades.mejoresJugadoresPorNivel(jtJugadores, jugadores, cbNivel.getSelectedItem().toString());
         setLocationRelativeTo(this);
         setResizable(false);
 
@@ -61,6 +61,8 @@ public class MejoresJugadores extends javax.swing.JFrame {
         jtJugadores = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         cbNivel = new javax.swing.JComboBox();
+        btnSalir2 = new javax.swing.JButton();
+        btnSalir3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +151,26 @@ public class MejoresJugadores extends javax.swing.JFrame {
         cbNivel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbNivel.setForeground(new java.awt.Color(255, 255, 255));
 
+        btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir2.setText("MEJORES JUGADORES");
+        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir2ActionPerformed(evt);
+            }
+        });
+
+        btnSalir3.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSalir3.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir3.setText("CARGAR");
+        btnSalir3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,7 +188,12 @@ public class MejoresJugadores extends javax.swing.JFrame {
                                     .addComponent(cbNivel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2))))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -182,7 +209,10 @@ public class MejoresJugadores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,13 +234,28 @@ public class MejoresJugadores extends javax.swing.JFrame {
 
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
         // TODO add your handling code here:
-        MejoresJugadores mejoresJugadores = new MejoresJugadores(nombre, login);
-        mejoresJugadores.setVisible(true);
+        Frame frame = new Frame(nombre, login);
+        frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
+    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
+        // TODO add your handling code here:
+        MejoresJugadores mejoresJugadores = new MejoresJugadores(nombre, login);
+        mejoresJugadores.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSalir2ActionPerformed
+
+    private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("El nivel elegido es: " + cbNivel.getSelectedItem().toString());
+        utilidades.mejoresJugadoresPorNivel(jtJugadores, jugadores, cbNivel.getSelectedItem().toString());
+    }//GEN-LAST:event_btnSalir3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir1;
+    private javax.swing.JButton btnSalir2;
+    private javax.swing.JButton btnSalir3;
     private javax.swing.JComboBox cbNivel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

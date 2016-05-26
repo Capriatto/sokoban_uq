@@ -277,12 +277,10 @@ public class Utilidades {
      *
      * @param jtJugadores
      */
-    public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores) {
+    public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores, String nombre) {
         DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
         Object[] fila = new Object[2];
 
-        int puntaje = 1000;
-        List<Jugador> coso = jugadores;
         Collections.sort(jugadores);
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).getJugadas() == 0) {
@@ -291,6 +289,35 @@ public class Utilidades {
                 fila[0] = jugadores.get(i).getNombreJugador();
                 fila[1] = jugadores.get(i).getJugadas();
                 modelo.addRow(fila);
+            }
+        }
+
+        jtJugadores.setModel(modelo);
+    }
+
+    /**
+     * *
+     * Permite mostrar en la tabla los mejores jugadores, los cuales han tenido
+     * menor numero de jugadas
+     *
+     * @param jtJugadores
+     */
+    public void mejoresJugadoresPorNivel(JTable jtJugadores, ArrayList<Jugador> jugadores, String nombre) {
+        DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
+        Object[] fila = new Object[2];
+        
+        String nivel = nombre.concat(".txt").toLowerCase();
+        System.out.println("Esto es el nivel normal: " + nivel);
+        Collections.sort(jugadores);
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getTablero().equals(nivel)) {
+                if (jugadores.get(i).getJugadas() == 0) {
+
+                } else {
+                    fila[0] = jugadores.get(i).getNombreJugador();
+                    fila[1] = jugadores.get(i).getJugadas();
+                    modelo.addRow(fila);
+                }
             }
         }
 

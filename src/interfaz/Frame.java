@@ -243,7 +243,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        MejoresJugadores mejoresJugadores = new MejoresJugadores(nombre, login);
+        MejoresJugadoresPorNivel mejoresJugadores = new MejoresJugadoresPorNivel(nombre, login);
         mejoresJugadores.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed

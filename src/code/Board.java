@@ -41,6 +41,7 @@ public class Board extends Thread implements KeyListener {
     private String nombreJugador;
     Utilidades utilidades;
     private BoardFrame boardNivel;
+    private JLabel lblTablero;
     /**
      * pila en la que guardamos las teclas que fueron presionadas para el
      * movimento del munieco
@@ -98,13 +99,14 @@ public class Board extends Thread implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre, Login login, BoardFrame elegirNivel) {
+    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre, Login login, BoardFrame elegirNivel, JLabel tablero) {
         this.jugadores = jugadores;
         this.boardNivel=elegirNivel;
         this.login= login;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
         nombreJugador = nombre;
+        lblTablero=tablero;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
         utilidades = new Utilidades();
@@ -682,6 +684,7 @@ public class Board extends Thread implements KeyListener {
         JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("sddsfhfdshfdshfh" + jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).getNombreJugador());
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblpuntajeMovimientos.getText()));
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setTablero(lblTablero.getText().concat(".txt").toLowerCase());
         utilidades.guardarJugador(jugadores);
         lblpuntajeMovimientos.setText("-1");
         //cambiarIconos();
