@@ -39,7 +39,7 @@ public class Board extends Thread implements KeyListener {
     private int a, b, x, y;
     private ArrayList<Jugador> jugadores;
     private String nombreJugador;
-    Utilidades utilidades;
+    private Utilidades utilidades;
     private BoardFrame boardNivel;
     private JLabel lblTablero;
     /**
@@ -130,6 +130,9 @@ public class Board extends Thread implements KeyListener {
 
     // se parametrizan las imágenes
     public void matrizDeBotonesBloqueado(JPanel panel, String ruta) {
+        
+        
+        
         for (int i = 0; i < 20; i++) {
             a = i * 30;
             for (int j = 0; j < 20; j++) {
