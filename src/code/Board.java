@@ -190,6 +190,7 @@ public class Board extends Thread implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        
         posicionAvatar();
         run();
         if (!buscarMuroY()) {
