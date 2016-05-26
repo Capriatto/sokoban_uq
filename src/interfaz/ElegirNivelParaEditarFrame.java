@@ -37,8 +37,8 @@ public class ElegirNivelParaEditarFrame extends javax.swing.JFrame {
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
-        niveles = leer.leerFicheros("niveles");
-        utilidades.cargarNiveles(cbNivel);
+        niveles = leer.leerFicheros("niveles",nombre);
+        utilidades.cargarNiveles(cbNivel,nombre);
         setLocationRelativeTo(null);
         setResizable(false);
     }

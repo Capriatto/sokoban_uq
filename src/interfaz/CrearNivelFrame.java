@@ -212,7 +212,7 @@ public class CrearNivelFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        archivo = new CrearArchivoTxt(txtNombre.getText(), "niveles", tablero.llenarMatrizConImagenes());
+        archivo = new CrearArchivoTxt(nombre.toLowerCase().concat(txtNombre.getText()), "niveles", tablero.llenarMatrizConImagenes());
         CrearNivelFrame nuevoTablero = new CrearNivelFrame(nombre, login);
         nuevoTablero.setVisible(true);
         this.dispose();

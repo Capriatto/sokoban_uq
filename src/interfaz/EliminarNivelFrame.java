@@ -34,8 +34,8 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
-        niveles = leer.leerFicheros("niveles");
-        utilidades.cargarNiveles(cbNivel);
+        niveles = leer.leerFicheros("niveles",nombre);
+        utilidades.cargarNiveles(cbNivel,nombre);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -201,8 +201,8 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
 
         leer.eliminarFichero(nivel, "niveles");
         cbNivel.removeAllItems();
-        niveles = leer.leerFicheros("niveles");
-        utilidades.cargarNiveles(cbNivel);
+        niveles = leer.leerFicheros("niveles",nombre);
+        utilidades.cargarNiveles(cbNivel,nombre);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
