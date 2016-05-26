@@ -32,8 +32,9 @@ public class BoardFrame extends javax.swing.JFrame {
     public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta) {
         initComponents();
         this.nombreArchivo = nombreArchivo;
-        board = new Board(nombreArchivo, lblPuntaje);
+        
         this.login = login;
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();
@@ -54,8 +55,8 @@ public class BoardFrame extends javax.swing.JFrame {
     public BoardFrame(String nombre, Login login, String nombreArchivo, String nivel, String ruta, int puntaje) {
         initComponents();
         this.nombreArchivo = nombreArchivo;
-        board = new Board(nombreArchivo, lblPuntaje);
         this.login = login;
+        board = new Board(nombreArchivo, lblPuntaje, login.getJugador(), nombre);     
         nombreJugador = nombre;
         lblJugador.setText(nombreJugador);
         jugadores = login.getJugador();
@@ -159,7 +160,7 @@ public class BoardFrame extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel4.setText("PUNTAJE");
+        jLabel4.setText("MOVIMIENTOS");
 
         lblPuntaje.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         lblPuntaje.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,14 +203,14 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
