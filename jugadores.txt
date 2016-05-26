@@ -1,4 +1,4 @@
 juan,0,null
-Brayhan,103,null
-Santiago,0,null
+Brayhan,103,brayhannuevo.txt
+Santiago,125,null
 Brayhan+,0,null

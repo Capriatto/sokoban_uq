@@ -11,17 +11,16 @@ import java.io.Serializable;
  *
  * @author BRAYHAN JARAMILLO
  */
-public class Jugador implements Serializable {
+public class Jugador implements Serializable, Comparable<Jugador>{
 
     private String nombreJugador;
-    private int puntaje;
     private int jugadas;
     private String tablero;
 
     public Jugador(String nombreJugador, int jugadas, String tablero) {
         this.nombreJugador = nombreJugador;
-        this.jugadas= jugadas;
-        this.tablero=tablero;
+        this.jugadas = jugadas;
+        this.tablero = tablero;
     }
 
     /**
@@ -82,5 +81,15 @@ public class Jugador implements Serializable {
      */
     public void setTablero(String tablero) {
         this.tablero = tablero;
+    }
+
+    public int compareTo(Jugador o) {
+        if (jugadas < o.jugadas) {
+            return -1;
+        }
+        if (jugadas > o.jugadas) {
+            return 1;
+        }
+        return 0;
     }
 }

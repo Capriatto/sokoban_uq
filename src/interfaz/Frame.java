@@ -62,6 +62,7 @@ public class Frame extends javax.swing.JFrame {
         btnContinuarJuego = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnSalir1 = new javax.swing.JButton();
+        btnSalir2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,10 +161,20 @@ public class Frame extends javax.swing.JFrame {
         btnSalir1.setBackground(new java.awt.Color(51, 153, 255));
         btnSalir1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("SALIR");
+        btnSalir1.setText("CERRAR SESIÓN");
         btnSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalir1ActionPerformed(evt);
+            }
+        });
+
+        btnSalir2.setBackground(new java.awt.Color(51, 153, 255));
+        btnSalir2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir2.setText("SALIR");
+        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir2ActionPerformed(evt);
             }
         });
 
@@ -185,7 +196,8 @@ public class Frame extends javax.swing.JFrame {
                             .addComponent(btnContinuarJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCrearNivel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnJugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSalir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnSalir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(84, 84, 84)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -204,7 +216,9 @@ public class Frame extends javax.swing.JFrame {
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -225,7 +239,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        MejoresJugadores mejoresJugadores= new MejoresJugadores(nombre, login);
+        MejoresJugadores mejoresJugadores = new MejoresJugadores(nombre, login);
         mejoresJugadores.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -257,16 +271,23 @@ public class Frame extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } 
-        if (validar != true){
+        }
+        if (validar != true) {
             JOptionPane.showMessageDialog(this, "No ha guardado ninguna partida\n Dirigase a la opción JUGAR.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnContinuarJuegoActionPerformed
 
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSalir1ActionPerformed
+
+    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalir2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuarJuego;
@@ -274,6 +295,7 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton btnJugar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSalir1;
+    private javax.swing.JButton btnSalir2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
