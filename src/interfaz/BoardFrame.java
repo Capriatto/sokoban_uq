@@ -285,10 +285,14 @@ public class BoardFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actionMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem2ActionPerformed
+
         if (board.getPasos().size() > 0) {
             board.setAgregar(false);
             board.deshacerPaso();
         }
+        
+        
+       
     }//GEN-LAST:event_actionMenuItem2ActionPerformed
 
     private void actionMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem3ActionPerformed
