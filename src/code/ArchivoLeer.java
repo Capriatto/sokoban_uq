@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,10 +67,14 @@ public class ArchivoLeer {
     }
 
     public void eliminarFichero(String nivel, String ruta) {
+        System.out.println("Este el archivo: " + nivel);
+        System.out.println("Este la ruta: " + ruta);
         String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
         String filename = levelDirectory + nivel + ".txt";
+        System.out.println("Este es la ruta completa: " + filename);
         File fichero = new File(filename);
         if (fichero.delete()) {
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el nivel satisfactoriamente", "Eliminar Nivel", JOptionPane.INFORMATION_MESSAGE);
             System.out.println("El fichero ha sido borrado satisfactoriamente");
         } else {
             System.out.println("El fichero no puede ser borrado");

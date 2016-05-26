@@ -56,9 +56,9 @@
                               <Component id="btnEditarNivel" min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnEliminar" min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="btnVolver" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnEliminar" pref="237" max="32767" attributes="0"/>
+                              <Component id="btnVolver" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
