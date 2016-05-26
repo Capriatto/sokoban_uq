@@ -67,7 +67,7 @@ public class Board extends Thread implements KeyListener {
      * Instancia de la clase robot que nos sirve para simular que se presiona
      * una tecla.
      */
-    Robot robot;
+    private Robot robot;
     /**
      * variable bandera que nos sirve para regular el ingreso a las pilas, no
      * ayuda a controlar cuando se deshace un paso para no tenerlo que agregar a
