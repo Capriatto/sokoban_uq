@@ -154,17 +154,21 @@ public class Utilidades {
      * despues de estos se cargan los demas que esten creados por los jugadores
      *
      * @param cbNivel
+     * @param nombreJu
      */
-    public void cargarNiveles(JComboBox cbNivel) {
+    public void cargarNiveles(JComboBox cbNivel, String nombreJu) {
+        String nomJugador = nombreJu.toLowerCase();
+
         String ruta = System.getProperty("user.dir") + java.io.File.separator + "src/niveles" + java.io.File.separator;
         File[] archivos = new File(ruta).listFiles();
         for (File file : archivos) {
             if (file.isFile()) {
                 String nombreArchivo = file.getName().replace(".txt", "");
-                if ("1Basico".equals(nombreArchivo) || "2Intermedio".equals(nombreArchivo) || "3Avanzado".equals(nombreArchivo)) {
+                if (nombreArchivo.startsWith(nomJugador.toLowerCase())) {
+                    cbNivel.addItem(nombreArchivo.replace(nomJugador.toLowerCase(), ""));
+                }
+                if (nombreArchivo.startsWith("1") || nombreArchivo.startsWith("2") || nombreArchivo.startsWith("3")) {
                     cbNivel.addItem(nombreArchivo.replaceAll("[0-9]", ""));
-                } else {
-                    cbNivel.addItem(nombreArchivo);
                 }
             }
         }
@@ -228,11 +232,13 @@ public class Utilidades {
         return false;
     }
 
-    /***
+    /**
+     * *
      * Metodo para validar al cargar la partida del jugador
+     *
      * @param jugadores
      * @param nombre
-     * @return 
+     * @return
      */
     public boolean validarContinuarJuego(ArrayList<Jugador> jugadores, String nombre) {
         String tablero = jugadores.get(retornarPosicion(jugadores, nombre)).getTablero();

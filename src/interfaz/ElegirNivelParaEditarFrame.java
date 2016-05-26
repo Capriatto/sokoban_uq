@@ -1,18 +1,21 @@
+package interfaz;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+
 
 import code.ArchivoLeer;
+import javax.swing.JOptionPane;
 import code.Utilidades;
 
 /**
  *
  * @author FabianGM
  */
-public class ElegirNivelFrame extends javax.swing.JFrame {
+public class ElegirNivelParaEditarFrame extends javax.swing.JFrame {
 
     ArchivoLeer leer;
     String[] niveles;
@@ -24,18 +27,18 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ElegirNivelFrame
+     * @param nombre
+     * @param login
      */
-    public ElegirNivelFrame(String nombre, Login login) {
+    public ElegirNivelParaEditarFrame(String nombre, Login login) {
         this.setUndecorated(true);
         initComponents();
         utilidades = new Utilidades();
-
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
-        //niveles = leer.leerFicheros("niveles", nombre);
-
-        utilidades.cargarNiveles(cbNivel, nombre);
+        niveles = leer.leerFicheros("niveles");
+        utilidades.cargarNiveles(cbNivel,nombre);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -124,7 +127,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         btnCargar.setBackground(new java.awt.Color(51, 153, 255));
         btnCargar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCargar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargar.setText("CARGAR");
+        btnCargar.setText("Editar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
@@ -157,8 +160,8 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnVolver)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCargar))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,12 +202,11 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
         try {
-            nivel = getDefaultLevels(nivel);
             System.out.println("El nombre: " + nombre);
             System.out.println("El nivel es: " + nivel);
             System.out.println("El retornar nivel es: " + utilidades.retornarNombreNivel(cbNivel).toLowerCase());
-            boardFrame = new BoardFrame(nombre, login, nivel, nivel, "niveles");
-            boardFrame.setVisible(true);
+            EditarNivelFrame editarFrame= new EditarNivelFrame(nombre, login, nivel,"niveles");
+            editarFrame.setVisible(true);
             this.dispose();
         } catch (Exception e) {
             System.out.println(e);
@@ -231,21 +233,4 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
-public String getDefaultLevels(String nivel) {
-        String name="";
-        switch (nivel) {
-            case "Basico":
-                name = "1" + nivel;
-                break;
-            case "Intermedio":
-                name = "2" + nivel;
-                break;
-            case "Avanzado":
-                name = "3" + nivel;
-                break;
-        }
-        if (name.equals(""))
-            name = nivel;
-        return name;
-    }
 }

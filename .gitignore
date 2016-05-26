@@ -1,2 +1,8 @@
 /dist/
+<<<<<<< HEAD
 jugadores.txt
+/nbproject/private/
+/build/
+=======
+*.txt
+>>>>>>> b159bbca359b991a1171f9101ef6f99e54e21c48

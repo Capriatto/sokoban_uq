@@ -3,8 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/O:/proyectoFinalEstructura/sokoban_uq/src/code/Board.java</file>
             <file>file:/O:/proyectoFinalEstructura/sokoban_uq/src/interfaz/BoardFrame.java</file>
+=======
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/EditarNivelFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/code/GestionarTablero.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/EliminarNivelFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/ElegirNivelParaEditarFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/ElegirNivelFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/BoardFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/Frame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/code/ArchivoLeer.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/GestionarNivelesFrame.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/code/Utilidades.java</file>
+            <file>file:/C:/Users/FabianGM/Documents/sokoban_uq/src/interfaz/CrearNivelFrame.java</file>
+>>>>>>> 49ca087c82e91364150225191f910876f353f937
         </group>
     </open-files>
 </project-private>

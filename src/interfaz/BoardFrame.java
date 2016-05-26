@@ -41,7 +41,6 @@ public class BoardFrame extends javax.swing.JFrame {
         lblPuntaje.setText(String.valueOf(puntaje));
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
-        tablero = new GestionarTablero();
         this.board.matrizDeBotonesBloqueado(Panel, ruta);
         utilidades = new Utilidades();
         this.setLocationRelativeTo(this);
@@ -63,7 +62,6 @@ public class BoardFrame extends javax.swing.JFrame {
         lblPuntaje.setText(String.valueOf(puntaje));
         nombreNivel = nivel;
         lblNivel.setText(nombreNivel);
-        tablero = new GestionarTablero();
         this.board.matrizDeBotonesBloqueado(Panel, ruta);
         utilidades = new Utilidades();
         this.setLocationRelativeTo(this);

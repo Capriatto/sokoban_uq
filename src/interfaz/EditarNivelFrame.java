@@ -1,9 +1,11 @@
+package interfaz;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+
 
 import code.*;
 import code.CrearArchivoTxt;
@@ -14,32 +16,39 @@ import java.util.ArrayList;
  *
  * @author FabianGM
  */
-public class CrearNivelFrame extends javax.swing.JFrame {
+public class EditarNivelFrame extends javax.swing.JFrame {
 
     private GestionarTablero tablero;
     private CrearArchivoTxt archivo;
-    String nombre;
+    
+    String nombre,nivel,ruta;
     Login login;
     ArrayList<Jugador> jugadores;
+    
     private char[][] matriz;
-
+    
+    private ArchivoLeer leer;
     /**
      * Creates new form CrearNivel
      *
      * @param nombre
      * @param login
+     * @param nivel
+     * @param ruta
      */
-    public CrearNivelFrame(String nombre, Login login) {
+    public EditarNivelFrame(String nombre, Login login,String nivel,String ruta) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         this.nombre = nombre;
+        this.nivel=nivel;
+        this.ruta=ruta;
         this.login = login;
-        matriz=new char[20][20];
+        leer=new ArchivoLeer();
+        matriz=leer.leerArchivo(nivel,ruta);
         tablero = new GestionarTablero(matriz);
         this.tablero.matrizDeBotonesBloqueado(Panel);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,8 +60,6 @@ public class CrearNivelFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Panel = new javax.swing.JPanel();
-        txtNombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -74,12 +81,6 @@ public class CrearNivelFrame extends javax.swing.JFrame {
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 599, Short.MAX_VALUE)
         );
-
-        txtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre del Nivel:");
 
         jButton2.setBackground(new java.awt.Color(51, 153, 255));
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -132,7 +133,7 @@ public class CrearNivelFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 32)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CREAR NIVEL");
+        jLabel2.setText("Editar nivel");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -162,17 +163,14 @@ public class CrearNivelFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,10 +184,6 @@ public class CrearNivelFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addGap(8, 8, 8)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,14 +206,16 @@ public class CrearNivelFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        archivo = new CrearArchivoTxt(nombre.toLowerCase().concat(txtNombre.getText()), "niveles", tablero.llenarMatrizConImagenes());
-        CrearNivelFrame nuevoTablero = new CrearNivelFrame(nombre, login);
+        this.dispose();
+        leer.eliminarFichero(nivel, ruta);        
+        archivo = new CrearArchivoTxt(nivel, "niveles", tablero.llenarMatrizConImagenes());
+        EditarNivelFrame nuevoTablero = new EditarNivelFrame(nombre, login,nivel,ruta);
         nuevoTablero.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Frame frame = new Frame(nombre, login);
+        GestionarNivelesFrame frame = new GestionarNivelesFrame(nombre, login);
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -232,12 +228,10 @@ public class CrearNivelFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Panel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -121,7 +121,7 @@ public class Frame extends javax.swing.JFrame {
         btnCrearNivel.setBackground(new java.awt.Color(51, 153, 255));
         btnCrearNivel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCrearNivel.setForeground(new java.awt.Color(255, 255, 255));
-        btnCrearNivel.setText("CREAR NIVELES");
+        btnCrearNivel.setText("Gestionar Niveles");
         btnCrearNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearNivelActionPerformed(evt);
@@ -253,7 +253,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void btnCrearNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearNivelActionPerformed
         // TODO add your handling code here:
-        CrearNivelFrame crearNivel = new CrearNivelFrame(nombre, login);
+        GestionarNivelesFrame crearNivel = new GestionarNivelesFrame(nombre, login);
         crearNivel.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCrearNivelActionPerformed
