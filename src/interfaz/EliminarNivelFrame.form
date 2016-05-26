@@ -53,7 +53,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cbNivel" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="85" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
                                   <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnCargar" min="-2" max="-2" attributes="0"/>
@@ -220,7 +220,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CARGAR"/>
+            <Property name="text" type="java.lang.String" value="ELIMINAR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarActionPerformed"/>

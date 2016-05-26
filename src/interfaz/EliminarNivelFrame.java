@@ -124,7 +124,7 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
         btnCargar.setBackground(new java.awt.Color(51, 153, 255));
         btnCargar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCargar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargar.setText("CARGAR");
+        btnCargar.setText("ELIMINAR");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
@@ -155,7 +155,7 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbNivel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 85, Short.MAX_VALUE)
+                                .addGap(0, 73, Short.MAX_VALUE)
                                 .addComponent(btnVolver)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCargar))))
