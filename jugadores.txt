@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 juan,0,null
 Brayhan,103,brayhannuevo.txt
 Santiago,125,null
 Brayhan+,0,null
 Katherine,0,null
+=======
+a,2,null
+>>>>>>> 8891d980dedc19bbbb398e9aa40040f0c86e7902
