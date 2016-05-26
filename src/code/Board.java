@@ -6,6 +6,7 @@
  */
 package code;
 
+import interfaz.BoardFrame;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -189,7 +190,11 @@ public class Board implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         posicionAvatar();
+        if (buscarMuroY()) {
+            JOptionPane.showMessageDialog(null, "La partida en este momento se encuetra sin solucion \n le recomendamos usar la opcion deshacer");
+        }
         if (e.VK_W == e.getKeyCode() && y >= 1 && botones[x][y - 1].getIcon() != muroIcon) {
             if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                 botones[x][y - 1].setIcon(caminoIcon);
@@ -405,14 +410,19 @@ public class Board implements KeyListener {
             int pasoX = pasosX.size() >= 0 ? pasosX.pop() : -1;
             int pasoY = pasosY.size() >= 0 ? pasosY.pop() : -1;
             pasosRehacer.push(paso);
+            posicionAvatar();
+            System.out.println(botones[x][y].getIcon());
             if (paso == 68) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
                     if (!ponerLlegada()) {
                         botones[x + 1][y].setIcon(caminoIcon);
                     }
-
                     botones[x][y].setIcon(cajaIcon);
+                    botones[x - 1][y].setIcon(avatarIcon);
+                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                    botones[x + 1][y].setIcon(caminoIcon);
+                    botones[x][y].setIcon(estrellaIcon);
                     botones[x - 1][y].setIcon(avatarIcon);
                 } else {
                     robot.keyPress(KeyEvent.VK_A);
@@ -428,6 +438,10 @@ public class Board implements KeyListener {
                     }
                     botones[x][y].setIcon(cajaIcon);
                     botones[x + 1][y].setIcon(avatarIcon);
+                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                    botones[x - 1][y].setIcon(caminoIcon);
+                    botones[x][y].setIcon(estrellaIcon);
+                    botones[x + 1][y].setIcon(avatarIcon);
                 } else {
                     robot.keyPress(KeyEvent.VK_D);
                 }
@@ -438,12 +452,17 @@ public class Board implements KeyListener {
             if (paso == 83) {
                 if ((pasoX != -1) && (pasoY != -1)) {
                     posicionAvatar();
+
                     if (!ponerLlegada()) {
                         botones[x][y + 1].setIcon(caminoIcon);
                     }
                     botones[x][y].setIcon(cajaIcon);
                     botones[x][y - 1].setIcon(avatarIcon);
 
+                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                    botones[x][y + 1].setIcon(caminoIcon);
+                    botones[x][y].setIcon(estrellaIcon);
+                    botones[x][y - 1].setIcon(avatarIcon);
                 } else {
                     robot.keyPress(KeyEvent.VK_W);
                 }
@@ -457,6 +476,10 @@ public class Board implements KeyListener {
                         botones[x][y - 1].setIcon(caminoIcon);
                     }
                     botones[x][y].setIcon(cajaIcon);
+                    botones[x][y + 1].setIcon(avatarIcon);
+                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                    botones[x][y - 1].setIcon(caminoIcon);
+                    botones[x][y].setIcon(estrellaIcon);
                     botones[x][y + 1].setIcon(avatarIcon);
                 } else {
                     robot.keyPress(KeyEvent.VK_S);
@@ -611,6 +634,26 @@ public class Board implements KeyListener {
         utilidades.guardarJugador(jugadores);
         lblpuntajeMovimientos.setText("-1");
         cambiarIconos();
+    }
+
+    public boolean buscarMuroY() {
+        if ((botones[x][y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
+            if (buscar(y - 1)) {
+                return true;
+            } else if (buscar(y + 2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean buscar(int y) {
+        for (int i = 0; i < botones.length; i++) {
+            if (botones[y][i].getIcon() == llegadaIcon) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
