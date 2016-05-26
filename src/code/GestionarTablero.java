@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -140,4 +141,38 @@ public void llenarBotonesDeImagenes(){
         
     }
 }
+    public boolean verificarTablero() {
+        llenarMatrizConImagenes();
+        int numCajas = 0, numLLegadas = 0, numAvatar = 0;
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                if (imagenes[i][j] == 'B') {
+                    numCajas++;
+                } else if (imagenes[i][j] == 'L') {
+                    numLLegadas++;
+
+                } else if (imagenes[i][j] == 'A') {
+                    numAvatar++;
+                }
+            }
+
+        }
+        if(numAvatar>1){
+            JOptionPane.showMessageDialog(null, "No puede crear mas de un avatar por tablero");
+            return false;
+        }else if(numAvatar==0){
+            JOptionPane.showMessageDialog(null, "Debe posicionar el avatar en el tablero");
+            return false;
+        }else if(numLLegadas>numCajas){
+            JOptionPane.showMessageDialog(null, "No puede crear mas llegadas que monedas");
+            return false;
+        }else if(numLLegadas<numCajas){
+            JOptionPane.showMessageDialog(null, "No puede crear mas de monedas que llegadas");
+            return false;
+        }else if(numCajas==0){
+            JOptionPane.showMessageDialog(null, "Debe haber por lo menos una moneda en el mapa");
+            return false;
+        }
+return true;
+    }
 }
