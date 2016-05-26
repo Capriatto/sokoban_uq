@@ -6,7 +6,6 @@
  */
 package code;
 
-import interfaz.BoardFrame;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -94,8 +93,8 @@ public class Board implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugador, String nombre) {
-        jugadores = jugador;
+    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre) {
+        jugadores = jugadores;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
         nombreJugador = nombre;
