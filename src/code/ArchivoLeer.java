@@ -65,4 +65,14 @@ public class ArchivoLeer {
         return f;
     }
 
+    public void eliminarFichero(String nivel, String ruta) {
+        String levelDirectory = System.getProperty("user.dir") + java.io.File.separator + "src/" + ruta + java.io.File.separator;
+        String filename = levelDirectory + nivel + ".txt";
+        File fichero = new File(filename);
+        if (fichero.delete()) {
+            System.out.println("El fichero ha sido borrado satisfactoriamente");
+        } else {
+            System.out.println("El fichero no puede ser borrado");
+        }
+    }
 }

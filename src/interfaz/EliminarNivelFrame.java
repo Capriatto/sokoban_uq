@@ -6,13 +6,14 @@
 package interfaz;
 
 import code.ArchivoLeer;
+import javax.swing.JOptionPane;
 import code.Utilidades;
 
 /**
  *
  * @author FabianGM
  */
-public class ElegirNivelFrame extends javax.swing.JFrame {
+public class EliminarNivelFrame extends javax.swing.JFrame {
 
     ArchivoLeer leer;
     String[] niveles;
@@ -25,7 +26,7 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     /**
      * Creates new form ElegirNivelFrame
      */
-    public ElegirNivelFrame(String nombre, Login login) {
+    public EliminarNivelFrame(String nombre, Login login) {
         this.setUndecorated(true);
         initComponents();
         utilidades = new Utilidades();
@@ -33,9 +34,8 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
-        //niveles = leer.leerFicheros("niveles", nombre);
-
-        utilidades.cargarNiveles(cbNivel, nombre);
+        niveles = leer.leerFicheros("niveles");
+        utilidades.cargarNiveles(cbNivel,nombre);
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -198,24 +198,11 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
-        try {
-            nivel = getDefaultLevels(nivel);
-            System.out.println("El nombre: " + nombre);
-            System.out.println("El nivel es: " + nivel);
-            System.out.println("El retornar nivel es: " + utilidades.retornarNombreNivel(cbNivel).toLowerCase());
-            if (nivel.equals("BASICO") || nivel.equals("INTERMEDIO") || nivel.equals("AVANZADO")) {
-                boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
-                boardFrame.setVisible(true);
-                this.dispose();
-            } else {
-                boardFrame = new BoardFrame(nombre, login, nombre.toLowerCase() + utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
-                boardFrame.setVisible(true);
-                this.dispose();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-            //JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
+        leer.eliminarFichero(nivel, "niveles");
+        cbNivel.removeAllItems();
+        niveles = leer.leerFicheros("niveles");
+        utilidades.cargarNiveles(cbNivel,nombre);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -237,22 +224,4 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
-public String getDefaultLevels(String nivel) {
-        String name = "";
-        switch (nivel) {
-            case "Basico":
-                name = "1" + nivel;
-                break;
-            case "Intermedio":
-                name = "2" + nivel;
-                break;
-            case "Avanzado":
-                name = "3" + nivel;
-                break;
-        }
-        if (name.equals("")) {
-            name = nivel;
-        }
-        return name;
-    }
 }
