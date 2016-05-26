@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author FabianGM
+ * @author sokobanUQ
  */
 public class Board extends Thread implements KeyListener {
 
@@ -35,7 +35,7 @@ public class Board extends Thread implements KeyListener {
      */
     private JButton[][] botones;
     private char[][] imagenes;
-    private ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon, estrellaIcon, llegadaAvatarIcon;
+    private final ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon, estrellaIcon, llegadaAvatarIcon;
     private int a, b, x, y;
     private ArrayList<Jugador> jugadores;
     private String nombreJugador;
@@ -146,6 +146,12 @@ public class Board extends Thread implements KeyListener {
         cambiarIconos();
     }
 
+    /**
+     * metodo que nos permite guardar la partida actuals
+     *
+     * @return una matriz de char con los elementos para cuando sea guardo quede
+     * de una forma legible
+     */
     public char[][] retonarMatrizJuegoActual() {
         for (int i = 0; i < imagenes.length; i++) {
             for (int j = 0; j < imagenes.length; j++) {
@@ -559,6 +565,10 @@ public class Board extends Thread implements KeyListener {
         }
     }
 
+    /**
+     * metodo que nos permite de acuerdo a los items que tiene una matriz de
+     * imagenes de tipo char reemplazar la imagen de acuerdo al caracter leido
+     */
     public void cambiarIconos() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
@@ -673,6 +683,10 @@ public class Board extends Thread implements KeyListener {
         return false;
     }
 
+    /**
+     * metodo que nos valida si el jugador ya puso todas las cajas en los puntos
+     * de llegada
+     */
     public void validarSiGano() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
@@ -694,19 +708,18 @@ public class Board extends Thread implements KeyListener {
 
     }
 
-    public boolean contarMuros() {
-        if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
-            return true;
-        } else if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
-            return false;
-        }
-        return false;
-    }
-
+    /**
+     * metodo que nos permite identificar si una moneda se encuentra en una
+     * pared y que todo la hilera de esa pared no haya un lugar donde se pueda
+     * depositar la moneda, para decirnos que en ese momento la partida no tiene
+     * solucion
+     *
+     * @return verdadero si la partida tiene aun solucion false si es lo
+     * contrario
+     */
     public boolean buscarMuro() {
-        System.out.println(botones[x][y + 2 == -1 ? 20 : y + 2].getIcon());
 
-        if ((botones[x][y - 2 == -1 ? 0 : y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
+        if ((botones[x][y - 2 < 0 ? 0 : y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
             if (buscarLlegadaIcon(y - 1)) {
                 return true;
             } else if (buscarEspacio()) {
@@ -716,7 +729,7 @@ public class Board extends Thread implements KeyListener {
             }
         }
 
-        if ((botones[x][y + 2 == 20 ? 19 : y + 2].getIcon() == muroIcon && botones[x][y + 1 == -1 ? 19 : y + 1].getIcon() == cajaIcon)) {
+        if ((botones[x][y + 2 > 19 ? 19 : y + 2].getIcon() == muroIcon && botones[x][y + 1 == -1 ? 19 : y + 1].getIcon() == cajaIcon)) {
             if (buscarLlegadaIcon(y + 1)) {
                 return true;
             } else if (buscarEspacio()) {
@@ -726,7 +739,7 @@ public class Board extends Thread implements KeyListener {
             }
         }
 
-        if ((botones[x - 2 == -1 ? 0 : x - 2][y].getIcon() == muroIcon && botones[x - 1][y].getIcon() == cajaIcon)) {
+        if ((botones[x - 2 < 0 ? 0 : x - 2][y].getIcon() == muroIcon && botones[x - 1][y].getIcon() == cajaIcon)) {
             if (buscarLlegadaIconX(x - 1)) {
                 return true;
             } else if (buscarEspacio()) {
@@ -736,7 +749,7 @@ public class Board extends Thread implements KeyListener {
             }
         }
 
-        if ((botones[x + 2 == 20 ? 19 : x + 2][y].getIcon() == muroIcon && botones[x + 1][y].getIcon() == cajaIcon)) {
+        if ((botones[x + 2 > 19 ? 19 : x + 2][y].getIcon() == muroIcon && botones[x + 1][y].getIcon() == cajaIcon)) {
             if (buscarLlegadaIconX(x + 1)) {
                 return true;
             } else if (buscarEspacio()) {
@@ -749,6 +762,13 @@ public class Board extends Thread implements KeyListener {
         return true;
     }
 
+    /**
+     * metodo que nos permite saber si entre un muro y la moneda hay espacios
+     * este es uno de los items que se evaluan para saber si la partida en el
+     * momento tiene solucion
+     *
+     * @return verdadero si entre la moneda y el muro hay espacios
+     */
     public boolean buscarEspacio() {
         if ((botones[x - 1][y].getIcon() == caminoIcon) && (botones[x - 1][y - 1].getIcon() == caminoIcon)) {
             return true;
@@ -761,9 +781,17 @@ public class Board extends Thread implements KeyListener {
         return false;
     }
 
+    /**
+     * metodo que nos permite evaluar otro item para saber si la partida que se
+     * esta jugando tiene solucion horizontalmente, lo que nos permite saber es
+     * que si debajo de un muro esta la moneda y hay un espacio de llegada.
+     *
+     * @param y, la posicion en y que se encuentra el mario
+     * @return verdadero si hay un espacio de llegada de la moneda y falso si es
+     * lo contrario
+     */
     public boolean buscarLlegadaIcon(int y) {
         for (int i = 0; i < botones.length; i++) {
-            System.out.println(botones[y][i].getIcon());
             if (botones[i][y].getIcon() == llegadaIcon) {
                 return true;
             }
@@ -771,6 +799,15 @@ public class Board extends Thread implements KeyListener {
         return false;
     }
 
+    /**
+     * metodo que nos permite evaluar otro item para saber si la partida que se
+     * esta jugando tiene solucion verticalmente, lo que nos permite saber es
+     * que si debajo de un muro esta la moneda y hay un espacio de llegada.
+     *
+     * @param y, la posicion en y que se encuentra el mario
+     * @return verdadero si hay un espacio de llegada de la moneda y falso si es
+     * lo contrario
+     */
     public boolean buscarLlegadaIconX(int y) {
         for (int i = 0; i < botones.length; i++) {
             if (botones[y][i].getIcon() == llegadaIcon) {
@@ -780,6 +817,10 @@ public class Board extends Thread implements KeyListener {
         return false;
     }
 
+    /**
+     * metodo sobre escrito de la interfaz thread para llamar al metodo que nos
+     * permite saber si la partida cada que se haga un movimiento tiene solucion
+     */
     @Override
     public void run() {
         if (!buscarMuro()) {
