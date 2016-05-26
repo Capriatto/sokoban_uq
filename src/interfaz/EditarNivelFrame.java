@@ -45,7 +45,7 @@ public class EditarNivelFrame extends javax.swing.JFrame {
         this.ruta=ruta;
         this.login = login;
         leer=new ArchivoLeer();
-        matriz=leer.leerArchivo(nivel,ruta);
+        matriz=leer.leerArchivo(nombre.toLowerCase()+nivel.toLowerCase(),ruta);
         tablero = new GestionarTablero(matriz);
         this.tablero.matrizDeBotonesBloqueado(Panel);
     }
