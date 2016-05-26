@@ -101,12 +101,12 @@ public class Board extends Thread implements KeyListener {
 
     public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre, Login login, BoardFrame elegirNivel, JLabel tablero) {
         this.jugadores = jugadores;
-        this.boardNivel=elegirNivel;
-        this.login= login;
+        this.boardNivel = elegirNivel;
+        this.login = login;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
         nombreJugador = nombre;
-        lblTablero=tablero;
+        lblTablero = tablero;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
         utilidades = new Utilidades();
@@ -694,6 +694,14 @@ public class Board extends Thread implements KeyListener {
 
     }
 
+    public boolean contarMuros() {
+        if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
+            return true;
+        } else if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
+            return false;
+        }
+        return false;
+    }
 
     public boolean buscarMuro() {
         System.out.println(botones[x][y + 2 == -1 ? 20 : y + 2].getIcon());
@@ -741,7 +749,6 @@ public class Board extends Thread implements KeyListener {
         return true;
     }
 
-    
     public boolean buscarEspacio() {
         if ((botones[x - 1][y].getIcon() == caminoIcon) && (botones[x - 1][y - 1].getIcon() == caminoIcon)) {
             return true;
@@ -753,8 +760,7 @@ public class Board extends Thread implements KeyListener {
 
         return false;
     }
-    
-    
+
     public boolean buscarLlegadaIcon(int y) {
         for (int i = 0; i < botones.length; i++) {
             System.out.println(botones[y][i].getIcon());
