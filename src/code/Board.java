@@ -74,7 +74,7 @@ public class Board implements KeyListener {
     private ArchivoLeer leer;
     private String nombreArchivo;
     int puntaje;
-    
+
     private JLabel lblpuntajeMovimientos;
     private int modificarPuntaje;
 
@@ -95,13 +95,13 @@ public class Board implements KeyListener {
     }
 
     public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugador, String nombre) {
-        jugadores=jugador;
+        jugadores = jugador;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
-        nombreJugador=nombre;
+        nombreJugador = nombre;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
-        utilidades= new Utilidades();
+        utilidades = new Utilidades();
         this.a = 0;
         this.b = 0;
 
@@ -229,13 +229,13 @@ public class Board implements KeyListener {
                 botones[x][y - 1].setIcon(llegadaAvatarIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y - 2].setIcon(cajaIcon);
-                agregarPila(e.getKeyCode(), -1, -1);
+                agregarPila(e.getKeyCode(), x, y);
             } else if (botones[x][y - 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y - 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
+            puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
             lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje arriba es: " + puntaje);
@@ -274,13 +274,13 @@ public class Board implements KeyListener {
                 botones[x][y + 1].setIcon(llegadaAvatarIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y + 2].setIcon(cajaIcon);
-                agregarPila(e.getKeyCode(), -1, -1);
+                agregarPila(e.getKeyCode(), x, y);
             } else if (botones[x][y + 1].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x][y + 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
+            puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
             lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje abajo es: " + puntaje);
@@ -319,13 +319,13 @@ public class Board implements KeyListener {
                 botones[x - 1][y].setIcon(llegadaAvatarIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x - 2][y].setIcon(cajaIcon);
-                agregarPila(e.getKeyCode(), -1, -1);
+                agregarPila(e.getKeyCode(), x, y);
             } else if (botones[x - 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x - 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
+            puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
             lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje izquierda es: " + puntaje);
@@ -363,14 +363,14 @@ public class Board implements KeyListener {
                 botones[x + 1][y].setIcon(llegadaAvatarIcon);
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 2][y].setIcon(cajaIcon);
-                agregarPila(e.getKeyCode(), -1, -1);
+                agregarPila(e.getKeyCode(), x, y);
 
             } else if (botones[x + 1][y].getIcon() != estrellaIcon) {
                 botones[x][y].setIcon(caminoIcon);
                 botones[x + 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
+            puntaje = Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
             lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje derecha es: " + puntaje);
@@ -412,80 +412,108 @@ public class Board implements KeyListener {
             pasosRehacer.push(paso);
             posicionAvatar();
             System.out.println(botones[x][y].getIcon());
-            if (paso == 68) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    posicionAvatar();
-                    if (!ponerLlegada()) {
-                        botones[x + 1][y].setIcon(caminoIcon);
+            if (paso != 0) {
+                if (paso == 68) {
+                    if ((pasoX != -1) && (pasoY != -1)) {
+                        posicionAvatar();
+                        if (!ponerLlegada()) {
+                            if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                                botones[x + 1][y].setIcon(caminoIcon);
+                                botones[x][y].setIcon(estrellaIcon);
+                                botones[x - 1][y].setIcon(avatarIcon);
+                                return;
+                            } else if (botones[x - 1][y].getIcon() == llegadaIcon) {
+                                botones[x + 1][y].setIcon(caminoIcon);
+                                botones[x][y].setIcon(cajaIcon);
+                                botones[x - 1][y].setIcon(llegadaAvatarIcon);
+                                return;
+                            }
+                            botones[x + 1][y].setIcon(caminoIcon);
+                        }
+                        botones[x][y].setIcon(cajaIcon);
+                        botones[x - 1][y].setIcon(avatarIcon);
+                    } else {
+                        robot.keyPress(KeyEvent.VK_A);
                     }
-                    botones[x][y].setIcon(cajaIcon);
-                    botones[x - 1][y].setIcon(avatarIcon);
-                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
-                    botones[x + 1][y].setIcon(caminoIcon);
-                    botones[x][y].setIcon(estrellaIcon);
-                    botones[x - 1][y].setIcon(avatarIcon);
-                } else {
-                    robot.keyPress(KeyEvent.VK_A);
-                }
-                return;
-            }
-
-            if (paso == 65) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    posicionAvatar();
-                    if (!ponerLlegada()) {
-                        botones[x - 1][y].setIcon(caminoIcon);
-                    }
-                    botones[x][y].setIcon(cajaIcon);
-                    botones[x + 1][y].setIcon(avatarIcon);
-                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
-                    botones[x - 1][y].setIcon(caminoIcon);
-                    botones[x][y].setIcon(estrellaIcon);
-                    botones[x + 1][y].setIcon(avatarIcon);
-                } else {
-                    robot.keyPress(KeyEvent.VK_D);
+                    return;
                 }
 
-                return;
-            }
-
-            if (paso == 83) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    posicionAvatar();
-
-                    if (!ponerLlegada()) {
-                        botones[x][y + 1].setIcon(caminoIcon);
+                if (paso == 65) {
+                    if ((pasoX != -1) && (pasoY != -1)) {
+                        posicionAvatar();
+                        if (!ponerLlegada()) {
+                            if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                                botones[x - 1][y].setIcon(caminoIcon);
+                                botones[x][y].setIcon(estrellaIcon);
+                                botones[x + 1][y].setIcon(avatarIcon);
+                                return;
+                            } else if (botones[x + 1][y].getIcon() == llegadaIcon) {
+                                botones[x - 1][y].setIcon(caminoIcon);
+                                botones[x][y].setIcon(cajaIcon);
+                                botones[x + 1][y].setIcon(llegadaAvatarIcon);
+                                return;
+                            }
+                            botones[x - 1][y].setIcon(caminoIcon);
+                        }
+                        botones[x][y].setIcon(cajaIcon);
+                        botones[x + 1][y].setIcon(avatarIcon);
+                    } else {
+                        robot.keyPress(KeyEvent.VK_D);
                     }
-                    botones[x][y].setIcon(cajaIcon);
-                    botones[x][y - 1].setIcon(avatarIcon);
 
-                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
-                    botones[x][y + 1].setIcon(caminoIcon);
-                    botones[x][y].setIcon(estrellaIcon);
-                    botones[x][y - 1].setIcon(avatarIcon);
-                } else {
-                    robot.keyPress(KeyEvent.VK_W);
+                    return;
                 }
-                return;
-            }
 
-            if (paso == 87) {
-                if ((pasoX != -1) && (pasoY != -1)) {
-                    posicionAvatar();
-                    if (!ponerLlegada()) {
-                        botones[x][y - 1].setIcon(caminoIcon);
+                if (paso == 83) {
+                    if ((pasoX != -1) && (pasoY != -1)) {
+                        posicionAvatar();
+                        if (!ponerLlegada()) {
+                            if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                                botones[x][y + 1].setIcon(caminoIcon);
+                                botones[x][y].setIcon(estrellaIcon);
+                                botones[x][y - 1].setIcon(avatarIcon);
+                                return;
+                            } else if (botones[x][y - 1].getIcon() == llegadaIcon) {
+                                botones[x][y + 1].setIcon(caminoIcon);
+                                botones[x][y].setIcon(cajaIcon);
+                                botones[x][y - 1].setIcon(llegadaAvatarIcon);
+                                return;
+                            }
+                            botones[x][y + 1].setIcon(caminoIcon);
+                        }
+                        botones[x][y].setIcon(cajaIcon);
+                        botones[x][y - 1].setIcon(avatarIcon);
+
+                    } else {
+                        robot.keyPress(KeyEvent.VK_W);
                     }
-                    botones[x][y].setIcon(cajaIcon);
-                    botones[x][y + 1].setIcon(avatarIcon);
-                } else if (botones[x][y].getIcon() == llegadaAvatarIcon) {
-                    botones[x][y - 1].setIcon(caminoIcon);
-                    botones[x][y].setIcon(estrellaIcon);
-                    botones[x][y + 1].setIcon(avatarIcon);
-                } else {
-                    robot.keyPress(KeyEvent.VK_S);
+                    return;
+                }
+
+                if (paso == 87) {
+                    if ((pasoX != -1) && (pasoY != -1)) {
+                        posicionAvatar();
+                        if (!ponerLlegada()) {
+                            if (botones[x][y].getIcon() == llegadaAvatarIcon) {
+                                botones[x][y - 1].setIcon(caminoIcon);
+                                botones[x][y].setIcon(estrellaIcon);
+                                botones[x][y + 1].setIcon(avatarIcon);
+                                return;
+                            } else if (botones[x][y + 1].getIcon() == llegadaIcon) {
+                                botones[x][y - 1].setIcon(caminoIcon);
+                                botones[x][y].setIcon(cajaIcon);
+                                botones[x][y + 1].setIcon(llegadaAvatarIcon);
+                                return;
+                            }
+                            botones[x][y - 1].setIcon(caminoIcon);
+                        }
+                        botones[x][y].setIcon(cajaIcon);
+                        botones[x][y + 1].setIcon(avatarIcon);
+                    } else {
+                        robot.keyPress(KeyEvent.VK_S);
+                    }
                 }
             }
-
         } catch (EmptyStackException e) {
             System.out.println(e.getLocalizedMessage());
         }
@@ -500,22 +528,23 @@ public class Board implements KeyListener {
     public void rehacerPaso() {
         try {
             int paso = pasosRehacer.empty() != true ? pasosRehacer.pop() : 0;
-            if (paso == 68) {
-                robot.keyPress(KeyEvent.VK_D);
-            }
+            if (paso != 0) {
+                if (paso == 68) {
+                    robot.keyPress(KeyEvent.VK_D);
+                }
 
-            if (paso == 65) {
-                robot.keyPress(KeyEvent.VK_A);
-            }
+                if (paso == 65) {
+                    robot.keyPress(KeyEvent.VK_A);
+                }
 
-            if (paso == 83) {
-                robot.keyPress(KeyEvent.VK_S);
-            }
+                if (paso == 83) {
+                    robot.keyPress(KeyEvent.VK_S);
+                }
 
-            if (paso == 87) {
-                robot.keyPress(KeyEvent.VK_W);
+                if (paso == 87) {
+                    robot.keyPress(KeyEvent.VK_W);
+                }
             }
-
         } catch (EmptyStackException e) {
             System.out.println(e.getCause());
             System.out.println(e.getMessage());
@@ -628,7 +657,7 @@ public class Board implements KeyListener {
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE); 
+        JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
         System.out.println("sddsfhfdshfdshfh" + jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).getNombreJugador());
         jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblpuntajeMovimientos.getText()));
         utilidades.guardarJugador(jugadores);
