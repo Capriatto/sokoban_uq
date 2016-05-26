@@ -10,6 +10,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.logging.Level;
@@ -33,7 +34,9 @@ public class Board implements KeyListener {
     private char[][] imagenes;
     private ImageIcon avatarIcon, cajaIcon, caminoIcon, muroIcon, llegadaIcon, estrellaIcon, llegadaAvatarIcon;
     private int a, b, x, y;
-
+    private ArrayList<Jugador> jugadores;
+    private String nombreJugador;
+    Utilidades utilidades;
     /**
      * pila en la que guardamos las teclas que fueron presionadas para el
      * movimento del munieco
@@ -77,14 +80,11 @@ public class Board implements KeyListener {
      */
     public boolean agregar = true;
 
-    public Board() {
-    }
-
     private ArchivoLeer leer;
     private String nombreArchivo;
     int puntaje;
     
-    private JLabel puntajeMovimientos;
+    private JLabel lblpuntajeMovimientos;
     private int modificarPuntaje;
 
     public Stack<Integer> getPasos() {
@@ -103,13 +103,14 @@ public class Board implements KeyListener {
         this.agregar = agregar;
     }
 
-    public Board(String nombreArchivo, JLabel puntajeJugador) {
+    public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugador, String nombre) {
+        jugadores=jugador;
         this.nombreArchivo = nombreArchivo;
-        puntajeMovimientos = puntajeJugador;
-        
-
+        lblpuntajeMovimientos = puntajeJugador;
+        nombreJugador=nombre;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
+        utilidades= new Utilidades();
         this.a = 0;
         this.b = 0;
 
@@ -239,9 +240,9 @@ public class Board implements KeyListener {
                 botones[x][y - 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
-            puntajeMovimientos.setText(String.valueOf(puntaje));
+            lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje arriba es: " + puntaje);
 
         } else if (e.VK_S == e.getKeyCode() && y < 19 && botones[x][y + 1].getIcon() != muroIcon) {
@@ -284,9 +285,9 @@ public class Board implements KeyListener {
                 botones[x][y + 1].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
-            puntajeMovimientos.setText(String.valueOf(puntaje));
+            lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje abajo es: " + puntaje);
 
         } else if (KeyEvent.VK_A == e.getKeyCode() && x >= 1 && botones[x - 1][y].getIcon() != muroIcon) {
@@ -329,9 +330,9 @@ public class Board implements KeyListener {
                 botones[x - 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
-            puntajeMovimientos.setText(String.valueOf(puntaje));
+            lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje izquierda es: " + puntaje);
         } else if (e.VK_D == e.getKeyCode() && x < 19 && botones[x + 1][y].getIcon() != muroIcon) {
             if (botones[x + 1][y].getIcon() == cajaIcon && x <= 17 && botones[x + 2][y].getIcon() != muroIcon && botones[x + 2][y].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x + 2][y].getIcon() != cajaIcon && botones[x + 2][y].getIcon() != estrellaIcon) {
@@ -374,9 +375,9 @@ public class Board implements KeyListener {
                 botones[x + 1][y].setIcon(avatarIcon);
                 agregarPila(e.getKeyCode(), -1, -1);
             }
-            puntaje=Integer.parseInt(puntajeMovimientos.getText());
+            puntaje=Integer.parseInt(lblpuntajeMovimientos.getText());
             puntaje++;
-            puntajeMovimientos.setText(String.valueOf(puntaje));
+            lblpuntajeMovimientos.setText(String.valueOf(puntaje));
             System.out.println("El puntaje derecha es: " + puntaje);
         }
     }
@@ -543,7 +544,11 @@ public class Board implements KeyListener {
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "¡Felicitaciones!\nEste estuvo muy fácil, prueba con otro más dificil :)", "Juego Terminado", JOptionPane.INFORMATION_MESSAGE); 
+        System.out.println("sddsfhfdshfdshfh" + jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).getNombreJugador());
+        jugadores.get(utilidades.retornarPosicion(jugadores, nombreJugador)).setJugadas(Integer.parseInt(lblpuntajeMovimientos.getText()));
+        utilidades.guardarJugador(jugadores);
+        lblpuntajeMovimientos.setText("-1");
         cambiarIconos();
     }
 }

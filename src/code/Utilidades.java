@@ -18,11 +18,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -229,6 +232,61 @@ public class Utilidades {
             return true;
         }
         return false;
+    }
+
+    /**
+     * *
+     * Permite llenar la tabla con los datos que esten en el array
+     *
+     * @param j
+     */
+    public void llenarTabla(JTable jtJugadores, ArrayList<Jugador> jugadores) {
+
+        DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
+        Object[] fila = new Object[2];
+
+        for (int i = 0; i < jugadores.size(); i++) {
+            fila[0] = jugadores.get(i).getNombreJugador();
+            fila[1] = jugadores.get(i).getJugadas();
+            modelo.addRow(fila);
+        }
+
+        jtJugadores.setModel(modelo);
+
+    }
+
+    /**
+     * *
+     * Permite mostrar en la tabla los mejores jugadores, los cuales han tenido
+     * menor numero de jugadas
+     *
+     * @param jtJugadores
+     */
+    public void mejoresJugadores(JTable jtJugadores, ArrayList<Jugador> jugadores) {
+        DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
+        Object[] fila = new Object[2];
+        ArrayList<Jugador> aux= new ArrayList<>();
+        int puntaje = 1000;
+        for (int i = 0; i < jugadores.size(); i++) {
+            if (jugadores.get(i).getJugadas() < puntaje) {
+                puntaje = jugadores.get(i).getJugadas();
+            }
+            fila[0] = jugadores.get(i).getNombreJugador();
+            fila[1] = jugadores.get(i).getJugadas();
+            modelo.addRow(fila);
+        }
+
+        jtJugadores.setModel(modelo);
+    }
+
+    /**
+     * *
+     * Permite dar el nombre a las columnas de la tabla
+     */
+    public void llenarColumnas(JTable jtJugadores) {
+        DefaultTableModel modelo = (DefaultTableModel) jtJugadores.getModel();
+        modelo.addColumn("NOMBRE JUGADOR");
+        modelo.addColumn("PUNTAJE");
     }
 
     /**

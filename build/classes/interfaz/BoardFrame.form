@@ -88,7 +88,6 @@
                       <Component id="jLabel2" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="lblJugador" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="lblPuntaje" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="266" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -97,6 +96,7 @@
                       </Group>
                       <Component id="jButton3" min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="lblNivel" min="-2" pref="287" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -255,7 +255,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="33" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PUNTAJE"/>
+            <Property name="text" type="java.lang.String" value="MOVIMIENTOS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPuntaje">
