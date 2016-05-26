@@ -19,11 +19,12 @@ import java.util.ArrayList;
 public class EditarNivelFrame extends javax.swing.JFrame {
 
     private GestionarTablero tablero;
-    private CrearArchivoTxt archivo;
+    private CrearArchivoTxt archivos;
     String nombre,nivel,ruta;
     Login login;
     ArrayList<Jugador> jugadores;
     private char[][] matriz;
+    
     private ArchivoLeer leer;
     /**
      * Creates new form CrearNivel
@@ -205,7 +206,7 @@ public class EditarNivelFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         leer.eliminarFichero(nivel, ruta);        
-        archivo = new CrearArchivoTxt(nivel, "niveles", tablero.llenarMatrizConImagenes());
+        archivos = new CrearArchivoTxt(nivel, "niveles", tablero.llenarMatrizConImagenes());
         EditarNivelFrame nuevoTablero = new EditarNivelFrame(nombre, login,nivel,ruta);
         nuevoTablero.setVisible(true);
         this.dispose();
