@@ -47,8 +47,7 @@ public class Login extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         setLocationRelativeTo(this);
-        setResizable(false);
-        
+        setResizable(false); 
         if ((utilidades.cargarJugadores().size()) > 0) {
             jugador = utilidades.cargarJugadores();
         } else {
