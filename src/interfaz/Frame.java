@@ -37,7 +37,7 @@ public class Frame extends javax.swing.JFrame {
         jugadores = login.getJugador();
         System.out.println("Tamano: " + login.getJugador().size());
         leer = new ArchivoLeer();
-        niveles = leer.leerFicheros("partidasGuardadas", nombre);
+        niveles = leer.leerFicheros("partidasGuardadas");
         setLocationRelativeTo(this);
         setResizable(false);
 
