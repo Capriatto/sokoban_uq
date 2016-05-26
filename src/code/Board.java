@@ -101,12 +101,12 @@ public class Board extends Thread implements KeyListener {
 
     public Board(String nombreArchivo, JLabel puntajeJugador, ArrayList<Jugador> jugadores, String nombre, Login login, BoardFrame elegirNivel, JLabel tablero) {
         this.jugadores = jugadores;
-        this.boardNivel=elegirNivel;
-        this.login= login;
+        this.boardNivel = elegirNivel;
+        this.login = login;
         this.nombreArchivo = nombreArchivo;
         lblpuntajeMovimientos = puntajeJugador;
         nombreJugador = nombre;
-        lblTablero=tablero;
+        lblTablero = tablero;
         leer = new ArchivoLeer();
         this.botones = new JButton[20][20];
         utilidades = new Utilidades();
@@ -130,6 +130,9 @@ public class Board extends Thread implements KeyListener {
 
     // se parametrizan las imágenes
     public void matrizDeBotonesBloqueado(JPanel panel, String ruta) {
+        
+        
+        
         for (int i = 0; i < 20; i++) {
             a = i * 30;
             for (int j = 0; j < 20; j++) {
@@ -201,7 +204,7 @@ public class Board extends Thread implements KeyListener {
 
         posicionAvatar();
         run();
-        if (!buscarMuroY()) {
+        if (buscarMuro()) {
             if (e.VK_W == e.getKeyCode() && y >= 1 && botones[x][y - 1].getIcon() != muroIcon) {
                 if (botones[x][y - 1].getIcon() == cajaIcon && y >= 2 && botones[x][y - 2].getIcon() != muroIcon && botones[x][y - 2].getIcon() != llegadaIcon && botones[x][y].getIcon() != llegadaAvatarIcon && botones[x][y - 2].getIcon() != cajaIcon && botones[x][y - 2].getIcon() != estrellaIcon) {
                     botones[x][y - 1].setIcon(caminoIcon);
@@ -694,25 +697,84 @@ public class Board extends Thread implements KeyListener {
 
     }
 
-    public boolean buscarMuroY() {
+    public boolean contarMuros() {
+        if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
+            return true;
+        } else if ((botones[x - 2][y + 1].getIcon() == muroIcon) || (botones[x - 2][y + 1].getIcon() == caminoIcon)) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean buscarMuro() {
         System.out.println(botones[x][y + 2 == -1 ? 20 : y + 2].getIcon());
 
         if ((botones[x][y - 2 == -1 ? 0 : y - 2].getIcon() == muroIcon && botones[x][y - 1].getIcon() == cajaIcon)) {
-            if (!buscarLlegadaIcon(y - 1)) {
+            if (buscarLlegadaIcon(y - 1)) {
                 return true;
+            } else if (buscarEspacio()) {
+                return true;
+            } else {
+                return false;
             }
         }
 
-        if ((botones[x][y + 2 == -1 ? 20 : y + 2].getIcon() == muroIcon && botones[x][y + 1].getIcon() == cajaIcon)) {
-            if (!buscarLlegadaIcon(y + 1)) {
+        if ((botones[x][y + 2 == 20 ? 19 : y + 2].getIcon() == muroIcon && botones[x][y + 1 == -1 ? 19 : y + 1].getIcon() == cajaIcon)) {
+            if (buscarLlegadaIcon(y + 1)) {
                 return true;
+            } else if (buscarEspacio()) {
+                return true;
+            } else {
+                return false;
             }
+        }
+
+        if ((botones[x - 2 == -1 ? 0 : x - 2][y].getIcon() == muroIcon && botones[x - 1][y].getIcon() == cajaIcon)) {
+            if (buscarLlegadaIconX(x - 1)) {
+                return true;
+            } else if (buscarEspacio()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if ((botones[x + 2 == 20 ? 19 : x + 2][y].getIcon() == muroIcon && botones[x + 1][y].getIcon() == cajaIcon)) {
+            if (buscarLlegadaIconX(x + 1)) {
+                return true;
+            } else if (buscarEspacio()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean buscarEspacio() {
+        if ((botones[x - 1][y].getIcon() == caminoIcon) && (botones[x - 1][y - 1].getIcon() == caminoIcon)) {
+            return true;
+        } else if ((botones[x - 1][y].getIcon() == caminoIcon) && (botones[x - 1][y + 1].getIcon() == caminoIcon)) {
+            return true;
+        } else if ((botones[x][y - 1].getIcon() == caminoIcon) && (botones[x - 1][y - 1].getIcon() == caminoIcon)) {
+            return true;
         }
 
         return false;
     }
 
     public boolean buscarLlegadaIcon(int y) {
+        for (int i = 0; i < botones.length; i++) {
+            System.out.println(botones[y][i].getIcon());
+            if (botones[i][y].getIcon() == llegadaIcon) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean buscarLlegadaIconX(int y) {
         for (int i = 0; i < botones.length; i++) {
             if (botones[y][i].getIcon() == llegadaIcon) {
                 return true;
@@ -723,8 +785,7 @@ public class Board extends Thread implements KeyListener {
 
     @Override
     public void run() {
-        System.out.println(buscarMuroY());
-        if (buscarMuroY()) {
+        if (!buscarMuro()) {
             JOptionPane.showMessageDialog(null, "En este momento la partida no tiene solucion use la opcion de deshacer");
         }
     }

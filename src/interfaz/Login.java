@@ -47,7 +47,10 @@ public class Login extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         setLocationRelativeTo(this);
-        setResizable(false); 
+        setResizable(false);
+        String nombre="Brayhannivelbueno";
+        System.out.println("El coso es: " + nombre.startsWith(nombre));
+       
         if ((utilidades.cargarJugadores().size()) > 0) {
             jugador = utilidades.cargarJugadores();
         } else {
