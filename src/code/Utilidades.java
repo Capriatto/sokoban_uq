@@ -165,10 +165,10 @@ public class Utilidades {
             if (file.isFile()) {
                 String nombreArchivo = file.getName().replace(".txt", "");
                 if (nombreArchivo.startsWith(nomJugador.toLowerCase())) {
-                    cbNivel.addItem(nombreArchivo.replace(nomJugador.toLowerCase(), ""));
+                    cbNivel.addItem(nombreArchivo.replace(nomJugador.toLowerCase(), "").toUpperCase());
                 }
                 if (nombreArchivo.startsWith("1") || nombreArchivo.startsWith("2") || nombreArchivo.startsWith("3")) {
-                    cbNivel.addItem(nombreArchivo.replaceAll("[0-9]", ""));
+                    cbNivel.addItem(nombreArchivo.replaceAll("[0-9]", "").toUpperCase());
                 }
             }
         }
