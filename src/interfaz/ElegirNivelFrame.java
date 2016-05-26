@@ -199,10 +199,11 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
         try {
+            nivel = getDefaultLevels(nivel);
             System.out.println("El nombre: " + nombre);
             System.out.println("El nivel es: " + nivel);
             System.out.println("El retornar nivel es: " + utilidades.retornarNombreNivel(cbNivel).toLowerCase());
-            boardFrame = new BoardFrame(nombre, login, utilidades.retornarNombreNivel(cbNivel).toLowerCase(), nivel, "niveles");
+            boardFrame = new BoardFrame(nombre, login, nivel, nivel, "niveles");
             boardFrame.setVisible(true);
             this.dispose();
         } catch (Exception e) {
@@ -230,4 +231,21 @@ public class ElegirNivelFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+public String getDefaultLevels(String nivel) {
+        String name="";
+        switch (nivel) {
+            case "Basico":
+                name = "1" + nivel;
+                break;
+            case "Intermedio":
+                name = "2" + nivel;
+                break;
+            case "Avanzado":
+                name = "3" + nivel;
+                break;
+        }
+        if (name.equals(""))
+            name = nivel;
+        return name;
+    }
 }
