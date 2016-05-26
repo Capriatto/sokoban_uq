@@ -1,9 +1,11 @@
+package interfaz;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+
 
 import code.ArchivoLeer;
 import javax.swing.JOptionPane;
@@ -13,7 +15,7 @@ import code.Utilidades;
  *
  * @author FabianGM
  */
-public class EliminarNivelFrame extends javax.swing.JFrame {
+public class ElegirNivelParaEditarFrame extends javax.swing.JFrame {
 
     ArchivoLeer leer;
     String[] niveles;
@@ -25,12 +27,13 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ElegirNivelFrame
+     * @param nombre
+     * @param login
      */
-    public EliminarNivelFrame(String nombre, Login login) {
+    public ElegirNivelParaEditarFrame(String nombre, Login login) {
         this.setUndecorated(true);
         initComponents();
         utilidades = new Utilidades();
-
         this.nombre = nombre;
         this.login = login;
         leer = new ArchivoLeer();
@@ -124,7 +127,7 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
         btnCargar.setBackground(new java.awt.Color(51, 153, 255));
         btnCargar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCargar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCargar.setText("CARGAR");
+        btnCargar.setText("Editar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
@@ -157,8 +160,8 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnVolver)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCargar))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,11 +201,17 @@ public class EliminarNivelFrame extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
         String nivel = cbNivel.getSelectedItem().toString();
-
-        leer.eliminarFichero(nivel, "niveles");
-        cbNivel.removeAllItems();
-        niveles = leer.leerFicheros("niveles");
-        utilidades.cargarNiveles(cbNivel);
+        try {
+            System.out.println("El nombre: " + nombre);
+            System.out.println("El nivel es: " + nivel);
+            System.out.println("El retornar nivel es: " + utilidades.retornarNombreNivel(cbNivel).toLowerCase());
+            EditarNivelFrame editarFrame= new EditarNivelFrame(nombre, login, nivel,"niveles");
+            editarFrame.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            System.out.println(e);
+            //JOptionPane.showMessageDialog(this, "Este nivel no está disponible\n Seleccione otro o cree un nivel nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

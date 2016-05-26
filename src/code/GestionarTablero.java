@@ -23,15 +23,16 @@ public class GestionarTablero implements ActionListener {
     private int a, b, x, y;
     private boolean avatar = false;
 
-    public GestionarTablero() {
+    public GestionarTablero(char[][] imagenes) {
         this.botones = new JButton[20][20];
-        this.imagenes = new char[20][20];
+        this.imagenes = imagenes;
+        
         avatarIcon = new ImageIcon(getClass().getResource("/recursos/avatarIcon.png"));
         muroIcon = new ImageIcon(getClass().getResource("/recursos/muroIcon.png"));
         cajaIcon = new ImageIcon(getClass().getResource("/recursos/cajaIcon.png"));
         llegadaIcon = new ImageIcon(getClass().getResource("/recursos/llegadaIcon.png"));
         caminoIcon = new ImageIcon(getClass().getResource("/recursos/caminoIcon.png"));
-
+        
     }
 
     public void matrizDeBotonesBloqueado(JPanel panel) {
@@ -47,6 +48,7 @@ public class GestionarTablero implements ActionListener {
             }
 
         }
+        llenarBotonesDeImagenes();
 
     }
 
@@ -77,9 +79,9 @@ public class GestionarTablero implements ActionListener {
     }
 
     public char[][] llenarMatrizConImagenes() {
+        
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-
                 if (botones[i][j].getIcon() == null) {
                     imagenes[i][j] = 'C';
                 } else if (botones[i][j].getIcon() == muroIcon) {
@@ -98,9 +100,8 @@ public class GestionarTablero implements ActionListener {
         }
         return imagenes;
     }
-    
-    
-        public char[][] retonarMatrizJuegoActual() {
+
+    public char[][] retonarMatrizJuegoActual() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
 
@@ -122,5 +123,21 @@ public class GestionarTablero implements ActionListener {
         }
         return imagenes;
     }
-
+public void llenarBotonesDeImagenes(){
+ 
+        for(int i=0;i<20;i++){
+          for(int j=0;j<20;j++){
+            if(imagenes[i][j]=='M'){
+                botones[i][j].setIcon(muroIcon);
+            }else if(imagenes[i][j]=='L'){
+                botones[i][j].setIcon(llegadaIcon);
+            }else if(imagenes[i][j]=='B'){
+                botones[i][j].setIcon(cajaIcon);
+            }else if(imagenes[i][j]=='A'){
+                botones[i][j].setIcon(avatarIcon);
+            }
+        }  
+        
+    }
+}
 }
