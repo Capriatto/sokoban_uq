@@ -39,7 +39,7 @@ public class Board extends Thread implements KeyListener {
     private int a, b, x, y;
     private ArrayList<Jugador> jugadores;
     private String nombreJugador;
-    Utilidades utilidades;
+    private Utilidades utilidades;
     private BoardFrame boardNivel;
     private JLabel lblTablero;
     /**
